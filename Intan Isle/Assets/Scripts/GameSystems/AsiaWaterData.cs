@@ -53,6 +53,12 @@ public static class WaterTypeExtensions
     public static bool IsUnderground(this WaterType t)
         => t == WaterType.UNDERGROUND;
 
+    /// <summary>Water bodies whose surface level is directly affected by ocean tides.</summary>
+    public static bool IsTidallyAffected(this WaterType t)
+        => t == WaterType.OCEAN   || t == WaterType.SEA      || t == WaterType.STRAIT
+        || t == WaterType.GULF    || t == WaterType.ESTUARY  || t == WaterType.WETLAND
+        || t == WaterType.CORAL_REEF || t == WaterType.FJORD || t == WaterType.TIDAL;
+
     public static string DisplayName(this WaterType t) => t switch
     {
         WaterType.OCEAN       => "Ocean",

@@ -312,4 +312,34 @@ public class WaterBodyManager : MonoBehaviour
 
     // ── Public status ─────────────────────────────────────────────
     public int ActiveSurfaceCount => _active.Count;
+
+    // ── Tide integration ──────────────────────────────────────────
+
+    private float _currentTideOffsetM = 0f;
+
+    /// <summary>
+    /// Called by TideEnvironmentController every frame with the real-world
+    /// tide height offset (metres above/below mean sea level, range ≈ ±2 m).
+    /// Adjusts the globe-anchor height of all active coastal water surfaces.
+    /// Only OCEAN, SEA, STRAIT, GULF, CORAL_REEF, TIDAL, ESTUARY, WETLAND types shift.
+    /// Rivers, reservoirs, underground, and glaciers are unaffected.
+    /// </summary>
+    public void SetTideOffset(float offsetM)
+    {
+        if (Mathf.Approximately(offsetM, _currentTideOffsetM)) return;
+        _currentTideOffsetM = offsetM;
+
+        foreach (var kv in _active)
+        {
+            var entry = AsiaWaterData.All.Find(w => w.name == kv.Key);
+            if (entry == null || !entry.waterType.IsTidallyAffected()) continue;
+
+            var anchor = kv.Value.GetComponent<CesiumForUnity.CesiumGlobeAnchor>();
+            if (anchor == null) continue;
+
+            var llh = anchor.longitudeLatitudeHeight;
+            anchor.longitudeLatitudeHeight = new Unity.Mathematics.double3(
+                llh.x, llh.y, 0.5 + offsetM);
+        }
+    }
 }

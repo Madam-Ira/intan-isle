@@ -137,6 +137,13 @@ public class CaveManager : MonoBehaviour
 
         if (nearest != null)
         {
+            // Tidal gate: SEA_CAVE and TIDAL types blocked when tide is too high
+            if (IsTidallyBlocked(nearest))
+            {
+                if (_currentCave != null) ExitCurrentCave();
+                return;
+            }
+
             if (_currentCave == null || _currentCave.name != nearest.name)
                 EnterNewCave(nearest, distKm);
         }
@@ -177,6 +184,16 @@ public class CaveManager : MonoBehaviour
         OnCaveExited?.Invoke(exiting);
 
         Debug.Log($"[CaveManager] Exited: {exiting?.name}");
+    }
+
+    // ── Tidal gate ─────────────────────────────────────────────────
+
+    private static bool IsTidallyBlocked(CaveEntry cave)
+    {
+        if (cave.tidalAccessThresholdM <= 0f) return false;
+        if (cave.caveType != CaveType.SEA_CAVE && cave.caveType != CaveType.TIDAL) return false;
+        if (TideService.Instance == null) return false;
+        return !TideService.Instance.IsBelowThreshold(cave.tidalAccessThresholdM);
     }
 
     // ── Public status ─────────────────────────────────────────────

@@ -36,6 +36,7 @@ public class BunianHUD : MonoBehaviour
     private TextMeshProUGUI _zoneText;
     private TextMeshProUGUI _altText;
     private TextMeshProUGUI _timeText;
+    private TextMeshProUGUI _tideText;
     private Image           _veilBarFill;
     private Image           _veilBarBG;
     private TextMeshProUGUI _formBadge;     // "✦ BUNIAN FORM" / "◦ PHYSICAL FORM"
@@ -128,6 +129,13 @@ public class BunianHUD : MonoBehaviour
             }
         }
 
+        if (_tideText != null)
+        {
+            _tideText.text = TideService.Instance != null
+                ? TideService.Instance.HUDString()
+                : "TIDE  —";
+        }
+
         if (_veilBarFill != null)
             _veilBarFill.fillAmount = veilStrain;
 
@@ -172,6 +180,15 @@ public class BunianHUD : MonoBehaviour
         _altText.alignment = TextAlignmentOptions.TopRight;
         _timeText          = MakeLabel(trPanel.transform, "--:--", new Vector2(1, 1), new Vector2(-10, -34), 13f);
         _timeText.alignment= TextAlignmentOptions.TopRight;
+
+        // Bottom-left: Tide panel
+        var tidePanel  = MakePanel(canvasGO.transform,
+            new Vector2(0, 0), new Vector2(0, 0),
+            new Vector2(20, 55),
+            new Vector2(200, 50));
+        var tideLabel  = MakeLabel(tidePanel.transform, "TIDE", new Vector2(0, 1), new Vector2(10, -6), 9f);
+        tideLabel.color = new Color(0.3f, 0.7f, 0.9f, 0.7f);
+        _tideText       = MakeLabel(tidePanel.transform, "—", new Vector2(0, 1), new Vector2(10, -20), 12f);
 
         // Bottom-centre: Veil Strain bar
         BuildVeilBar(canvasGO.transform);

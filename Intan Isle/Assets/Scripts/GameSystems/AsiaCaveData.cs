@@ -133,6 +133,10 @@ public class CaveEntry
     [Tooltip("Total known passage length in km")]
     public float  passageKm   = 0f;
 
+    [Header("Tidal Access")]
+    [Tooltip("SEA_CAVE and TIDAL caves: max tide height in metres for entry (0 = always accessible)")]
+    public float tidalAccessThresholdM = 0f;
+
     [Header("Narrative")]
     [TextArea(2, 5)]
     public string description;
