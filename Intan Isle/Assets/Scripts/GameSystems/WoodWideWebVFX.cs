@@ -170,7 +170,9 @@ public class WoodWideWebVFX : MonoBehaviour
             var lr = _lines[i];
             if (lr == null) continue;
 
-            _pulsePosNorm[i] = (_pulsePosNorm[i] + speed / lr.GetPosition(0).magnitude) % 1f;
+            float lineLen = Vector3.Distance(lr.GetPosition(0), lr.GetPosition(lr.positionCount - 1));
+            if (lineLen < 0.001f) lineLen = 0.001f; // guard against zero-length lines
+            _pulsePosNorm[i] = (_pulsePosNorm[i] + speed / lineLen) % 1f;
             float t = _pulsePosNorm[i];
 
             // Flicker in toxic zones

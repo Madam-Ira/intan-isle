@@ -72,8 +72,8 @@ public class PlayerHomeBase : MonoBehaviour
         // If previously saved, use that
         if (PlayerPrefs.HasKey(PREF_LAT))
         {
-            HomeLat = PlayerPrefs.GetFloat(PREF_LAT);
-            HomeLon = PlayerPrefs.GetFloat(PREF_LON);
+            HomeLat = double.Parse(PlayerPrefs.GetString(PREF_LAT));
+            HomeLon = double.Parse(PlayerPrefs.GetString(PREF_LON));
             HomeZone = (ZoneType)PlayerPrefs.GetInt(PREF_ZONE, 0);
             IsSet   = true;
             Debug.Log("[PlayerHomeBase] Loaded saved home: " + HomeLat + "°N, " + HomeLon + "°E  Zone: " + HomeZone);
@@ -129,8 +129,8 @@ public class PlayerHomeBase : MonoBehaviour
         HomeZoneName = zone?.zoneName ?? "Open Region";
 
         // Save to PlayerPrefs
-        PlayerPrefs.SetFloat(PREF_LAT,  (float)lat);
-        PlayerPrefs.SetFloat(PREF_LON,  (float)lon);
+        PlayerPrefs.SetString(PREF_LAT, lat.ToString("R"));
+        PlayerPrefs.SetString(PREF_LON, lon.ToString("R"));
         PlayerPrefs.SetInt(PREF_ZONE,   (int)HomeZone);
         PlayerPrefs.Save();
 

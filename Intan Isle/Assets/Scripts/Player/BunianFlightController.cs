@@ -55,7 +55,7 @@ public class BunianFlightController : MonoBehaviour
 
     // ── Private state ─────────────────────────────────────────────
     private CharacterController _cc;
-    private MonoBehaviour       _playerMovement;
+    private PlayerMovement      _playerMovement;
     private Vector3             _velocity      = Vector3.zero;
     private float               _targetFOV     = 60f;
     private float               _targetFar     = 500f;
@@ -74,7 +74,7 @@ public class BunianFlightController : MonoBehaviour
     void Awake()
     {
         _cc             = GetComponent<CharacterController>();
-        _playerMovement = GetComponent("PlayerMovement") as MonoBehaviour;
+        _playerMovement = GetComponent<PlayerMovement>();
         _anchor         = GetComponent<CesiumGlobeAnchor>();
 
         if (mainCamera == null)
