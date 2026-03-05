@@ -11877,6 +11877,8 @@ GameObject:
   - component: {fileID: 1314055879}
   - component: {fileID: 1314055880}
   - component: {fileID: 1314055881}
+  - component: {fileID: 1314055882}
+  - component: {fileID: 1314055883}
   m_Layer: 0
   m_Name: GameSystems
   m_TagString: Untagged
@@ -12105,6 +12107,37 @@ MonoBehaviour:
   barakahProximityKm: 1
   barakahMeter: {fileID: 1159952781}
   refreshInterval: 3
+--- !u!114 &1314055882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314055871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161762f35b0f426f8f74b0200c4e777b, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  transitionSpeed: 1.5
+  caveVolume: {fileID: 0}
+--- !u!114 &1314055883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314055871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c9786928e24d7a937e8141abb36d51, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  entranceProximityKm: 0.5
+  altitudeThresholdM: 20
+  refreshInterval: 2
+  barakahMeter: {fileID: 1159952781}
+  envController: {fileID: 1314055882}
 --- !u!1 &1353517511
 GameObject:
   m_ObjectHideFlags: 0
