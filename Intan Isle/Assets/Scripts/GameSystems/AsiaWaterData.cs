@@ -19,6 +19,13 @@ public enum WaterType
     ESTUARY,     // river mouth / tidal
     WETLAND,     // swamp, peatland, mangrove water
     CRATER_LAKE, // volcanic lake
+    WATERFALL,   // cascade / waterfall
+    GLACIER,     // ice / glacial melt
+    SPRING,      // freshwater spring (non-thermal)
+    FJORD,       // drowned valley / karst bay
+    CORAL_REEF,  // submerged reef system
+    GEYSER,      // intermittent erupting spring
+    UNDERGROUND, // cave river / karst system
 }
 
 public enum WaterHealth
@@ -33,10 +40,18 @@ public enum WaterHealth
 public static class WaterTypeExtensions
 {
     public static bool IsRenderable(this WaterType t)
-        // Only spawn Suimono surface for bodies the player might walk next to
-        => t == WaterType.RIVER || t == WaterType.LAKE || t == WaterType.RESERVOIR
+        // Spawn Suimono surface for bodies the player might walk next to
+        => t == WaterType.RIVER    || t == WaterType.LAKE       || t == WaterType.RESERVOIR
         || t == WaterType.HOT_SPRING || t == WaterType.CRATER_LAKE
-        || t == WaterType.WETLAND || t == WaterType.ESTUARY;
+        || t == WaterType.WETLAND  || t == WaterType.ESTUARY
+        || t == WaterType.GLACIER  || t == WaterType.SPRING     || t == WaterType.FJORD
+        || t == WaterType.CORAL_REEF;
+
+    public static bool IsWaterfall(this WaterType t)
+        => t == WaterType.WATERFALL || t == WaterType.GEYSER;
+
+    public static bool IsUnderground(this WaterType t)
+        => t == WaterType.UNDERGROUND;
 
     public static string DisplayName(this WaterType t) => t switch
     {
@@ -50,8 +65,15 @@ public static class WaterTypeExtensions
         WaterType.HOT_SPRING  => "Hot Spring",
         WaterType.ESTUARY     => "Estuary",
         WaterType.WETLAND     => "Wetland",
-        WaterType.CRATER_LAKE => "Crater Lake",
-        _                     => "Water",
+        WaterType.CRATER_LAKE  => "Crater Lake",
+        WaterType.WATERFALL    => "Waterfall",
+        WaterType.GLACIER      => "Glacier",
+        WaterType.SPRING       => "Freshwater Spring",
+        WaterType.FJORD        => "Fjord / Sea Bay",
+        WaterType.CORAL_REEF   => "Coral Reef",
+        WaterType.GEYSER       => "Geyser",
+        WaterType.UNDERGROUND  => "Underground River",
+        _                      => "Water",
     };
 
     /// <summary>Barakah change per second when player is within 1 km. Positive = restore.</summary>
@@ -668,6 +690,384 @@ public static class AsiaWaterData
             health=WaterHealth.STRESSED,
             region="Bangladesh / India",
             description="World's largest mangrove — last stronghold of the Bengal tiger; sea levels rising 8mm/year here.",
+        },
+
+        // ══ WATERFALLS ═══════════════════════════════════════════════
+
+        new WaterBodyEntry {
+            name="Huangguoshu Waterfall", waterType=WaterType.WATERFALL,
+            latitude=25.98, longitude=105.67, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="China (Guizhou)",
+            description="China's largest waterfall — 77m tall, 101m wide. You can walk behind the curtain through a cave passage.",
+        },
+        new WaterBodyEntry {
+            name="Detian / Ban Gioc Waterfall", waterType=WaterType.WATERFALL,
+            latitude=22.85, longitude=106.72, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="China / Vietnam border",
+            description="Asia's largest transboundary waterfall — turquoise water spills over three tiers into limestone karst.",
+        },
+        new WaterBodyEntry {
+            name="Nohkalikai Falls", waterType=WaterType.WATERFALL,
+            latitude=25.29, longitude=91.72, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="India (Meghalaya)",
+            description="India's tallest plunge waterfall at 340m — fed by one of the wettest places on Earth (Cherrapunji).",
+        },
+        new WaterBodyEntry {
+            name="Jog Falls", waterType=WaterType.WATERFALL,
+            latitude=14.22, longitude=74.80, radiusKm=1f,
+            health=WaterHealth.HEALTHY,
+            region="India (Karnataka)",
+            description="Second highest plunge waterfall in India — four separate cascades: Raja, Rani, Rover, Rocket.",
+        },
+        new WaterBodyEntry {
+            name="Athirappilly Falls", waterType=WaterType.WATERFALL,
+            latitude=10.29, longitude=76.57, radiusKm=1f,
+            health=WaterHealth.HEALTHY,
+            region="India (Kerala)",
+            description="The Niagara of India — gateway to Vazhachal forest, last refuge of the Great Hornbill.",
+        },
+        new WaterBodyEntry {
+            name="Dudhsagar Falls", waterType=WaterType.WATERFALL,
+            latitude=15.31, longitude=74.31, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="India (Goa / Karnataka)",
+            description="Sea of Milk — 310m four-tiered cascade through dense Western Ghats forest.",
+        },
+        new WaterBodyEntry {
+            name="Khone Phapheng Falls", waterType=WaterType.WATERFALL,
+            latitude=13.98, longitude=105.98, radiusKm=5f,
+            health=WaterHealth.HEALTHY,
+            region="Laos",
+            description="Widest waterfall in Asia (10 km wide) — the Mekong's great barrier to navigation. Critically important fish passage.",
+        },
+        new WaterBodyEntry {
+            name="Tat Kuang Si Falls", waterType=WaterType.WATERFALL,
+            latitude=19.72, longitude=101.97, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="Laos (Luang Prabang)",
+            description="Electric turquoise tiered pools of calcium carbonate — sacred forest surroundings; home to rescued Asiatic black bears.",
+        },
+        new WaterBodyEntry {
+            name="Erawan Falls", waterType=WaterType.WATERFALL,
+            latitude=14.39, longitude=99.15, radiusKm=2f,
+            health=WaterHealth.HEALTHY,
+            region="Thailand (Kanchanaburi)",
+            description="Seven-tiered emerald waterfall in limestone karst — named for the mythical three-headed elephant.",
+        },
+        new WaterBodyEntry {
+            name="Pongour Waterfall", waterType=WaterType.WATERFALL,
+            latitude=11.54, longitude=108.22, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="Vietnam (Da Lat)",
+            description="The queen of Vietnamese waterfalls — wide crescent cascades through highland red earth plateau.",
+        },
+        new WaterBodyEntry {
+            name="Madakaripura Waterfall", waterType=WaterType.WATERFALL,
+            latitude=-7.93, longitude=113.07, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="Indonesia (East Java)",
+            description="Sacred waterfall in a cathedral-like canyon — last meditation site of the Majapahit kingdom's great general Gajah Mada.",
+        },
+        new WaterBodyEntry {
+            name="Sipiso-piso Waterfall", waterType=WaterType.WATERFALL,
+            latitude=3.13, longitude=98.51, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="Indonesia (Sumatra, Lake Toba)",
+            description="120m underground waterfall pouring from a cave into Lake Toba — surrounded by Karo Batak highland culture.",
+        },
+        new WaterBodyEntry {
+            name="Kawasan Falls", waterType=WaterType.WATERFALL,
+            latitude=9.82, longitude=123.38, radiusKm=1f,
+            health=WaterHealth.HEALTHY,
+            region="Philippines (Cebu)",
+            description="Three-tiered aquamarine cascade in a narrow gorge — water temperature stays cool even in Philippine heat.",
+        },
+        new WaterBodyEntry {
+            name="Aliwagwag Falls", waterType=WaterType.WATERFALL,
+            latitude=7.43, longitude=126.37, radiusKm=2f,
+            health=WaterHealth.PRISTINE,
+            region="Philippines (Davao Oriental)",
+            description="Philippines' highest waterfall at 340m — 84 cascading tiers through the Pujada Peninsula rainforest.",
+        },
+        new WaterBodyEntry {
+            name="Nachi Falls", waterType=WaterType.WATERFALL,
+            latitude=33.67, longitude=135.90, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="Japan (Wakayama)",
+            description="Japan's tallest single-drop waterfall at 133m — a Shinto sacred site for 1,400 years; fire festival every July.",
+        },
+        new WaterBodyEntry {
+            name="Shiraito Falls", waterType=WaterType.WATERFALL,
+            latitude=35.37, longitude=138.59, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="Japan (Fujinomiya)",
+            description="White Thread Falls — hundreds of thin streams of snowmelt seeping through volcanic basalt at the foot of Mt Fuji.",
+        },
+        new WaterBodyEntry {
+            name="Cheonjeyeon Falls", waterType=WaterType.WATERFALL,
+            latitude=33.26, longitude=126.42, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="South Korea (Jeju Island)",
+            description="Three sacred tiers — the name means 'pond of God'. Rare noctilucent plants (Jeju sword grass) grow here.",
+        },
+        new WaterBodyEntry {
+            name="Shifen Waterfall", waterType=WaterType.WATERFALL,
+            latitude=25.04, longitude=121.78, radiusKm=1f,
+            health=WaterHealth.HEALTHY,
+            region="Taiwan",
+            description="Taiwan's widest waterfall — a horseshoe curtain over basalt columns; sky lantern tradition downstream.",
+        },
+        new WaterBodyEntry {
+            name="Bambarakanda Falls", waterType=WaterType.WATERFALL,
+            latitude=6.83, longitude=80.77, radiusKm=1f,
+            health=WaterHealth.PRISTINE,
+            region="Sri Lanka",
+            description="Sri Lanka's tallest waterfall at 263m — thin silver thread falling through montane cloud forest.",
+        },
+        new WaterBodyEntry {
+            name="Devi's Fall (Patale Chhango)", waterType=WaterType.WATERFALL,
+            latitude=28.19, longitude=83.95, radiusKm=1f,
+            health=WaterHealth.HEALTHY,
+            region="Nepal (Pokhara)",
+            description="Disappearing waterfall — plunges into a gorge and vanishes underground to emerge 3 km away. Meaning: 'hell's fall'.",
+        },
+        new WaterBodyEntry {
+            name="Jogkarta Sri Gethuk Waterfall", waterType=WaterType.WATERFALL,
+            latitude=-7.97, longitude=110.58, radiusKm=1f,
+            health=WaterHealth.HEALTHY,
+            region="Indonesia (Yogyakarta)",
+            description="Emerald waterfall emerging from a steep limestone karst — reachable only by bamboo raft through rice paddy.",
+        },
+        new WaterBodyEntry {
+            name="Langkawi Seven Wells Waterfall", waterType=WaterType.WATERFALL,
+            latitude=6.41, longitude=99.65, radiusKm=1f,
+            health=WaterHealth.HEALTHY,
+            region="Malaysia (Langkawi)",
+            description="Seven natural rock pools cascading down the flanks of Gunung Machinchang — one of the world's oldest geological formations.",
+        },
+
+        // ══ GLACIERS ═════════════════════════════════════════════════
+
+        new WaterBodyEntry {
+            name="Siachen Glacier", waterType=WaterType.GLACIER,
+            latitude=35.5, longitude=77.1, radiusKm=40f,
+            health=WaterHealth.STRESSED,
+            region="Pakistan / India (Karakoram)",
+            description="World's longest non-polar glacier (76 km). Military occupation and warming have accelerated melt by 400%.",
+        },
+        new WaterBodyEntry {
+            name="Baltoro Glacier", waterType=WaterType.GLACIER,
+            latitude=35.7, longitude=76.5, radiusKm=30f,
+            health=WaterHealth.STRESSED,
+            region="Pakistan (Karakoram)",
+            description="Gateway to K2 — surrounded by the highest concentration of 8,000m peaks on Earth.",
+        },
+        new WaterBodyEntry {
+            name="Gangotri Glacier", waterType=WaterType.GLACIER,
+            latitude=30.9, longitude=79.1, radiusKm=25f,
+            health=WaterHealth.STRESSED,
+            region="India (Uttarakhand)",
+            description="Source of the sacred Ganges — has retreated 22 km since 1780. Fastest melting Himalayan glacier.",
+        },
+        new WaterBodyEntry {
+            name="Fedchenko Glacier", waterType=WaterType.GLACIER,
+            latitude=38.8, longitude=72.2, radiusKm=35f,
+            health=WaterHealth.STRESSED,
+            region="Tajikistan (Pamirs)",
+            description="World's longest valley glacier outside the poles (77 km) — feeds the Amu Darya river system.",
+        },
+        new WaterBodyEntry {
+            name="Mer de Glace (Zemu Glacier)", waterType=WaterType.GLACIER,
+            latitude=27.7, longitude=88.1, radiusKm=15f,
+            health=WaterHealth.STRESSED,
+            region="India (Sikkim, Kangchenjunga)",
+            description="India's largest glacier — on the flanks of Kangchenjunga; sacred boundary in Lepcha cosmology.",
+        },
+        new WaterBodyEntry {
+            name="Inylchek Glacier", waterType=WaterType.GLACIER,
+            latitude=42.1, longitude=80.2, radiusKm=30f,
+            health=WaterHealth.STRESSED,
+            region="Kyrgyzstan (Tian Shan)",
+            description="Central Asia's largest glacier; contains Lake Merzbacher — a glacially-dammed lake that empties every year.",
+        },
+        new WaterBodyEntry {
+            name="Khumbu Glacier", waterType=WaterType.GLACIER,
+            latitude=28.0, longitude=86.8, radiusKm=10f,
+            health=WaterHealth.STRESSED,
+            region="Nepal (Everest)",
+            description="The world's highest glacier — Everest Base Camp sits on it. Melting at twice the rate of 20 years ago.",
+        },
+        new WaterBodyEntry {
+            name="Vatnajokull equivalent — Drangajokull (Batura Glacier)", waterType=WaterType.GLACIER,
+            latitude=36.5, longitude=74.5, radiusKm=25f,
+            health=WaterHealth.STRESSED,
+            region="Pakistan (Karakoram)",
+            description="One of the world's longest glaciers outside the poles — surges unpredictably, blocking ancient trade routes.",
+        },
+
+        // ══ FRESHWATER SPRINGS ══════════════════════════════════════
+
+        new WaterBodyEntry {
+            name="Hasbani Spring (Jordan River headwater)", waterType=WaterType.SPRING,
+            latitude=33.56, longitude=35.57, radiusKm=2f,
+            health=WaterHealth.STRESSED,
+            region="Lebanon / Israel",
+            description="One of three headwaters of the Jordan River — water wars have reduced its flow to near zero in summer.",
+        },
+        new WaterBodyEntry {
+            name="Ain Dilfa Spring", waterType=WaterType.SPRING,
+            latitude=24.1, longitude=56.3, radiusKm=1f,
+            health=WaterHealth.HEALTHY,
+            region="Oman",
+            description="Ancient falaj-fed spring oasis used for 3,000 years — UNESCO-listed ancient irrigation engineering.",
+        },
+        new WaterBodyEntry {
+            name="Phobjikha Valley Springs", waterType=WaterType.SPRING,
+            latitude=27.46, longitude=90.20, radiusKm=5f,
+            health=WaterHealth.PRISTINE,
+            region="Bhutan",
+            description="High altitude glacial spring complex — winter home of the critically endangered black-necked crane.",
+        },
+        new WaterBodyEntry {
+            name="Marble Caves Spring (Xi Shuangbanna)", waterType=WaterType.SPRING,
+            latitude=22.0, longitude=100.8, radiusKm=3f,
+            health=WaterHealth.PRISTINE,
+            region="China (Yunnan)",
+            description="Emerald karst spring feeding ancient Dai ethnic waterways — threatened by rubber plantation expansion.",
+        },
+        new WaterBodyEntry {
+            name="Lijiang Naxi Springs", waterType=WaterType.SPRING,
+            latitude=26.87, longitude=100.23, radiusKm=3f,
+            health=WaterHealth.HEALTHY,
+            region="China (Yunnan)",
+            description="Ancient canal system fed by Jade Dragon Snow Mountain glacial springs — UNESCO Old Town of Lijiang.",
+        },
+
+        // ══ FJORDS / SEA BAYS ════════════════════════════════════════
+
+        new WaterBodyEntry {
+            name="Ha Long Bay", waterType=WaterType.FJORD,
+            latitude=20.9, longitude=107.1, radiusKm=60f,
+            health=WaterHealth.STRESSED,
+            region="Vietnam",
+            description="1,969 limestone karst islands drowned by rising sea — UNESCO World Heritage. Tourism pressure threatening water quality.",
+        },
+        new WaterBodyEntry {
+            name="Phang Nga Bay", waterType=WaterType.FJORD,
+            latitude=8.35, longitude=98.55, radiusKm=40f,
+            health=WaterHealth.STRESSED,
+            region="Thailand",
+            description="Drowned karst sea — James Bond Island. Cave networks extend beneath the limestone into tidal chambers.",
+        },
+        new WaterBodyEntry {
+            name="Milford Sound (Piopiotahi)", waterType=WaterType.FJORD,
+            latitude=-44.6, longitude=167.9, radiusKm=15f,
+            health=WaterHealth.PRISTINE,
+            region="New Zealand",
+            description="Glacially-carved fjord — rare black coral, penguins, and dolphins in cold dark freshwater lens over the sea.",
+        },
+        new WaterBodyEntry {
+            name="Lim Fjord (Geoje Island equivalent — Hansan Bay)", waterType=WaterType.FJORD,
+            latitude=34.8, longitude=128.5, radiusKm=20f,
+            health=WaterHealth.HEALTHY,
+            region="South Korea",
+            description="Drowned ria coastline with sea-water oyster farms and intact seagrass beds.",
+        },
+
+        // ══ CORAL REEFS ══════════════════════════════════════════════
+
+        new WaterBodyEntry {
+            name="Raja Ampat Coral Triangle", waterType=WaterType.CORAL_REEF,
+            latitude=-0.5, longitude=130.8, radiusKm=100f,
+            health=WaterHealth.HEALTHY,
+            region="Indonesia (West Papua)",
+            description="Earth's highest marine biodiversity — 1,500 fish species, 600 coral species, 700 mollusc species.",
+        },
+        new WaterBodyEntry {
+            name="Tubbataha Reef", waterType=WaterType.CORAL_REEF,
+            latitude=8.85, longitude=119.9, radiusKm=30f,
+            health=WaterHealth.HEALTHY,
+            region="Philippines (Sulu Sea)",
+            description="UNESCO World Heritage — pristine atoll reef with sharks, manta rays, and no permanent human settlement.",
+        },
+        new WaterBodyEntry {
+            name="Sipadan Reef", waterType=WaterType.CORAL_REEF,
+            latitude=4.12, longitude=118.63, radiusKm=5f,
+            health=WaterHealth.PRISTINE,
+            region="Malaysia (Sabah)",
+            description="World's top dive site — oceanic island rising 600m from the seafloor; green turtle nesting ground.",
+        },
+        new WaterBodyEntry {
+            name="Bunaken National Marine Park", waterType=WaterType.CORAL_REEF,
+            latitude=1.62, longitude=124.78, radiusKm=20f,
+            health=WaterHealth.HEALTHY,
+            region="Indonesia (North Sulawesi)",
+            description="Vertical coral walls dropping 1,500m — one of Indonesia's first marine parks and a global manta ray hotspot.",
+        },
+        new WaterBodyEntry {
+            name="Ningaloo Reef", waterType=WaterType.CORAL_REEF,
+            latitude=-22.5, longitude=113.8, radiusKm=150f,
+            health=WaterHealth.HEALTHY,
+            region="Australia (Western Australia)",
+            description="World's largest fringing reef — whale sharks arrive each March for coral spawning aggregation.",
+        },
+        new WaterBodyEntry {
+            name="Andaman Coral Reefs", waterType=WaterType.CORAL_REEF,
+            latitude=12.0, longitude=93.0, radiusKm=50f,
+            health=WaterHealth.HEALTHY,
+            region="India (Andaman Islands)",
+            description="Remoteness has kept these reefs intact — leatherback sea turtles nest on beaches; dugongs graze seagrass beds.",
+        },
+
+        // ══ GEYSERS ══════════════════════════════════════════════════
+
+        new WaterBodyEntry {
+            name="Valley of Geysers", waterType=WaterType.GEYSER,
+            latitude=54.43, longitude=160.15, radiusKm=5f,
+            health=WaterHealth.PRISTINE,
+            region="Russia (Kamchatka)",
+            description="World's second largest geyser field — 90 geysers in a volcanic river valley; severely damaged by 2007 mudslide.",
+        },
+        new WaterBodyEntry {
+            name="Dallol Geothermal Field", waterType=WaterType.GEYSER,
+            latitude=14.24, longitude=40.30, radiusKm=5f,
+            health=WaterHealth.PRISTINE,
+            region="Ethiopia (edge of Asia range)",
+            description="Earth's hottest inhabited place — acid brine pools, salt chimneys, and multicoloured mineral fields.",
+        },
+
+        // ══ UNDERGROUND RIVERS / KARST ═══════════════════════════════
+
+        new WaterBodyEntry {
+            name="Son Doong Cave River", waterType=WaterType.UNDERGROUND,
+            latitude=17.55, longitude=106.28, radiusKm=3f,
+            health=WaterHealth.PRISTINE,
+            region="Vietnam (Quang Binh)",
+            description="World's largest cave — its underground river carved a passage large enough to fly a Boeing 747 through.",
+        },
+        new WaterBodyEntry {
+            name="Puerto Princesa Underground River", waterType=WaterType.UNDERGROUND,
+            latitude=10.17, longitude=118.93, radiusKm=5f,
+            health=WaterHealth.PRISTINE,
+            region="Philippines (Palawan)",
+            description="UNESCO World Heritage — 8.2 km navigable underground river opening directly into the South China Sea.",
+        },
+        new WaterBodyEntry {
+            name="Gunung Mulu Cave Rivers", waterType=WaterType.UNDERGROUND,
+            latitude=4.05, longitude=114.81, radiusKm=10f,
+            health=WaterHealth.PRISTINE,
+            region="Malaysia (Sarawak / Borneo)",
+            description="Clearwater Cave — 1.5 million bats exit at dusk; the cave river has dissolved the world's largest cave passage.",
+        },
+        new WaterBodyEntry {
+            name="Waitomo Glowworm Caves", waterType=WaterType.UNDERGROUND,
+            latitude=-38.26, longitude=175.11, radiusKm=3f,
+            health=WaterHealth.PRISTINE,
+            region="New Zealand",
+            description="Underground river lit by millions of Arachnocampa luminosa glowworms — a living night sky below the earth.",
         },
     };
 

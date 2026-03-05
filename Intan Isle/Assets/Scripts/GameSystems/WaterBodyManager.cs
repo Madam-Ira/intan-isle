@@ -5,29 +5,35 @@ using Unity.Mathematics;
 using UnityEngine;
 
 /// <summary>
-/// GPS-based water body system — spawns Suimono water surfaces for rivers,
-/// lakes, reservoirs, hot springs, and crater lakes near the player.
+/// GPS-based water body system — spawns Suimono FX for all water types near the player.
 ///
-/// Large seas and oceans are data-only (Barakah effects only).
-/// Renderable water types (RIVER, LAKE, RESERVOIR, HOT_SPRING, CRATER_LAKE,
-/// WETLAND, ESTUARY) get a Suimono surface spawned when the player comes
-/// within activationRadiusKm, and despawned beyond despawnRadiusKm.
+/// Water surface types   → SUIMONO_Surface prefab
+/// Waterfalls / Geysers  → fx_waterfall + fx_mist_waterfall prefabs
+/// Hot springs           → SUIMONO_Surface + fx_mist_hotspring prefab
+/// Underground rivers    → fx_rippleNormals prefab (subtle, no open surface)
+/// Ocean / sea shoreline → shorelineObject prefab added to surface
 ///
-/// Also applies per-second Barakah effects when the player is within
-/// barakahProximityKm of any water body.
-///
-/// Requires:
-///   - SUIMONO_Surface prefab assigned in Inspector
-///   - Optional: fx_mist_hotspring prefab for hot springs
-///   - BarakahMeter auto-found
+/// Large oceans/seas are data-only (Barakah effects, no 3D surface).
+/// All renderable bodies get a CesiumGlobeAnchor so they stay globe-accurate.
+/// Barakah effects apply within barakahProximityKm in Veiled World.
 /// </summary>
 public class WaterBodyManager : MonoBehaviour
 {
-    [Header("Prefabs")]
-    [Tooltip("Suimono SUIMONO_Surface prefab")]
+    [Header("Water Surface Prefabs")]
+    [Tooltip("Suimono SUIMONO_Surface prefab — rivers, lakes, reservoirs, glaciers, reefs")]
     [SerializeField] private GameObject waterSurfacePrefab;
-    [Tooltip("Suimono fx_mist_hotspring prefab (optional)")]
+    [Tooltip("Suimono shorelineObject prefab — added to large water surfaces")]
+    [SerializeField] private GameObject shorelinePrefab;
+
+    [Header("FX Prefabs")]
+    [Tooltip("Suimono fx_waterfall prefab")]
+    [SerializeField] private GameObject waterfallPrefab;
+    [Tooltip("Suimono fx_mist_waterfall prefab")]
+    [SerializeField] private GameObject waterfallMistPrefab;
+    [Tooltip("Suimono fx_mist_hotspring prefab")]
     [SerializeField] private GameObject hotSpringMistPrefab;
+    [Tooltip("Suimono fx_rippleNormals prefab — used for underground rivers")]
+    [SerializeField] private GameObject ripplePrefab;
 
     [Header("Proximity")]
     [Tooltip("Spawn Suimono surface when player is within this many km of a renderable water body")]
@@ -122,7 +128,7 @@ public class WaterBodyManager : MonoBehaviour
 
     private void ManageWaterSurfaces()
     {
-        // Find renderable water bodies within activation+despawn range
+        // Find any water bodies within activation+despawn range
         var nearby = AsiaWaterData.GetNearby(_playerLat, _playerLon, despawnRadiusKm + 50f);
 
         var toRemove = new List<string>();
@@ -144,53 +150,123 @@ public class WaterBodyManager : MonoBehaviour
         foreach (var k in toRemove) { _active.Remove(k); _mist.Remove(k); }
 
         // Spawn bodies now in range
-        if (waterSurfacePrefab == null) return;
-
         foreach (var entry in nearby)
         {
-            if (!entry.waterType.IsRenderable()) continue;
+            bool renderable = entry.waterType.IsRenderable()
+                           || entry.waterType.IsWaterfall()
+                           || entry.waterType.IsUnderground();
+            if (!renderable) continue;
             if (_active.ContainsKey(entry.name)) continue;
 
             double dist = DistKm(_playerLat, _playerLon, entry.latitude, entry.longitude);
             if (dist > activationRadiusKm + entry.radiusKm) continue;
 
-            SpawnWaterSurface(entry);
+            SpawnWaterBody(entry);
         }
     }
 
+    private void SpawnWaterBody(WaterBodyEntry entry)
+    {
+        if (entry.waterType.IsWaterfall())
+        {
+            SpawnWaterfall(entry);
+            return;
+        }
+        if (entry.waterType.IsUnderground())
+        {
+            SpawnUnderground(entry);
+            return;
+        }
+        SpawnWaterSurface(entry);
+    }
+
+    // ── Water surface (rivers, lakes, glaciers, reefs, etc.) ──────
+
     private void SpawnWaterSurface(WaterBodyEntry entry)
     {
-        // Place at GPS coordinates via CesiumGlobeAnchor
+        if (waterSurfacePrefab == null) return;
+
         var go = Instantiate(waterSurfacePrefab);
         go.name = "Water_" + entry.name;
 
-        // Scale to water body footprint — cap at 4 km diameter
+        // Scale to footprint — cap at 4 km diameter for performance
         float diamM = Mathf.Min(entry.radiusKm * 2000f, 4000f);
         go.transform.localScale = new Vector3(diamM, 1f, diamM);
 
-        // Attach CesiumGlobeAnchor so it stays at correct globe position
         var anchor = go.AddComponent<CesiumGlobeAnchor>();
-        anchor.longitudeLatitudeHeight = new double3(
-            entry.longitude,
-            entry.latitude,
-            0.5); // 0.5 m above terrain datum
+        anchor.longitudeLatitudeHeight = new double3(entry.longitude, entry.latitude, 0.5);
 
-        // Tint water colour by health if a Renderer is available
         ApplyWaterTint(go, entry.health.SurfaceTint());
-
         _active[entry.name] = go;
 
-        // Hot spring mist FX
-        if (entry.waterType == WaterType.HOT_SPRING && hotSpringMistPrefab != null)
+        // FX overlays
+        switch (entry.waterType)
         {
-            var mist = Instantiate(hotSpringMistPrefab);
-            mist.name = "Mist_" + entry.name;
-            var ma = mist.AddComponent<CesiumGlobeAnchor>();
-            ma.longitudeLatitudeHeight = new double3(entry.longitude, entry.latitude, 1.0);
-            _mist[entry.name] = mist;
+            case WaterType.HOT_SPRING:
+                SpawnFX(hotSpringMistPrefab, "Mist_", entry, 1.0, ref _mist);
+                break;
+
+            case WaterType.LAKE:
+            case WaterType.RESERVOIR:
+            case WaterType.FJORD:
+            case WaterType.CORAL_REEF:
+                // Shoreline ring for larger standing water
+                if (entry.radiusKm >= 1f)
+                    SpawnFX(shorelinePrefab, "Shore_", entry, 0.2, ref _mist);
+                break;
         }
 
-        Debug.Log($"[WaterBodyManager] Spawned: {entry.name} ({entry.waterType} / {entry.health})");
+        Debug.Log($"[WaterBodyManager] Spawned surface: {entry.name} ({entry.waterType} / {entry.health})");
+    }
+
+    // ── Waterfalls / Geysers ──────────────────────────────────────
+
+    private void SpawnWaterfall(WaterBodyEntry entry)
+    {
+        if (waterfallPrefab == null) return;
+
+        var go = Instantiate(waterfallPrefab);
+        go.name = "Waterfall_" + entry.name;
+        go.transform.localScale = Vector3.one * Mathf.Clamp(entry.radiusKm * 200f, 1f, 50f);
+
+        var anchor = go.AddComponent<CesiumGlobeAnchor>();
+        anchor.longitudeLatitudeHeight = new double3(entry.longitude, entry.latitude, 2.0);
+        _active[entry.name] = go;
+
+        // Mist at base
+        SpawnFX(waterfallMistPrefab, "WFMist_", entry, 0.5, ref _mist);
+
+        Debug.Log($"[WaterBodyManager] Spawned waterfall: {entry.name}");
+    }
+
+    // ── Underground rivers ────────────────────────────────────────
+
+    private void SpawnUnderground(WaterBodyEntry entry)
+    {
+        if (ripplePrefab == null) return;
+
+        var go = Instantiate(ripplePrefab);
+        go.name = "Underground_" + entry.name;
+        go.transform.localScale = Vector3.one * 3f;
+
+        var anchor = go.AddComponent<CesiumGlobeAnchor>();
+        anchor.longitudeLatitudeHeight = new double3(entry.longitude, entry.latitude, 0.1);
+        _active[entry.name] = go;
+
+        Debug.Log($"[WaterBodyManager] Spawned underground marker: {entry.name}");
+    }
+
+    // ── FX helper ────────────────────────────────────────────────
+
+    private void SpawnFX(GameObject prefab, string prefix, WaterBodyEntry entry,
+                         double heightOffset, ref Dictionary<string, GameObject> dict)
+    {
+        if (prefab == null) return;
+        var fx = Instantiate(prefab);
+        fx.name = prefix + entry.name;
+        var a = fx.AddComponent<CesiumGlobeAnchor>();
+        a.longitudeLatitudeHeight = new double3(entry.longitude, entry.latitude, heightOffset);
+        dict[entry.name] = fx;
     }
 
     private void ApplyWaterTint(GameObject go, Color tint)
