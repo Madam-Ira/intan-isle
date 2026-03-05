@@ -20,6 +20,8 @@ public enum FloraCategory
     GRASS,
     ALGAE,
     LICHEN,
+    SHRUB,
+    SUCCULENT,
 }
 
 /// <summary>
@@ -43,6 +45,7 @@ public enum FloraGameCategory
     VEGETABLES,               // Cultivated & wild food crops across Asia
     MUSHROOMS,                // Edible, medicinal & toxic mushrooms and bracket fungi
     HERBS,                    // Culinary, medicinal & sacred herbs, spices and aromatic plants
+    SHRUBS,                   // Woody shrubs, bamboo, tundra mats, epiphytes and ground cover
 }
 
 public enum ConservationStatus
@@ -99,6 +102,16 @@ public enum FloraHabitat
     DRY_SCRUB,             // Dry rocky scrub, garrigue and Mediterranean maquis
     SUBTROPICAL_FOREST,    // Warm subtropical forest (Star Anise, Cinnamon)
     ROCKY_COASTAL,         // Rocky coastal cliffs and sea-facing limestone slopes
+    // ── Added Batch 05 ────────────────────────────────────────────
+    RIVERBANK_FOREST_EDGE, // Tropical riverbank and forest edge interface (Giant Bamboo)
+    COASTAL_GARDEN,        // Coastal cultivation gardens and shoreline plots (Pandanus)
+    TROPICAL_FOREST_EPIPHYTE, // Epiphytic zone on tropical rainforest trees
+    TEMPERATE_FOREST,      // Broadleaf and mixed temperate forest (Moso Bamboo)
+    DARK_HUMID_FOREST,     // Deep dark humid forest floor with dense canopy (Indian Pipe)
+    ROCKY_DESERT,          // Rocky desert pavement and gravel plains (Kazakh Ephedra)
+    ROCKY_ALPINE,          // Bare rocky alpine scree and cliff faces (Stonecrop)
+    TUNDRA,                // Arctic and subarctic tundra (Willow, Lichen, Dwarf Pine)
+    WET_TUNDRA,            // Waterlogged Arctic tundra and frost-heave bog (Cottongrass)
 }
 
 public enum FloraRegion
@@ -148,6 +161,11 @@ public enum FloraAssetAnimation
     ANIMATED_GLOW_PULSE,      // Bioluminescent pulse cycle (Ghost Fungus)
     ANIMATED_EMERGENCE,       // Dramatic ground emergence + veil deployment (Stinkhorn)
     ANIMATED_BARK_PEEL,       // Spiral bark-stripping animation (Cinnamon harvest)
+    ANIMATED_FEATHER_PLUME,   // Long silver feather plumes cascading in steppe wind
+    ANIMATED_MASS_BLOOM,      // Mass simultaneous petal bloom covering whole shrub
+    ANIMATED_CATKIN_SWAY,     // Catkin pendulums trembling in Arctic wind
+    ANIMATED_WIND_SCULPTED,   // Wind-sculpted prostrate growth direction animation
+    ANIMATED_COTTON_SWAY,     // White cotton-ball seed heads swaying in tundra wind
 }
 
 // ════════════════════════════════════════════════════════════════
@@ -2896,6 +2914,352 @@ public static class AsiaFloraData
             assetAnimation=FloraAssetAnimation.STATIC, size="5–35 cm; gold-pink succulent rosette",
             glowLocation="Gold-rose succulent rosette shimmer; rocky Arctic anchor glow",
             teamlabMood="Rosette + root", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        // ══════════════════════════════════════════════════════════════
+        // BATCH 05 — SHRUBS  (IDs 9001–9505)
+        // ══════════════════════════════════════════════════════════════
+
+        // ── SEA (9001–9003) ───────────────────────────────────────────
+        new FloraEntry { id=9001, name="Giant Bamboo", scientific="Dendrocalamus giganteus",
+            category=FloraCategory.GRASS, subCategory="Bamboo",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.SEA,
+            countries="Malaysia, Myanmar, Thailand, Indonesia",
+            habitat=FloraHabitat.RIVERBANK_FOREST_EDGE,
+            latitude=4.5, longitude=114.5, spawnRadiusKm=500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Rapid erosion control; wildlife habitat; carbon sequestration",
+            significance="World's tallest bamboo at 20–30 m; culms grow 30 cm/day; " +
+                         "hollow internodes glow jade-green from within; used for construction, food " +
+                         "(young shoots), and sustainable material across maritime SEA; ancient sacred groves",
+            edible="Edible (young shoots)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="20–30 m culms",
+            glowLocation="Jade-green inner wall glow visible through hollow culm cross-section",
+            teamlabMood="Culm walls", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=9002, name="Pandanus / Pandan", scientific="Pandanus amaryllifolius",
+            category=FloraCategory.PLANT, subCategory="Culinary Plant",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.SEA,
+            countries="SEA-wide",
+            habitat=FloraHabitat.COASTAL_GARDEN,
+            latitude=1.3, longitude=103.8, spawnRadiusKm=500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Ground stabiliser; bird nesting microhabitat",
+            significance="Iconic SEA culinary flavouring; spiral rosette of jade-green leaves " +
+                         "releases sweet pandan aroma; used in rice, cakes, sweets, and coconut milk; " +
+                         "leaf extracts dye food green; rosette veins pulse electric jade in Veiled World",
+            edible="Edible (leaves for flavour and colouring)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="1–3 m",
+            glowLocation="Bright jade emission from leaf veins; spiral rosette luminous pulse",
+            teamlabMood="Leaf vein lines", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=9003, name="Borneo Birdnest Fern", scientific="Asplenium nidus",
+            category=FloraCategory.FERN, subCategory="Epiphytic Fern",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.SEA,
+            countries="Borneo, SEA-wide",
+            habitat=FloraHabitat.TROPICAL_FOREST_EPIPHYTE,
+            latitude=1.0, longitude=114.0, spawnRadiusKm=350f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Epiphytic water collector; wildlife microhabitat in forest canopy",
+            significance="Enormous nest-shaped fern living high on rainforest trees; " +
+                         "catches leaf litter and rainwater forming a rich basket ecosystem; " +
+                         "feeds tree-climbing invertebrates and lizards; " +
+                         "dark glossy midrib channels glow deep emerald in quiet forest light",
+            edible="None",
+            assetAnimation=FloraAssetAnimation.STATIC, size="0.5–1.5 m basket",
+            glowLocation="Deep glossy green frond shimmer; dark midrib line emission",
+            teamlabMood="Frond surface", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        // ── East Asia (9101–9102) ─────────────────────────────────────
+        new FloraEntry { id=9101, name="Bamboo (Moso)", scientific="Phyllostachys edulis",
+            category=FloraCategory.GRASS, subCategory="Bamboo",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.EAST_ASIA,
+            countries="China, Japan, Korea",
+            habitat=FloraHabitat.TEMPERATE_FOREST,
+            latitude=30.0, longitude=120.0, spawnRadiusKm=400f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Giant panda food; rapid carbon sequestration; erosion control",
+            significance="Fastest growing plant on Earth (91 cm/day); primary food for giant pandas; " +
+                         "revered in East Asian art and philosophy as symbol of resilience and virtue; " +
+                         "edible young shoots; culm walls glow jade-green at each internode",
+            edible="Edible (young shoots)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="20–28 m",
+            glowLocation="Jade-green inner wall glow at culm internodes",
+            teamlabMood="Culm internodes", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=9102, name="Tea Plant", scientific="Camellia sinensis",
+            category=FloraCategory.SHRUB, subCategory="Crop Plant",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.EAST_ASIA,
+            countries="China, Japan, Korea, Taiwan, India",
+            habitat=FloraHabitat.HIGHLAND_GARDEN,
+            latitude=29.5, longitude=102.5, spawnRadiusKm=300f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Butterfly habitat; shade understorey crop",
+            significance="Source of the world's most consumed beverage; 5,000 yr cultivation in Yunnan; " +
+                         "young bud + two-leaf flush becomes green tea, oolong, and black tea; " +
+                         "Chan and Zen tea ceremony culture; Silk Road trade commodity; " +
+                         "jade-soft bud tips glow in morning highland mist",
+            edible="Edible (leaves — all tea varieties)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="1–3 m cultivated bush",
+            glowLocation="Soft jade shimmer on young bud and two-leaf flush",
+            teamlabMood="Young leaf tips", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        // ── South Asia (9201) ─────────────────────────────────────────
+        new FloraEntry { id=9201, name="Indian Pipe Plant", scientific="Monotropa uniflora",
+            category=FloraCategory.PLANT, subCategory="Parasitic Plant",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Himalayan forests)",
+            habitat=FloraHabitat.DARK_HUMID_FOREST,
+            latitude=27.5, longitude=88.5, spawnRadiusKm=200f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Mycorrhizal network parasite; fungal conduit in forest ecosystem",
+            significance="Ghostly white plant with zero chlorophyll; taps mycorrhizal fungal networks " +
+                         "to steal photosynthates from host trees without producing any; " +
+                         "translucent ivory stalks emerge from total forest shade; " +
+                         "Himalayan legend calls it 'spirit pipe'; entire plant body pulses ghost-white",
+            edible="None",
+            assetAnimation=FloraAssetAnimation.ANIMATED_GLOW_PULSE, size="10–30 cm",
+            glowLocation="Ghost-white translucent full-body glow; icy luminous pulse cycle",
+            teamlabMood="Entire plant", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        // ── Central Asia (9301–9306) ──────────────────────────────────
+        new FloraEntry { id=9301, name="Ephedra", scientific="Ephedra sinica",
+            category=FloraCategory.SHRUB, subCategory="Medicinal Plant",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="China, Mongolia, Kazakhstan",
+            habitat=FloraHabitat.STEPPE_DRY,
+            latitude=44.0, longitude=103.0, spawnRadiusKm=400f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Drought-tolerant ground cover; Central Asian steppe anchor",
+            significance="Ancient Silk Road medicinal; source of ephedrine (modern asthma and decongestant); " +
+                         "jointed leafless stems photosynthesise directly; 5,000 yr use in Chinese medicine; " +
+                         "Ma Huang — among the oldest documented pharmaceuticals in Asia",
+            edible="Medicinal — traditional decoction",
+            assetAnimation=FloraAssetAnimation.STATIC, size="30–80 cm",
+            glowLocation="Pale yellow-green joint node glow at each stem segment",
+            teamlabMood="Stem nodes", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=9302, name="Sea Buckthorn", scientific="Hippophae rhamnoides",
+            category=FloraCategory.SHRUB, subCategory="Fruit Shrub",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Mongolia, China, Russia",
+            habitat=FloraHabitat.RIPARIAN,
+            latitude=47.5, longitude=82.0, spawnRadiusKm=350f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Riverbank stabiliser; critical bird food source across steppe",
+            significance="Superfood berry with highest vitamin C of any known plant; " +
+                         "orange berry oil in traditional Tibetan and Mongol medicine; " +
+                         "Genghis Khan's preferred horse feed on campaign; " +
+                         "silver-thorned stems cradle vivid orange berry clusters blazing in autumn",
+            edible="Edible (berry, seed oil); medicinal",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="1–6 m",
+            glowLocation="Vivid orange berry cluster glow; thorny silver stem shimmer",
+            teamlabMood="Berry clusters", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=9303, name="Kazakh Ephedra", scientific="Ephedra equisetina",
+            category=FloraCategory.SHRUB, subCategory="Desert Shrub",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Uzbekistan",
+            habitat=FloraHabitat.ROCKY_DESERT,
+            latitude=41.5, longitude=62.0, spawnRadiusKm=300f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Rocky desert soil stabiliser; drought pioneer",
+            significance="Blue-grey jointed photosynthetic stems; completely leafless; " +
+                         "survives in rocky desert where almost nothing else endures; " +
+                         "plant lineage 300 million years old predating flowering plants; " +
+                         "stem joints pulse blue-grey in Veiled World encounter",
+            edible="Medicinal — traditional",
+            assetAnimation=FloraAssetAnimation.STATIC, size="0.5–2 m",
+            glowLocation="Blue-grey photosynthetic stem glow; joint nodes pulse blue-grey",
+            teamlabMood="Stem joints", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=9304, name="Siberian Stonecrop", scientific="Sedum hybridum",
+            category=FloraCategory.SUCCULENT, subCategory="Alpine Succulent",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Siberia",
+            habitat=FloraHabitat.ROCKY_ALPINE,
+            latitude=49.0, longitude=85.5, spawnRadiusKm=250f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Rocky ground cover; drought and freeze-thaw tolerant cushion former",
+            significance="Fleshy succulent cushions on bare Altai rock faces with no visible soil; " +
+                         "yellow star-flowers bloom directly from stone; " +
+                         "thrives where ice splits granite and nothing else can anchor; " +
+                         "gold shimmer on packed leaf pads catching morning alpine light",
+            edible="None",
+            assetAnimation=FloraAssetAnimation.STATIC, size="5–15 cm cushion",
+            glowLocation="Fleshy leaf pad yellow-gold shimmer; star-flower yellow emission",
+            teamlabMood="Leaf cushion + flower", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=9305, name="Steppe Feathergrass", scientific="Stipa pennata",
+            category=FloraCategory.GRASS, subCategory="Steppe Grass",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Russia, Uzbekistan",
+            habitat=FloraHabitat.STEPPE_DRY,
+            latitude=49.5, longitude=73.0, spawnRadiusKm=450f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Steppe soil anchor; wind-mediated seed dispersal across open plains",
+            significance="Silver-white feather plumes 30 cm long cascade in endless steppe wind; " +
+                         "a sea of moving silver across Kazakhstan in June; otherworldly landscape; " +
+                         "awn drills seed into soil by spiralling with humidity changes; " +
+                         "ancient steppe icon in Kazakh and Russian poetry and folk art",
+            edible="None",
+            assetAnimation=FloraAssetAnimation.ANIMATED_FEATHER_PLUME, size="50–100 cm",
+            glowLocation="Silver-white feathery plume wave shimmer in wind; awn tip glow",
+            teamlabMood="Plumes", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=9306, name="Dwarf Almond", scientific="Prunus tenella",
+            category=FloraCategory.SHRUB, subCategory="Spring Flower Shrub",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Russia, Balkans",
+            habitat=FloraHabitat.STEPPE_DRY,
+            latitude=51.0, longitude=79.0, spawnRadiusKm=350f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Early spring bee forage; first steppe pollinator resource",
+            significance="Deep pink flowers carpet the steppe before any other plant wakes; " +
+                         "first harbinger of spring visible from hilltops across North Kazakhstan; " +
+                         "bees emerge from winter to find nothing but this shrub; " +
+                         "mass petal bloom shimmers cerise-pink across the awakening steppe",
+            edible="None (ornamental/ecological value)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_MASS_BLOOM, size="0.5–1.5 m",
+            glowLocation="Deep pink petal mass shimmer; first steppe spring bloom",
+            teamlabMood="Petals", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        // ── Western Asia (9401–9403) ──────────────────────────────────
+        new FloraEntry { id=9401, name="Thorny Burnet", scientific="Sarcopoterium spinosum",
+            category=FloraCategory.SHRUB, subCategory="Mediterranean Shrub",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Israel, Jordan, Turkey, Lebanon",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=31.5, longitude=35.0, spawnRadiusKm=200f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bee forage; bird shelter; degraded Mediterranean hillside anchor",
+            significance="Low thorny cushion of the Levant; leading candidate for Jesus's crown of thorns; " +
+                         "bright red autumn berries against silver-grey thorn tips; " +
+                         "dominates rocky hillsides from the Negev to Anatolian garrigue; " +
+                         "biblical significance makes it Veiled World entry point for pilgrims",
+            edible="None",
+            assetAnimation=FloraAssetAnimation.STATIC, size="30–60 cm cushion",
+            glowLocation="Silver-grey thorn tip shimmer; red autumn berry glow",
+            teamlabMood="Thorn tips + berry", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=9402, name="Rockrose", scientific="Cistus creticus",
+            category=FloraCategory.SHRUB, subCategory="Mediterranean Flower",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Turkey, Cyprus, Lebanon, Jordan",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=36.0, longitude=33.0, spawnRadiusKm=250f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bee forage; resin source; fire-adapted hillside regrowth pioneer",
+            significance="Vivid pink crinkled petals; source of labdanum resin — " +
+                         "ancient Egyptian and Greek sacred perfume traded for millennia; " +
+                         "collected from goat fleeces in antiquity; fire-adapted; " +
+                         "first to recolonise burnt Mediterranean hillsides after wildfire",
+            edible="Medicinal/resin extract",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="0.5–1.5 m",
+            glowLocation="Vivid cerise-pink crinkled petal shimmer",
+            teamlabMood="Petals", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=9403, name="Crown of Thorns Plant", scientific="Euphorbia milii",
+            category=FloraCategory.SHRUB, subCategory="Desert Shrub",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Arabia, Iran, Yemen",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=23.5, longitude=45.0, spawnRadiusKm=300f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Desert anchor; toxic latex deters all grazers",
+            significance="Vivid red bracts on dense thorn-armoured stems; " +
+                         "long associated with Christian passion iconography; " +
+                         "latex highly toxic and caustic; thrives in near-zero rainfall Arabian desert; " +
+                         "deep red bract glow blazes in the Veiled World like desert embers",
+            edible="TOXIC — caustic latex",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="0.3–1.8 m",
+            glowLocation="Vivid red bract shimmer; thorn base warm ember glow",
+            teamlabMood="Bracts + thorns", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        // ── North Asia (9501–9505) ────────────────────────────────────
+        new FloraEntry { id=9501, name="Arctic Willow", scientific="Salix arctica",
+            category=FloraCategory.SHRUB, subCategory="Tundra Shrub",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.NORTH_ASIA,
+            countries="Arctic Russia",
+            habitat=FloraHabitat.TUNDRA,
+            latitude=72.0, longitude=100.0, spawnRadiusKm=500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Permafrost anchor; catkin protein source for Arctic birds in spring",
+            significance="Lowest-growing woody plant on Earth; 2 cm tall yet decades old; " +
+                         "creeps across permafrost where no upright growth survives; " +
+                         "pale silver catkins emerge in Arctic spring as first available food; " +
+                         "entire mat shivers silver in tundra wind across kilometre-wide carpets",
+            edible="None",
+            assetAnimation=FloraAssetAnimation.ANIMATED_CATKIN_SWAY, size="Ground level–20 cm",
+            glowLocation="Pale silver catkin glow trembling in Arctic wind",
+            teamlabMood="Catkins", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=9502, name="Reindeer Lichen", scientific="Cladonia rangiferina",
+            category=FloraCategory.LICHEN, subCategory="Tundra Lichen",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.NORTH_ASIA,
+            countries="Arctic Russia, Siberia",
+            habitat=FloraHabitat.TUNDRA,
+            latitude=68.0, longitude=97.0, spawnRadiusKm=600f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Primary tundra producer; sole reindeer winter food; slow peat former",
+            significance="Single mat 300+ years old; sustains all Arctic reindeer herds through winter; " +
+                         "has no roots — absorbs everything from air and rain; " +
+                         "grows only 3–5 mm per year; pale grey-white crystalline branching " +
+                         "glows frost-white in Veiled World like a living snowdrift",
+            edible="None (reindeer food)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="5–10 cm mat",
+            glowLocation="Pale grey-white crystalline branching glow in frost shimmer",
+            teamlabMood="Entire mat", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=9503, name="Dwarf Pine", scientific="Pinus pumila",
+            category=FloraCategory.SHRUB, subCategory="Alpine Shrub",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.NORTH_ASIA,
+            countries="Siberia, Kamchatka, Russia",
+            habitat=FloraHabitat.TUNDRA,
+            latitude=54.0, longitude=162.0, spawnRadiusKm=300f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Permafrost anchor; pine nut food source for birds and Kamchatka bears",
+            significance="Prostrate pine sculpted by centuries of wind into horizontal mats; " +
+                         "200-year-old trunk may stand only 1 m tall; " +
+                         "dense pine nut cones are survival food for Kamchatka brown bears in autumn; " +
+                         "warm gold cone clusters glow at dusk across volcanic ridgelines",
+            edible="Edible (pine nuts)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_WIND_SCULPTED, size="0.5–3 m",
+            glowLocation="Warm gold pine cone cluster glow; needle tips silver shimmer",
+            teamlabMood="Cone clusters", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=9504, name="Sphagnum Moss", scientific="Sphagnum spp.",
+            category=FloraCategory.MOSS, subCategory="Bog Moss",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.NORTH_ASIA,
+            countries="Russia-wide",
+            habitat=FloraHabitat.BOG_SPHAGNUM,
+            latitude=60.0, longitude=60.0, spawnRadiusKm=600f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Carbon storage; water retention; bog builder; natural antibiotic",
+            significance="Single-handedly built the great Russian peat bogs storing centuries of carbon; " +
+                         "holds 20× its own weight in water; natural antibiotic properties; " +
+                         "used as wound dressing in WWI; pale red-green luminous carpet " +
+                         "spreads across the entire West Siberian lowland basin",
+            edible="Medicinal — antiseptic wound packing",
+            assetAnimation=FloraAssetAnimation.STATIC, size="5–40 cm living carpet",
+            glowLocation="Pale red-green luminous bog carpet shimmer",
+            teamlabMood="Entire mat", interactionMode=FloraInteractionMode.LIVING_WATER },
+
+        new FloraEntry { id=9505, name="Arctic Cottongrass", scientific="Eriophorum angustifolium",
+            category=FloraCategory.GRASS, subCategory="Tundra Grass",
+            gameCategory=FloraGameCategory.SHRUBS, region=FloraRegion.NORTH_ASIA,
+            countries="Arctic Russia, Siberia",
+            habitat=FloraHabitat.WET_TUNDRA,
+            latitude=71.0, longitude=72.0, spawnRadiusKm=500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bog builder; lemming and snow goose food source",
+            significance="White cotton-ball seed heads sway in unison across wet tundra horizons; " +
+                         "ghostly spectacle in Arctic summer; each white puff disperses on wind; " +
+                         "critical lemming nesting material; the tundra's most iconic visual signature; " +
+                         "kilometre-wide rippling white fields visible across the Yamal Peninsula",
+            edible="None",
+            assetAnimation=FloraAssetAnimation.ANIMATED_COTTON_SWAY, size="20–60 cm",
+            glowLocation="White cotton-ball seed head shimmer; tundra wind wave pattern",
+            teamlabMood="Cotton heads", interactionMode=FloraInteractionMode.QUIET_FOREST },
 
         // ── MORE BATCHES APPENDED HERE AS DATA ARRIVES ───────────
     };
