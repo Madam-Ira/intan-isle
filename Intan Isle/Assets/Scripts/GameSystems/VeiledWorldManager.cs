@@ -65,6 +65,12 @@ public class VeiledWorldManager : MonoBehaviour
         Shader.SetGlobalFloat("_IntanIsle_IsVeiledWorld", 0f);
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+            ToggleVeiledWorld();
+    }
+
     // ── Public entry points ───────────────────────────────────────
 
     /// <summary>Trigger switch: Human ↔ Bunian form.</summary>
