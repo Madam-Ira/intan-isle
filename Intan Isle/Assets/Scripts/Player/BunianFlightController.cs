@@ -91,6 +91,7 @@ public class BunianFlightController : MonoBehaviour
         _flightActive = true;
         if (_playerMovement != null) _playerMovement.enabled = false;
         if (_cc != null) _cc.enabled = false; // no gravity in Bunian form
+        _velocity = Vector3.up * 3f;           // gentle lift-off impulse
         Debug.Log("[BunianFlight] Flight activated.");
     }
 
@@ -107,6 +108,13 @@ public class BunianFlightController : MonoBehaviour
 
     void Update()
     {
+        // F key — toggle between walk and Bunian flight
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (_flightActive) DeactivateFlight();
+            else               ActivateFlight();
+        }
+
         if (!_flightActive) return;
 
         // Use globe anchor height if available, else fallback to Unity Y

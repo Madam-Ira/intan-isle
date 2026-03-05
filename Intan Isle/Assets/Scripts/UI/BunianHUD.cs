@@ -30,13 +30,14 @@ public class BunianHUD : MonoBehaviour
     [SerializeField] private ZoneShaderLinker   zoneLinker;
 
     // ── UI elements (built at Awake) ──────────────────────────────
-    private Canvas         _canvas;
-    private CanvasGroup    _group;
+    private Canvas          _canvas;
+    private CanvasGroup     _group;
     private TextMeshProUGUI _coordsText;
     private TextMeshProUGUI _zoneText;
     private TextMeshProUGUI _altText;
     private Image           _veilBarFill;
     private Image           _veilBarBG;
+    private TextMeshProUGUI _formBadge;     // "✦ BUNIAN FORM" / "◦ PHYSICAL FORM"
 
     // ── Runtime ───────────────────────────────────────────────────
     private float _updateInterval = 0.25f;
@@ -57,11 +58,12 @@ public class BunianHUD : MonoBehaviour
     void Update()
     {
         bool inVeiled = VeiledWorldManager.InVeiledWorld;
-        _targetAlpha  = inVeiled ? 1f : 0f;
+        bool inFlight = flightController != null && flightController.IsFlying;
+        _targetAlpha  = (inVeiled || inFlight) ? 1f : 0f;
         _group.alpha  = Mathf.MoveTowards(_group.alpha, _targetAlpha, Time.deltaTime * 1.5f);
-        _group.blocksRaycasts = inVeiled;
+        _group.blocksRaycasts = inVeiled || inFlight;
 
-        if (!inVeiled) return;
+        if (!inVeiled && !inFlight) return;
 
         _timer += Time.deltaTime;
         if (_timer < _updateInterval) return;
@@ -112,6 +114,12 @@ public class BunianHUD : MonoBehaviour
 
         if (_veilBarFill != null)
             _veilBarFill.fillAmount = veilStrain;
+
+        if (_formBadge != null)
+        {
+            bool flying = flightController != null && flightController.IsFlying;
+            _formBadge.text = flying ? "✦ BUNIAN FORM" : "◦ PHYSICAL FORM";
+        }
     }
 
     // ── Build HUD UI at runtime ───────────────────────────────────
@@ -149,6 +157,21 @@ public class BunianHUD : MonoBehaviour
 
         // Bottom-centre: Veil Strain bar
         BuildVeilBar(canvasGO.transform);
+
+        // Top-centre: Form badge
+        var badgeGO  = new GameObject("FormBadge");
+        badgeGO.transform.SetParent(canvasGO.transform, false);
+        var badgeRT  = badgeGO.AddComponent<RectTransform>();
+        badgeRT.anchorMin = new Vector2(0.5f, 1f);
+        badgeRT.anchorMax = new Vector2(0.5f, 1f);
+        badgeRT.pivot     = new Vector2(0.5f, 1f);
+        badgeRT.anchoredPosition = new Vector2(0, -12f);
+        badgeRT.sizeDelta = new Vector2(240f, 24f);
+        _formBadge           = badgeGO.AddComponent<TextMeshProUGUI>();
+        _formBadge.fontSize  = 11f;
+        _formBadge.color     = new Color(0.608f, 0.349f, 0.714f, 0.85f);
+        _formBadge.alignment = TextAlignmentOptions.Center;
+        _formBadge.text      = "◦ PHYSICAL FORM";
     }
 
     private RectTransform MakePanel(Transform parent, Vector2 anchorMin, Vector2 anchorMax,
