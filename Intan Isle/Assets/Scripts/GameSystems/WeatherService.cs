@@ -85,7 +85,7 @@ public class WeatherSnapshot
 
 // ── OWM JSON shims ──────────────────────────────────────────────────────────
 
-[Serializable] class OWM_Root    { public OWM_Weather[] weather; public OWM_Main main; public OWM_Wind wind; public OWM_Clouds clouds; public float visibility; public OWM_Rain rain; public OWM_Snow snow; public OWM_Sys sys; }
+[Serializable] class OWM_Root    { public OWM_Weather[] weather; public OWM_Main main; public OWM_Wind wind; public OWM_Clouds clouds; public float visibility; public OWM_Rain rain; public OWM_Snow snow; public OWM_Sys sys; public int timezone; }
 [Serializable] class OWM_Weather { public int id; public string main; public string description; public string icon; }
 [Serializable] class OWM_Main    { public float temp; public float humidity; }
 [Serializable] class OWM_Wind    { public float speed; public float deg; public float gust; }
@@ -132,7 +132,9 @@ public class WeatherService : MonoBehaviour
         humidity = 75f, isDay = true, visibilityM = 10000f,
         description = "clear sky",
     };
-    public bool HasData { get; private set; }
+    public bool  HasData                  { get; private set; }
+    /// <summary>OWM timezone offset in decimal hours (0 if not yet fetched).</summary>
+    public float OWMTimezoneOffsetHours   { get; private set; }
 
     private CesiumForUnity.CesiumGlobeAnchor _playerAnchor;
     private double _lat, _lon;
@@ -221,6 +223,9 @@ public class WeatherService : MonoBehaviour
         float vis  = r.visibility > 0 ? r.visibility : 10000f;
         float rain = r.rain != null ? (r.rain._1h > 0 ? r.rain._1h : r.rain._3h / 3f) : 0f;
         float snow = r.snow != null ? (r.snow._1h > 0 ? r.snow._1h : r.snow._3h / 3f) : 0f;
+
+        // Expose OWM's timezone offset (seconds → hours) for TimeZoneService
+        OWMTimezoneOffsetHours = r.timezone / 3600f;
 
         var cond = MapCondition(r.weather[0].id, vis, r.wind.speed);
 

@@ -35,6 +35,7 @@ public class BunianHUD : MonoBehaviour
     private TextMeshProUGUI _coordsText;
     private TextMeshProUGUI _zoneText;
     private TextMeshProUGUI _altText;
+    private TextMeshProUGUI _timeText;
     private Image           _veilBarFill;
     private Image           _veilBarBG;
     private TextMeshProUGUI _formBadge;     // "✦ BUNIAN FORM" / "◦ PHYSICAL FORM"
@@ -112,6 +113,21 @@ public class BunianHUD : MonoBehaviour
         if (_altText != null)
             _altText.text = $"{alt:F0} m";
 
+        if (_timeText != null)
+        {
+            if (TimeZoneService.Instance != null)
+            {
+                var lt  = TimeZoneService.Instance.LocalTime;
+                var tz  = TimeZoneService.Instance;
+                _timeText.text = $"{lt:HH:mm}  {tz.TimeZoneAbbr}\n" +
+                                 $"<size=75%>{tz.UTCOffsetLabel}</size>";
+            }
+            else
+            {
+                _timeText.text = System.DateTime.UtcNow.ToString("HH:mm") + "  UTC";
+            }
+        }
+
         if (_veilBarFill != null)
             _veilBarFill.fillAmount = veilStrain;
 
@@ -147,13 +163,15 @@ public class BunianHUD : MonoBehaviour
         _coordsText        = MakeLabel(tlPanel.transform, "", new Vector2(0, 1), new Vector2(10, -8),  14f);
         _zoneText          = MakeLabel(tlPanel.transform, "", new Vector2(0, 1), new Vector2(10, -32), 13f);
 
-        // Top-right panel: Altitude
+        // Top-right panel: Altitude + Local Time
         var trPanel        = MakePanel(canvasGO.transform,
             new Vector2(1, 1), new Vector2(1, 1),
             new Vector2(-20, -20),
-            new Vector2(160, 50));
-        _altText           = MakeLabel(trPanel.transform, "0 m", new Vector2(1, 1), new Vector2(-10, -10), 14f);
+            new Vector2(180, 80));
+        _altText           = MakeLabel(trPanel.transform, "0 m",  new Vector2(1, 1), new Vector2(-10, -10), 14f);
         _altText.alignment = TextAlignmentOptions.TopRight;
+        _timeText          = MakeLabel(trPanel.transform, "--:--", new Vector2(1, 1), new Vector2(-10, -34), 13f);
+        _timeText.alignment= TextAlignmentOptions.TopRight;
 
         // Bottom-centre: Veil Strain bar
         BuildVeilBar(canvasGO.transform);
