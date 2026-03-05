@@ -41,6 +41,7 @@ public enum FloraGameCategory
     RIPARIAN_EDGE,            // Bank stabilisers, reed beds, riverside palms
     STRANGLER_CLIMBER,        // Ficus strangler, rattan, climbing aroids
     VEGETABLES,               // Cultivated & wild food crops across Asia
+    MUSHROOMS,                // Edible, medicinal & toxic mushrooms and bracket fungi
 }
 
 public enum ConservationStatus
@@ -83,6 +84,14 @@ public enum FloraHabitat
     IRRIGATED_PADDY,       // South Asian canal-irrigated paddy systems
     RIVER_PLAIN,           // Indo-Gangetic & Mekong floodplain alluvium
     MOUNTAIN_FIELD,        // High-altitude terraced fields & hill farms
+    // ── Added Batch 03 ────────────────────────────────────────────
+    DECAYING_WOOD,         // Fallen logs, dead trunks and stumps (mushroom substrate)
+    HARDWOOD_LOG,          // Cultivated mushroom logs (shiitake, oyster)
+    FOREST_FLOOR,          // General forest floor duff, litter and soil
+    BIRCH_FOREST,          // Birch-dominated boreal forest (chaga host trees)
+    PINE_FOREST,           // Pine-dominated forest (milk cap mycorrhizal zone)
+    BOREAL_MOUNTAIN_FOREST,// Boreal and montane mixed conifer–birch forest
+    WOODLAND_FIELD,        // Woodland edge and agricultural field margin
 }
 
 public enum FloraRegion
@@ -109,6 +118,7 @@ public enum FloraInteractionMode
     GROUND_LEVEL,      // Walking-speed encounter — no flight required
     CAVE_INTERIOR,     // Found inside cave systems (CaveManager)
     TIDAL_ZONE,        // Exposed at low tide (TideService.CurrentHeightM check)
+    QUIET_FOREST,      // Medicinal / contemplative — calm aura, no Veiled World required
 }
 
 /// <summary>
@@ -128,6 +138,8 @@ public enum FloraAssetAnimation
     ANIMATED_FIELD_SWAY,      // Crop field wind-sway (grains, grasses)
     ANIMATED_VINE_CLIMB,      // Climbing vine / bean tendril growth
     ANIMATED_LEAF_UNFURL,     // Broad-leaf tropical unfurling
+    ANIMATED_GLOW_PULSE,      // Bioluminescent pulse cycle (Ghost Fungus)
+    ANIMATED_EMERGENCE,       // Dramatic ground emergence + veil deployment (Stinkhorn)
 }
 
 // ════════════════════════════════════════════════════════════════
@@ -1463,6 +1475,338 @@ public static class AsiaFloraData
             size = "Sprawling plant 0.5–1.0 m",
             glowLocation = "White-purple star flower; underground pale-gold tuber cluster glow",
             teamlabMood   = "Star flower + underground tuber glow",
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
+        },
+
+        // ── BATCH 03: MUSHROOMS — SEA (IDs 7001–7007) ─────────────
+
+        new FloraEntry
+        {
+            id = 7001, name = "Ghost Fungus", scientific = "Omphalotus nidiformis",
+            category = FloraCategory.FUNGUS, subCategory = "Bioluminescent Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.SEA,
+            countries = "Borneo, Sumatra (Indonesia, Malaysia), Australia",
+            habitat = FloraHabitat.DECAYING_WOOD,
+            latitude = 3.0, longitude = 118.0, spawnRadiusKm = 3000f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Wood decomposer; bioluminescence driven by luciferin-luciferase reaction — " +
+                             "exact ecological function of glow still under research (possible spore dispersal lure)",
+            significance   = "One of the few genuinely bioluminescent fungi — blue-green glow visible in complete darkness; " +
+                             "mimics edible oyster mushroom appearance — key toxic lookalike education plant",
+            edible = "TOXIC — causes severe gastroenteritis despite inviting appearance",
+            assetAnimation = FloraAssetAnimation.ANIMATED_GLOW_PULSE,
+            size = "Cap 5–15 cm; clustered on stumps and logs",
+            glowLocation = "Entire mushroom surface — vivid blue-green self-luminescence from gills and cap underside",
+            teamlabMood   = "Entire mushroom",
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
+        },
+
+        new FloraEntry
+        {
+            id = 7002, name = "Lingzhi / Reishi", scientific = "Ganoderma lucidum",
+            category = FloraCategory.FUNGUS, subCategory = "Medicinal Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.SEA,
+            countries = "Southeast Asia, China, Japan, Korea (pan-East Asian)",
+            habitat = FloraHabitat.DECAYING_WOOD,
+            latitude = 5.0, longitude = 115.0, spawnRadiusKm = 2500f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Wood rot decomposer on hardwood stumps; bracket form persists for years; spores wind-dispersed",
+            significance   = "Sacred mushroom of immortality — 4,000 years in Chinese materia medica; " +
+                             "polysaccharide beta-glucans studied for immune modulation; " +
+                             "found in Malay traditional medicine (kulat susu) and Chinese TCM alike",
+            edible = "Medicinal (tea, extract) — not culinary; too tough and bitter to eat directly",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "Cap 5–20 cm; kidney-shaped lacquered bracket",
+            glowLocation = "Deep red-gold lacquer cap surface; concentric ring shimmer in Veiled World light",
+            teamlabMood   = "Cap surface",
+            interactionMode = FloraInteractionMode.QUIET_FOREST,
+        },
+
+        new FloraEntry
+        {
+            id = 7003, name = "Shiitake", scientific = "Lentinula edodes",
+            category = FloraCategory.FUNGUS, subCategory = "Edible Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.SEA,
+            countries = "Malaysia, Indonesia (wild); Japan, China (cultivated)",
+            habitat = FloraHabitat.HARDWOOD_LOG,
+            latitude = 5.0, longitude = 118.0, spawnRadiusKm = 2000f,
+            conservation = ConservationStatus.CULTIVATED,
+            ecologicalRole = "Hardwood decomposer; mycelium breaks down lignin in dead shiia, oak and beech logs",
+            significance   = "World's second most cultivated mushroom; rich umami (glutamate + guanylate synergy); " +
+                             "lentinan beta-glucan studied for immune support; central to Japanese and Chinese cuisine",
+            edible = "Yes — cap (sauté, dried, dashi stock); gills and stem usable",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "Cap 5–15 cm; broad brown umbrella cap with white veil remnants",
+            glowLocation = "Warm amber-brown cap with faint inner glow at veil ring",
+            teamlabMood   = "Cap surface",
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
+        },
+
+        new FloraEntry
+        {
+            id = 7004, name = "Wood Ear / Black Fungus", scientific = "Auricularia auricula-judae",
+            category = FloraCategory.FUNGUS, subCategory = "Edible Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.SEA,
+            countries = "Southeast Asia, China, Korea, Japan (pan-Asian)",
+            habitat = FloraHabitat.DECAYING_WOOD,
+            latitude = 20.0, longitude = 110.0, spawnRadiusKm = 2500f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Jelly fungus — decomposes wet elder and hardwood; fruits year-round in humid conditions",
+            significance   = "Mok yee / mu'er — staple of Chinese hot and sour soup, claypot dishes, wood ear salad; " +
+                             "gelatinous texture unique in Asian cuisine; blood-thinning compounds studied medicinally",
+            edible = "Yes — gelatinous jelly texture when soaked; virtually flavourless — absorbs broth",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "3–12 cm ear-shaped lobes; clusters on wet dead wood",
+            glowLocation = "Translucent deep-brown ear lobe with rim luminescence like backlit amber glass",
+            teamlabMood   = "Mushroom rim",
+            interactionMode = FloraInteractionMode.LIVING_WATER,
+        },
+
+        new FloraEntry
+        {
+            id = 7005, name = "Oyster Mushroom", scientific = "Pleurotus ostreatus",
+            category = FloraCategory.FUNGUS, subCategory = "Edible Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.SEA,
+            countries = "Southeast Asia, China, Japan (pan-temperate/subtropical)",
+            habitat = FloraHabitat.DECAYING_WOOD,
+            latitude = 5.0, longitude = 110.0, spawnRadiusKm = 2500f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Aggressive wood decomposer; carnivorous — mycelium traps and digests nematodes; " +
+                             "fast coloniser of dead wood, cardboard, straw",
+            significance   = "Easiest cultivated mushroom — colonises straw in 10 days; " +
+                             "used in myco-remediation of oil spills and polluted soil; " +
+                             "fan-shaped fruitbodies emerge in dramatic clusters",
+            edible = "Yes — delicate flavour; gills, cap, stem all edible",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "Cap 5–20 cm; overlapping fan clusters",
+            glowLocation = "Pale grey-white fan shimmer with silver-blue gill underside glow",
+            teamlabMood   = "Cap fan surface",
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
+        },
+
+        new FloraEntry
+        {
+            id = 7006, name = "Bamboo Fungus / Stinkhorn", scientific = "Phallus indusiatus",
+            category = FloraCategory.FUNGUS, subCategory = "Exotic Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.SEA,
+            countries = "China, Southeast Asia, India (tropical forests)",
+            habitat = FloraHabitat.FOREST_FLOOR,
+            latitude = 23.0, longitude = 108.0, spawnRadiusKm = 1500f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Emerges from egg in hours; carrion-scent gleba attracts flies for spore dispersal; " +
+                             "lacy net veil (indusium) extends rapidly downward from cap",
+            significance   = "Chinese delicacy — dried veil skirt used in soups; " +
+                             "Yunnan mushroom markets sell it fresh and dried; dramatic emergence watched in time-lapse; " +
+                             "called 'the veil lady' in China for its ethereal lace-net skirt",
+            edible = "Yes — dried veil skirt in soups and stir-fries; young egg stage also edible",
+            assetAnimation = FloraAssetAnimation.ANIMATED_EMERGENCE,
+            size = "15–25 cm tall; white lace veil drapes 10–15 cm below cap",
+            glowLocation = "White lace-veil net aglow — translucent lacework skirt in forest dim",
+            teamlabMood   = "Lattice veil skirt",
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
+        },
+
+        new FloraEntry
+        {
+            id = 7007, name = "Fly Agaric (Asian)", scientific = "Amanita muscaria",
+            category = FloraCategory.FUNGUS, subCategory = "Toxic Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.SEA,
+            countries = "Pan-Asia (boreal zones, mountain forest)",
+            habitat = FloraHabitat.FOREST_FLOOR,
+            latitude = 50.0, longitude = 100.0, spawnRadiusKm = 4000f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Obligate mycorrhizal partner of birch, pine, spruce — cannot grow without host tree; " +
+                             "mycelium extends tree root network; spores dispersed by small mammals",
+            significance   = "Most iconic mushroom in human history — appears in fairy tales, Alice in Wonderland, " +
+                             "Siberian shamanic ceremonies; ibotenic acid / muscimol toxins cause delirium; " +
+                             "fly-killing use (milk + mushroom = insecticide, hence 'fly agaric')",
+            edible = "TOXIC — muscimol / ibotenic acid cause hallucination, nausea; used historically in shamanic rituals",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "Cap 8–20 cm; brilliant scarlet with white wart spots",
+            glowLocation = "Red cap with white spot-ring vivid glow; crimson bioluminescent pulse in Veiled World",
+            teamlabMood   = "Cap spots",
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
+        },
+
+        // ── BATCH 03: MUSHROOMS — EAST ASIA (ID 7011) ─────────────
+
+        new FloraEntry
+        {
+            id = 7011, name = "Shiitake (cultivated)", scientific = "Lentinula edodes",
+            category = FloraCategory.FUNGUS, subCategory = "Edible Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.EAST_ASIA,
+            countries = "Japan, China, Korea (primary cultivation zones)",
+            habitat = FloraHabitat.HARDWOOD_LOG,
+            latitude = 35.0, longitude = 136.0, spawnRadiusKm = 2000f,
+            conservation = ConservationStatus.CULTIVATED,
+            ecologicalRole = "Cultivated on oak (konara) and shiia logs; mycelium breaks down heartwood",
+            significance   = "Donko shiitake — Japanese premium thick-capped winter variety; " +
+                             "dashi broth base; central to Buddhist shojin ryori (temple cuisine); " +
+                             "first mushroom intentionally cultivated (Song Dynasty China, 960–1279 CE)",
+            edible = "Yes — cap; dried shiitake has concentrated umami exceeding fresh",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "Cap 5–15 cm; thick donko domed form",
+            glowLocation = "Warm amber-brown cap glow with pale cream gill undersurface",
+            teamlabMood   = "Cap surface",
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
+        },
+
+        // ── BATCH 03: MUSHROOMS — CENTRAL ASIA (IDs 7021–7024) ────
+
+        new FloraEntry
+        {
+            id = 7021, name = "Fly Agaric", scientific = "Amanita muscaria",
+            category = FloraCategory.FUNGUS, subCategory = "Toxic Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.CENTRAL_ASIA,
+            countries = "Russia, Kazakhstan, Kyrgyzstan (boreal and mountain forests)",
+            habitat = FloraHabitat.BOREAL_MOUNTAIN_FOREST,
+            latitude = 52.0, longitude = 80.0, spawnRadiusKm = 2500f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Mycorrhizal obligate with birch and pine; cannot grow in disturbed habitats without intact tree network",
+            significance   = "Siberian shamanic use — Khanty, Evenki, Chukchi traditions use it for vision quests; " +
+                             "reindeer seek it and consume urine of those who have eaten it (ibotenic acid concentrates); " +
+                             "possible origin of Santa Claus myth (red+white, reindeer, flying sensation)",
+            edible = "TOXIC — muscimol hallucinations; NOT safe to consume",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "Cap 8–20 cm; brilliant red with white spots",
+            glowLocation = "Crimson cap with white spot ring radiating glow; taiga forest floor phosphor pulse",
+            teamlabMood   = "Cap spots",
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
+        },
+
+        new FloraEntry
+        {
+            id = 7022, name = "Porcini / Cep", scientific = "Boletus edulis",
+            category = FloraCategory.FUNGUS, subCategory = "Edible Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.CENTRAL_ASIA,
+            countries = "Russia, Kazakhstan, Kyrgyzstan (boreal forest)",
+            habitat = FloraHabitat.FOREST_FLOOR,
+            latitude = 50.0, longitude = 75.0, spawnRadiusKm = 2000f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Mycorrhizal with spruce, pine, oak and beech; indicator of old-growth forest health; " +
+                             "sponge pore-bearing (bolete) not gilled — distinct evolutionary lineage",
+            significance   = "King of mushrooms — most prized edible in European and Central Asian tradition; " +
+                             "buttery flavour; dried form intensifies to deep earth and hazelnut; " +
+                             "key ingredient in risotto porcini and Russian mushroom soup",
+            edible = "Yes — cap and pores (not stem base if infested); superb dried",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "Cap 8–25 cm; broad brown bun cap with ivory sponge pores below",
+            glowLocation = "Deep brown cap with ivory pore underside glow; forest floor amber leaf-litter haze",
+            teamlabMood   = "Cap surface",
+            interactionMode = FloraInteractionMode.QUIET_FOREST,
+        },
+
+        new FloraEntry
+        {
+            id = 7023, name = "Morel", scientific = "Morchella esculenta",
+            category = FloraCategory.FUNGUS, subCategory = "Edible Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.CENTRAL_ASIA,
+            countries = "Kazakhstan, Uzbekistan, Kyrgyzstan (spring woodland)",
+            habitat = FloraHabitat.WOODLAND_FIELD,
+            latitude = 43.0, longitude = 68.0, spawnRadiusKm = 1500f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Spring ephemeral; associated with elm, ash, old apple orchards; " +
+                             "sac fungus (ascomycete) — entirely different lineage from gilled mushrooms",
+            significance   = "Most prized spring mushroom in Central Asian and European tradition; " +
+                             "honeycomb hollow cap; nutty flavour; cannot be cultivated commercially; " +
+                             "appears after snow melt — fleeting spring harvest that demands knowledge",
+            edible = "Yes — cooked only (raw toxic); must be thoroughly heated",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "Cap 5–20 cm; conical honeycomb ridged cap on hollow stem",
+            glowLocation = "Honeycomb gold-amber cap grid glow; spring forest light catching each cell",
+            teamlabMood   = "Cap honeycomb",
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
+        },
+
+        new FloraEntry
+        {
+            id = 7024, name = "Yellow Chanterelle", scientific = "Cantharellus cibarius",
+            category = FloraCategory.FUNGUS, subCategory = "Edible Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.CENTRAL_ASIA,
+            countries = "Russia, Kazakhstan (boreal forest, old growth)",
+            habitat = FloraHabitat.FOREST_FLOOR,
+            latitude = 52.0, longitude = 73.0, spawnRadiusKm = 2000f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Mycorrhizal indicator of old-growth forest — disappears when forest is disturbed; " +
+                             "false gills (forking ridges) distinguish it from toxic lookalikes; " +
+                             "associated with spruce, pine, beech and oak",
+            significance   = "Apricot aroma and flavour; bright egg-yolk yellow; old forest sentinel — " +
+                             "a patch of chanterelles marks an intact ecosystem; " +
+                             "major export from Russia and Scandinavia to European fine-dining markets",
+            edible = "Yes — false-gilled cap and stem; best with butter",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "Cap 4–12 cm; wavy-edged egg-yolk funnel",
+            glowLocation = "Vivid yellow-gold funnel cap shimmer; entire mushroom lit from within like amber glass",
+            teamlabMood   = "Cap + gills",
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
+        },
+
+        // ── BATCH 03: MUSHROOMS — NORTH ASIA (IDs 7031–7033) ───────
+
+        new FloraEntry
+        {
+            id = 7031, name = "Chaga Mushroom", scientific = "Inonotus obliquus",
+            category = FloraCategory.FUNGUS, subCategory = "Medicinal Fungus",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.NORTH_ASIA,
+            countries = "Russia (Siberia, Ural, Karelia), Finland, Canada",
+            habitat = FloraHabitat.BIRCH_FOREST,
+            latitude = 62.0, longitude = 70.0, spawnRadiusKm = 3000f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Parasitic on living birch — causes white heart rot; the visible black mass is sterile mycelium; " +
+                             "true fertile layer forms beneath birch bark when tree dies; may take 20 years to produce",
+            significance   = "Siberian immune tonic — Khanty and Mansi peoples brew birch mushroom tea for centuries; " +
+                             "Alexander Solzhenitsyn's novel Cancer Ward mentions chaga tea; " +
+                             "betulinic acid (from birch) and melanin studied for anti-tumour properties",
+            edible = "Medicinal (tea, tincture) — black outer crust + orange interior ground into powder",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "10–50 cm irregular black mass on birch trunk",
+            glowLocation = "Deep black-orange charcoal outer crust glow; warm gold-amber interior crack luminescence",
+            teamlabMood   = "Outer crust + crack",
+            interactionMode = FloraInteractionMode.QUIET_FOREST,
+        },
+
+        new FloraEntry
+        {
+            id = 7032, name = "King Bolete / Cep", scientific = "Boletus edulis",
+            category = FloraCategory.FUNGUS, subCategory = "Edible Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.NORTH_ASIA,
+            countries = "Russia (Siberia, Ural, Far East)",
+            habitat = FloraHabitat.BOREAL_MOUNTAIN_FOREST,
+            latitude = 58.0, longitude = 65.0, spawnRadiusKm = 3000f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Mycorrhizal with Siberian spruce, pine and larch; indicator of forest health in boreal biome; " +
+                             "Russia's most exported wild mushroom (dried form) to Europe and Japan",
+            significance   = "Beliy grib — 'white mushroom' of Russia; national foraging obsession; " +
+                             "September mushroom season brings entire Russian families into the taiga; " +
+                             "dried version intensifies to concentrated earth, butter and nut aromas",
+            edible = "Yes — all parts edible; superb dried; no toxic lookalikes when pores are white/yellow",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "Cap 8–25 cm; fat bun-shaped brown cap; white pore sponge",
+            glowLocation = "Brown cap with ivory pore sponge glow; birch-dappled taiga light shimmer",
+            teamlabMood   = "Cap surface",
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
+        },
+
+        new FloraEntry
+        {
+            id = 7033, name = "Saffron Milk Cap", scientific = "Lactarius deliciosus",
+            category = FloraCategory.FUNGUS, subCategory = "Edible Mushroom",
+            gameCategory = FloraGameCategory.MUSHROOMS, region = FloraRegion.NORTH_ASIA,
+            countries = "Russia, Kazakhstan (pine-forest zones)",
+            habitat = FloraHabitat.PINE_FOREST,
+            latitude = 55.0, longitude = 80.0, spawnRadiusKm = 2500f,
+            conservation = ConservationStatus.LEAST_CONCERN,
+            ecologicalRole = "Mycorrhizal obligate with Scots pine and Siberian pine; cannot grow without pine root network; " +
+                             "when damaged, oozes saffron-orange latex (milk) — distinctive field identifier",
+            significance   = "Ryzhik — Russia's most beloved pickled mushroom; " +
+                             "vivid orange-saffron colour throughout cap, gills and milk; " +
+                             "pickled cold without cooking — traditional Siberian preservation method; " +
+                             "sold at forest roadside stalls across the taiga belt",
+            edible = "Yes — raw (pickled in salt), sautéed, roasted; gills turn greenish when old",
+            assetAnimation = FloraAssetAnimation.STATIC,
+            size = "Cap 5–15 cm; depressed orange cap with in-rolled rim; saffron-dripping gills",
+            glowLocation = "Vivid orange-saffron cap shimmer; dripping milk glow from cut gill surface",
+            teamlabMood   = "Cap + gills",
             interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 

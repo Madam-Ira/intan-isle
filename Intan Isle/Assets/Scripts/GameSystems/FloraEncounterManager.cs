@@ -196,6 +196,9 @@ public class FloraEncounterManager : MonoBehaviour
             FloraInteractionMode.GROUND_LEVEL =>
                 true,   // always accessible
 
+            FloraInteractionMode.QUIET_FOREST =>
+                true,   // medicinal/contemplative — accessible regardless of Veiled World state
+
             _ => true,
         };
     }
