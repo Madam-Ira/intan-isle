@@ -494,13 +494,13 @@ public static class AsiaFloraData
 
         new FloraEntry
         {
-            id = 1001, name = "Long Bean", scientific = "Vigna unguiculata sesquipedalis",
+            id = 1001, name = "Long Bean", scientific = "Vigna unguiculata",
             category = FloraCategory.VINE, subCategory = "Legume Vegetable",
             gameCategory = FloraGameCategory.VEGETABLES, region = FloraRegion.SEA,
             countries = "Thailand, Vietnam, Indonesia, Philippines",
             habitat = FloraHabitat.TROPICAL_GARDEN,
             latitude = 13.0, longitude = 101.0, spawnRadiusKm = 1800f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Nitrogen-fixing legume; supports soil health in tropical gardens",
             significance   = "Staple climbing bean of SEA; eaten young as vegetable; " +
                              "drought-tolerant crop with cultural importance across the region",
@@ -509,7 +509,7 @@ public static class AsiaFloraData
             size = "Vine 2–4 m; pods up to 90 cm",
             glowLocation = "Pale green pod luminescence; white-violet flower glow",
             teamlabMood   = "Climbing tendrils + pods",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -520,7 +520,7 @@ public static class AsiaFloraData
             countries = "Southeast Asia, South Asia (pan-tropical)",
             habitat = FloraHabitat.TROPICAL_GARDEN,
             latitude = 10.0, longitude = 106.0, spawnRadiusKm = 2000f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Fast-growing vine; insect-pollinated; attracts bees and beetles",
             significance   = "Bitter taste from momordicin; medicinal hypoglycaemic use; " +
                              "anti-diabetic traditional remedy across Asia",
@@ -529,7 +529,7 @@ public static class AsiaFloraData
             size = "Vine 2–5 m; fruit 10–30 cm",
             glowLocation = "Warty green fruit with gold-green bioluminescent ridges",
             teamlabMood   = "Ridged warty surface",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -540,7 +540,7 @@ public static class AsiaFloraData
             countries = "Thailand, Vietnam, Indonesia, Philippines",
             habitat = FloraHabitat.DRY_TROPICAL,
             latitude = 14.0, longitude = 101.0, spawnRadiusKm = 1800f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Insect-pollinated; attracts native bees; food plant for caterpillars",
             significance   = "Southeast Asian varieties differ markedly — long purple Thai types, " +
                              "small round green Philippine varieties; rich cultural palette",
@@ -549,7 +549,7 @@ public static class AsiaFloraData
             size = "Shrub 0.5–1.5 m",
             glowLocation = "Deep violet–purple fruit glow; pale lavender flower shimmer",
             teamlabMood   = "Fruit surface",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -560,7 +560,7 @@ public static class AsiaFloraData
             countries = "Philippines, Indonesia, PNG, Vietnam (pan-tropical)",
             habitat = FloraHabitat.DRY_TROPICAL,
             latitude = 10.0, longitude = 124.0, spawnRadiusKm = 2000f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Ground-cover vine; erosion control; provides food for wildlife",
             significance   = "Philippines & PNG major producers; coloured flesh varieties " +
                              "(purple, orange) rich in anthocyanins and beta-carotene",
@@ -569,7 +569,7 @@ public static class AsiaFloraData
             size = "Vine 1–3 m sprawling; tuber 10–30 cm",
             glowLocation = "Purple-orange tuber glow under soil; morning glory flower shimmer",
             teamlabMood   = "Underground tuber + trumpet flower",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -580,7 +580,7 @@ public static class AsiaFloraData
             countries = "Indonesia, Thailand, Vietnam, Philippines, Laos",
             habitat = FloraHabitat.DRY_TROPICAL,
             latitude = 3.0, longitude = 113.0, spawnRadiusKm = 2000f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Hardy drought-tolerant crop; canopy shade for understory weeds",
             significance   = "Third largest carbohydrate source in tropical world; " +
                              "HCN in bitter varieties — detoxified by fermentation & cooking",
@@ -589,7 +589,7 @@ public static class AsiaFloraData
             size = "Shrub 1–3 m",
             glowLocation = "Pale cream tuber-root luminescence beneath dark soil surface",
             teamlabMood   = "Star-shaped leaves + white root glow",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -600,7 +600,7 @@ public static class AsiaFloraData
             countries = "Papua New Guinea, Myanmar, Thailand, Indonesia",
             habitat = FloraHabitat.TROPICAL_GARDEN,
             latitude = 8.0, longitude = 98.0, spawnRadiusKm = 1500f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Nitrogen-fixing; entire plant edible — remarkable food security crop",
             significance   = "All parts edible — pods, leaves, flowers, tubers, seeds; " +
                              "called the 'one species supermarket'; PNG staple food",
@@ -609,7 +609,7 @@ public static class AsiaFloraData
             size = "Vine 2–4 m; winged pod 15–25 cm",
             glowLocation = "Vivid blue flower glow; four-winged pod translucent edge shimmer",
             teamlabMood   = "Blue flowers + geometric winged pods",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -620,7 +620,7 @@ public static class AsiaFloraData
             countries = "Southeast Asia, Pacific Islands (pan-tropical cultivated)",
             habitat = FloraHabitat.FRESHWATER_WETLAND,
             latitude = 5.0, longitude = 110.0, spawnRadiusKm = 2000f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Wetland cultivar; corm feeds freshwater fauna; leaf litter enriches waterways",
             significance   = "Ancient crop — 10,000 years cultivation; Hawaiian poi and Samoan palusami; " +
                              "elephant-ear leaves iconic across tropical Asia-Pacific",
@@ -640,7 +640,7 @@ public static class AsiaFloraData
             countries = "Thailand, Vietnam, Indonesia, India (pan-tropical)",
             habitat = FloraHabitat.TROPICAL_GARDEN,
             latitude = 15.0, longitude = 100.0, spawnRadiusKm = 2000f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Hibiscus family; large showy flowers attract pollinators; mucilage supports soil organisms",
             significance   = "Mucilaginous pod used in soups and gumbos; fibres used in paper; " +
                              "Hibiscus relative with ornamental yellow flowers",
@@ -649,7 +649,7 @@ public static class AsiaFloraData
             size = "Upright plant 1–2 m",
             glowLocation = "Pale yellow hibiscus flower glow; ridged green pod shimmer",
             teamlabMood   = "Hibiscus flower + ridged pod",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -660,7 +660,7 @@ public static class AsiaFloraData
             countries = "Thailand, Indonesia, Philippines, Vietnam (pan-tropical; from Americas)",
             habitat = FloraHabitat.TROPICAL_GARDEN,
             latitude = 14.0, longitude = 121.0, spawnRadiusKm = 2000f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Capsaicin deters mammals but not birds — birds disperse seeds; attracts hummingbirds",
             significance   = "Introduced from Americas in 16th c; transformed Asian cuisines globally; " +
                              "Thai bird's-eye chilli among world's hottest traditional varieties",
@@ -669,18 +669,18 @@ public static class AsiaFloraData
             size = "Compact shrub 0.3–1.2 m",
             glowLocation = "Bright red/orange fruit bioluminescent heat glow; white star flower",
             teamlabMood   = "Glowing red fruit clusters",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
         {
-            id = 1010, name = "Lowland Wet Rice", scientific = "Oryza sativa (indica)",
+            id = 1010, name = "Lowland Wet Rice", scientific = "Oryza sativa",
             category = FloraCategory.GRASS, subCategory = "Cereal Staple",
             gameCategory = FloraGameCategory.VEGETABLES, region = FloraRegion.SEA,
             countries = "Cambodia, Vietnam, Thailand, Indonesia, Philippines",
             habitat = FloraHabitat.FLOODED_PADDY_FIELD,
             latitude = 12.0, longitude = 105.0, spawnRadiusKm = 2500f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Flooded paddy is artificial wetland — habitat for fish, frogs, waterfowl, herons",
             significance   = "Rice feeds more humans than any other crop; indica long-grain variety " +
                              "dominates Mekong basin and SE Asian cuisine; Tonle Sap floating villages",
@@ -689,7 +689,7 @@ public static class AsiaFloraData
             size = "Grass 0.8–1.5 m",
             glowLocation = "Gold ripening panicle glow above flooded silver-mirror paddy",
             teamlabMood   = "Golden wave field + water mirror reflection",
-            interactionMode = FloraInteractionMode.LIVING_WATER,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -700,7 +700,7 @@ public static class AsiaFloraData
             countries = "Northern Laos, Northern Thailand, Myanmar, Borneo",
             habitat = FloraHabitat.MOUNTAIN_FIELD,
             latitude = 20.0, longitude = 101.0, spawnRadiusKm = 1000f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Dryland upland rice; supports montane smallholder biodiversity",
             significance   = "Slash-and-burn hill rice; culturally central to indigenous upland communities; " +
                              "requires no flooding; grown in rotation with fallow forest",
@@ -709,7 +709,7 @@ public static class AsiaFloraData
             size = "Grass 0.6–1.2 m",
             glowLocation = "Pale amber grain shimmer on hillside terraces at dusk",
             teamlabMood   = "Hillside terrace sway",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -720,7 +720,7 @@ public static class AsiaFloraData
             countries = "Northern Thailand, Myanmar, Indonesia, Laos",
             habitat = FloraHabitat.MOUNTAIN_FIELD,
             latitude = 19.0, longitude = 99.0, spawnRadiusKm = 600f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Heirloom variety conserved by highland communities; anthocyanin pigments attract birds",
             significance   = "Deep purple-black husk from anthocyanin; ceremonial rice in northern Thailand; " +
                              "rich antioxidants; ingredient in khao niao dam desserts",
@@ -729,7 +729,7 @@ public static class AsiaFloraData
             size = "Grass 0.8–1.2 m",
             glowLocation = "Deep indigo-purple panicle glow; twilight violet shimmer over hillside",
             teamlabMood   = "Purple wave field",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -740,7 +740,7 @@ public static class AsiaFloraData
             countries = "Southeast Asia, South Asia (pan-Asian cultivated)",
             habitat = FloraHabitat.TROPICAL_GARDEN,
             latitude = 11.0, longitude = 104.0, spawnRadiusKm = 2500f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Nitrogen-fixer; short-season crop for soil recovery; supports pollinators",
             significance   = "Foundational Asian legume — eaten whole, sprouted, or as flour; " +
                              "basis of mung bean vermicelli, bean sprouts, and sweet desserts across Asia",
@@ -749,7 +749,7 @@ public static class AsiaFloraData
             size = "Bushy plant 30–100 cm",
             glowLocation = "Soft yellow-green seed pod shimmer; tiny yellow flower glow",
             teamlabMood   = "Bean pod clusters",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -760,7 +760,7 @@ public static class AsiaFloraData
             countries = "Myanmar, Thailand, Vietnam (pan-tropical; originally Africa/India)",
             habitat = FloraHabitat.DRY_TROPICAL,
             latitude = 16.0, longitude = 97.0, spawnRadiusKm = 1500f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Drought-tolerant oilseed; deep taproot breaks compacted soil; bee-pollinated",
             significance   = "Oldest oilseed crop — 5,500 years cultivation; 'open sesame' references " +
                              "seed pod explosive dehiscence; Myanmar is world's largest exporter",
@@ -769,7 +769,7 @@ public static class AsiaFloraData
             size = "Upright plant 0.5–1.5 m",
             glowLocation = "White-pink tubular flower glow; dehiscing seed pod burst shimmer",
             teamlabMood   = "Seed pod burst",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         // ── BATCH 02: VEGETABLES — EAST ASIA (IDs 2001–2009) ───────
@@ -791,7 +791,7 @@ public static class AsiaFloraData
             size = "Rosette 15–40 cm",
             glowLocation = "Crisp pale-green stem radiance; deep forest-green leaf shimmer",
             teamlabMood   = "Jade-green leaf rosette",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -811,7 +811,7 @@ public static class AsiaFloraData
             size = "Root 20–50 cm; leaf mound 30–50 cm",
             glowLocation = "Luminous white taproot emerging from dark soil; white flower spray",
             teamlabMood   = "White glow root",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -831,7 +831,7 @@ public static class AsiaFloraData
             size = "Dense head 30–50 cm",
             glowLocation = "Pale cream-yellow heart with jade outer leaves; morning frost shimmer",
             teamlabMood   = "Tightly wrapped pale heart",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -871,7 +871,7 @@ public static class AsiaFloraData
             size = "Bushy plant 30–60 cm",
             glowLocation = "Vivid green fuzzy pods with soft phosphorescence; white flower blush",
             teamlabMood   = "Fuzzy pod clusters",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -891,7 +891,7 @@ public static class AsiaFloraData
             size = "Sprout 3–8 cm",
             glowLocation = "Pale white translucent sprout shimmer; tiny green seed cap glow",
             teamlabMood   = "Germinating sprout light",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -911,7 +911,7 @@ public static class AsiaFloraData
             size = "Grass 0.6–1.5 m; drooping seed-head",
             glowLocation = "Bronze-amber drooping seed head; dry loess field twilight glow",
             teamlabMood   = "Nodding bronze seed head",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -931,18 +931,18 @@ public static class AsiaFloraData
             size = "Grass 1.5–4 m; large terminal panicle",
             glowLocation = "Dark burgundy seed head glow against pale gold stalks",
             teamlabMood   = "Burgundy plume field",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
         {
-            id = 2009, name = "East Asian Bitter Gourd", scientific = "Momordica charantia (East Asian)",
+            id = 2009, name = "East Asian Bitter Gourd", scientific = "Momordica charantia",
             category = FloraCategory.VINE, subCategory = "Cucurbit Vegetable",
             gameCategory = FloraGameCategory.VEGETABLES, region = FloraRegion.EAST_ASIA,
             countries = "China, Taiwan, Japan (Okinawa)",
             habitat = FloraHabitat.TEMPERATE_FIELD,
             latitude = 23.0, longitude = 114.0, spawnRadiusKm = 1500f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Climbing vine; attracts pollinators; provides shade trellis microhabitat",
             significance   = "Okinawan gōyā champuru — cornerstone of Okinawan longevity diet; " +
                              "Cantonese bitter melon soup; different cultivar to SEA types — lighter green, longer",
@@ -951,7 +951,7 @@ public static class AsiaFloraData
             size = "Vine 3–5 m; pale green elongated fruit",
             glowLocation = "Pale jade ridged fruit luminescence; yellow flower glow",
             teamlabMood   = "Ridged pale jade surface",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         // ── BATCH 02: VEGETABLES — SOUTH ASIA (IDs 3001–3008) ──────
@@ -964,7 +964,7 @@ public static class AsiaFloraData
             countries = "India, Bangladesh, Sri Lanka, Pakistan",
             habitat = FloraHabitat.TROPICAL_GARDEN,
             latitude = 20.0, longitude = 78.0, spawnRadiusKm = 2000f,
-            conservation = ConservationStatus.CULTIVATED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Climbing vine; bee-pollinated; traditional Ayurvedic bitter digestive",
             significance   = "Karela — iconic bitterest vegetable in Indian cuisine; Ayurvedic blood-sugar " +
                              "regulation; smaller, darker, more deeply ridged than East Asian cultivars",
@@ -973,7 +973,7 @@ public static class AsiaFloraData
             size = "Vine 2–4 m; dark green 10–20 cm fruit",
             glowLocation = "Dark-green deeply ridged fruit with gold-green ridge glow",
             teamlabMood   = "Dark ridged warty surface",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -993,7 +993,7 @@ public static class AsiaFloraData
             size = "Plant 0.5–1.5 m; yellow flower field",
             glowLocation = "Vivid chrome-yellow flower field glow; winter sun amber haze",
             teamlabMood   = "Yellow flower wave field",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1013,7 +1013,7 @@ public static class AsiaFloraData
             size = "Upright 0.5–2 m",
             glowLocation = "Yellow hibiscus flower glow; emerald-green ridged pod shimmer",
             teamlabMood   = "Yellow flower + green pod",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1033,7 +1033,7 @@ public static class AsiaFloraData
             size = "Tall grass 1.0–1.8 m; extra-long grain",
             glowLocation = "Golden-amber panicle with soft scent-haze shimmer above Himalayan foothills paddy",
             teamlabMood   = "Aromatic gold wave",
-            interactionMode = FloraInteractionMode.LIVING_WATER,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1053,7 +1053,7 @@ public static class AsiaFloraData
             size = "Grass 0.6–1.2 m",
             glowLocation = "Pale gold wheat ear field; winter morning frost shimmer",
             teamlabMood   = "Gold wheat sea",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1073,7 +1073,7 @@ public static class AsiaFloraData
             size = "Low plant 20–40 cm",
             glowLocation = "Soft rosy-red seed pod glow; delicate white-pink flower shimmer",
             teamlabMood   = "Red seed pods",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1093,7 +1093,7 @@ public static class AsiaFloraData
             size = "Vine 3–5 m; ridged fruit 20–40 cm",
             glowLocation = "Long ridged fruit with golden ridge-line glow; yellow flower clusters",
             teamlabMood   = "Sharp ridged surface",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1114,7 +1114,7 @@ public static class AsiaFloraData
             size = "Tree 10–25 m; fruit up to 50 kg",
             glowLocation = "Massive green spiky fruit hanging from trunk; warm gold-green glow",
             teamlabMood   = "Giant spiky fruit on trunk",
-            interactionMode = FloraInteractionMode.CANOPY_HOVER,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         // ── BATCH 02: VEGETABLES — CENTRAL ASIA (IDs 4001–4006) ────
@@ -1137,7 +1137,7 @@ public static class AsiaFloraData
             size = "Biennial 30–100 cm; white umbel flower",
             glowLocation = "White lace umbel flower with central dark-purple floret; dry steppe gold",
             teamlabMood   = "Lace umbel flower cluster",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1157,7 +1157,7 @@ public static class AsiaFloraData
             size = "Plant 30–80 cm; purple globe flower",
             glowLocation = "Purple globe flower with violet starburst bioluminescence",
             teamlabMood   = "Purple allium globe",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1168,7 +1168,7 @@ public static class AsiaFloraData
             countries = "Turkey, Iran, Iraq (Fertile Crescent origin); spread to Central Asia",
             habitat = FloraHabitat.MOUNTAIN_FIELD,
             latitude = 39.0, longitude = 42.0, spawnRadiusKm = 1500f,
-            conservation = ConservationStatus.NEAR_THREATENED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Hardy ancient grain; wild relatives provide genetic diversity for modern wheat breeding",
             significance   = "One of first domesticated wheats — 10,000 years ago; Egyptian mummy " +
                              "bread; still grown in Ethiopia and parts of Turkey; ancestor of durum wheat",
@@ -1177,7 +1177,7 @@ public static class AsiaFloraData
             size = "Grass 0.5–1.2 m; bristled ear",
             glowLocation = "Amber-bronze bristled ear against blue mountain sky",
             teamlabMood   = "Ancient bristled grain",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1198,7 +1198,7 @@ public static class AsiaFloraData
             size = "Grass 0.3–0.8 m; long-awned ear",
             glowLocation = "Long golden awn catching steppe wind; amber wave in harsh sunlight",
             teamlabMood   = "Long-awned steppe barley",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1218,7 +1218,7 @@ public static class AsiaFloraData
             size = "Grass 0.5–1.0 m; drooping panicle",
             glowLocation = "Tan-yellow drooping panicle shimmering in dry steppe wind",
             teamlabMood   = "Drooping open panicle",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1238,7 +1238,7 @@ public static class AsiaFloraData
             size = "Plant 0.3–1.2 m; white flower mass",
             glowLocation = "Mass of tiny white-pink flowers; mountain meadow pink-white shimmer",
             teamlabMood   = "Tiny white flower sea",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         // ── BATCH 02: VEGETABLES — WESTERN ASIA (IDs 5001–5006) ────
@@ -1251,7 +1251,7 @@ public static class AsiaFloraData
             countries = "Turkey, Syria, Iran (domestication corridor)",
             habitat = FloraHabitat.DRY_TROPICAL,
             latitude = 37.0, longitude = 43.0, spawnRadiusKm = 800f,
-            conservation = ConservationStatus.LEAST_CONCERN,
+            conservation = ConservationStatus.CULTIVATED,
             ecologicalRole = "Wild ancestor of cultivated eggplant; supports specialist bee species on solanaceous plants",
             significance   = "Eggplant origin traced to Turkey–Iran border; Sanskrit 'vatinganah' confirms " +
                              "ancient South Asian use; ancestor of the vast cultivated diversity from Asia to Mediterranean",
@@ -1260,7 +1260,7 @@ public static class AsiaFloraData
             size = "Shrub 0.5–1 m; small spiny fruit",
             glowLocation = "Pale purple spiny wild fruit; violet star flower glow",
             teamlabMood   = "Purple star flower + wild fruit",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1280,7 +1280,7 @@ public static class AsiaFloraData
             size = "Trailing plant 20–40 cm; tiny round seeds",
             glowLocation = "Delicate blue-violet tiny flower; green-tan seed pod shimmer",
             teamlabMood   = "Tiny blue flower + round seeds",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1300,7 +1300,7 @@ public static class AsiaFloraData
             size = "Bushy plant 20–50 cm; hairy sticky pods",
             glowLocation = "White-pink flower glow; hairy sticky pod shimmer in morning dew",
             teamlabMood   = "Hairy sticky pods + white flower",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1320,7 +1320,7 @@ public static class AsiaFloraData
             size = "Upright plant 30–120 cm; large flat pods",
             glowLocation = "White flower with dark-purple spot; large flat green pod glow",
             teamlabMood   = "White flower + broad pod",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1331,7 +1331,7 @@ public static class AsiaFloraData
             countries = "Southeast Turkey (Karacadağ — precise origin), Levant",
             habitat = FloraHabitat.MOUNTAIN_FIELD,
             latitude = 37.5, longitude = 40.5, spawnRadiusKm = 500f,
-            conservation = ConservationStatus.NEAR_THREATENED,
+            conservation = ConservationStatus.LEAST_CONCERN,
             ecologicalRole = "Wild Einkorn is gene bank for modern wheat; rocky limestone terrace specialist",
             significance   = "The first domesticated wheat — 10,000 BP at Karacadağ mountains; " +
                              "Ötzi the Iceman had Einkorn in his stomach; single-grained ear; still grown in Tuscany",
@@ -1340,7 +1340,7 @@ public static class AsiaFloraData
             size = "Grass 0.4–0.8 m; single-grained ear",
             glowLocation = "Single-grain amber ear glowing above limestone terrace; origin-of-civilisation shimmer",
             teamlabMood   = "Ancient single-grain shimmer",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1360,7 +1360,7 @@ public static class AsiaFloraData
             size = "Grass 0.5–1.0 m; two-row or six-row ear",
             glowLocation = "Gold-bronze ear rows in Mesopotamian plain; ancient harvest amber glow",
             teamlabMood   = "Ancient harvest gold",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         // ── BATCH 02: VEGETABLES — NORTH ASIA (IDs 6001–6005) ──────
@@ -1382,7 +1382,7 @@ public static class AsiaFloraData
             size = "Plant 0.3–0.8 m; white flower mass",
             glowLocation = "White flower fields shimmering against Siberian birch forest edge",
             teamlabMood   = "White flower + birch border",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1402,7 +1402,7 @@ public static class AsiaFloraData
             size = "Grass 1.0–2.0 m; slender nodding ear",
             glowLocation = "Tall slender blue-green ear field; northern twilight indigo haze",
             teamlabMood   = "Tall blue-green cold field",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1413,7 +1413,7 @@ public static class AsiaFloraData
             countries = "Russia (Black Sea coast), Ukraine, Caucasus",
             habitat = FloraHabitat.STEPPE_DRY,
             latitude = 47.0, longitude = 38.0, spawnRadiusKm = 1500f,
-            conservation = ConservationStatus.LEAST_CONCERN,
+            conservation = ConservationStatus.CULTIVATED,
             ecologicalRole = "Wild ancestor of sugar beet, chard, beetroot, spinach beet; salt-tolerant coastal plant",
             significance   = "Sea beet — ancestor of all beet crops; saline steppe and coastal wild plant; " +
                              "sugar beet provides 20% of world's sugar; beetroot iconic in Russian borscht",
@@ -1422,7 +1422,7 @@ public static class AsiaFloraData
             size = "Sprawling plant 30–100 cm; small green-red leaves",
             glowLocation = "Red-purple leaf vein glow; coastal steppe salt-wind shimmer",
             teamlabMood   = "Red-veined leaf glow",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1443,7 +1443,7 @@ public static class AsiaFloraData
             size = "Dense round head 25–40 cm",
             glowLocation = "Pale blue-green outer leaves with cream-white tight heart shimmer",
             teamlabMood   = "Tight wrapped head",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         new FloraEntry
@@ -1463,7 +1463,7 @@ public static class AsiaFloraData
             size = "Sprawling plant 0.5–1.0 m",
             glowLocation = "White-purple star flower; underground pale-gold tuber cluster glow",
             teamlabMood   = "Star flower + underground tuber glow",
-            interactionMode = FloraInteractionMode.GROUND_LEVEL,
+            interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
 
         // ── MORE BATCHES APPENDED HERE AS DATA ARRIVES ───────────
