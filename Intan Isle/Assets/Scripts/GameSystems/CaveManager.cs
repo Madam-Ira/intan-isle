@@ -42,6 +42,9 @@ public class CaveManager : MonoBehaviour
     private static readonly int ID_InCave     = Shader.PropertyToID("_IntanIsle_InCave");
     private static readonly int ID_CaveType   = Shader.PropertyToID("_IntanIsle_CaveType");
 
+    // ── Singleton ─────────────────────────────────────────────────
+    public static CaveManager Instance { get; private set; }
+
     // ── Runtime ───────────────────────────────────────────────────
     private CesiumGlobeAnchor _playerAnchor;
     private Transform         _playerRig;
@@ -54,6 +57,9 @@ public class CaveManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this) { Destroy(this); return; }
+        Instance = this;
+
         if (barakahMeter  == null) barakahMeter  = FindObjectOfType<BarakahMeter>();
         if (envController == null) envController = FindObjectOfType<CaveEnvironmentController>();
 
