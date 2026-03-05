@@ -42,6 +42,7 @@ public enum FloraGameCategory
     STRANGLER_CLIMBER,        // Ficus strangler, rattan, climbing aroids
     VEGETABLES,               // Cultivated & wild food crops across Asia
     MUSHROOMS,                // Edible, medicinal & toxic mushrooms and bracket fungi
+    HERBS,                    // Culinary, medicinal & sacred herbs, spices and aromatic plants
 }
 
 public enum ConservationStatus
@@ -92,6 +93,12 @@ public enum FloraHabitat
     PINE_FOREST,           // Pine-dominated forest (milk cap mycorrhizal zone)
     BOREAL_MOUNTAIN_FOREST,// Boreal and montane mixed conifer–birch forest
     WOODLAND_FIELD,        // Woodland edge and agricultural field margin
+    // ── Added Batch 04 ────────────────────────────────────────────
+    ALPINE_STREAM,         // Pure cold mountain stream (Wasabi habitat)
+    HIGHLAND_GARDEN,       // Highland cultivation plots and mountain gardens
+    DRY_SCRUB,             // Dry rocky scrub, garrigue and Mediterranean maquis
+    SUBTROPICAL_FOREST,    // Warm subtropical forest (Star Anise, Cinnamon)
+    ROCKY_COASTAL,         // Rocky coastal cliffs and sea-facing limestone slopes
 }
 
 public enum FloraRegion
@@ -140,6 +147,7 @@ public enum FloraAssetAnimation
     ANIMATED_LEAF_UNFURL,     // Broad-leaf tropical unfurling
     ANIMATED_GLOW_PULSE,      // Bioluminescent pulse cycle (Ghost Fungus)
     ANIMATED_EMERGENCE,       // Dramatic ground emergence + veil deployment (Stinkhorn)
+    ANIMATED_BARK_PEEL,       // Spiral bark-stripping animation (Cinnamon harvest)
 }
 
 // ════════════════════════════════════════════════════════════════
@@ -1809,6 +1817,1085 @@ public static class AsiaFloraData
             teamlabMood   = "Cap + gills",
             interactionMode = FloraInteractionMode.FULL_IMMERSION,
         },
+
+        // ── BATCH 04: HERBS — SEA (IDs 8001–8013) ─────────────────
+
+        new FloraEntry { id=8001, name="Lemongrass", scientific="Cymbopogon citratus",
+            category=FloraCategory.GRASS, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Southeast Asia-wide", habitat=FloraHabitat.SECONDARY_GROWTH,
+            latitude=13.0, longitude=100.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Aromatic tussock grass; natural insect repellent (citronellal); borders field habitats",
+            significance="Essential SEA culinary herb — tom yum, rendang, lemongrass tea; citronella oil; fever and pain remedy",
+            edible="Yes — stalk base (bruised for cooking); leaf tea",
+            assetAnimation=FloraAssetAnimation.ANIMATED_FIELD_SWAY, size="Tussock 1–2 m",
+            glowLocation="Lemon-yellow shimmer at stalk base where essential oil concentrates",
+            teamlabMood="Leaf base", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8002, name="Galangal / Lengkuas", scientific="Alpinia galanga",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Southeast Asia-wide", habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=5.0, longitude=102.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Rhizome groundcover; flowers attract insects; creates dense clumping habitat",
+            significance="Foundation spice of rendang, laksa, tom kha gai — SEA's dominant rhizome; " +
+                         "sharper and more aromatic than ginger; rhizome harvested year-round",
+            edible="Yes — rhizome (sliced, bruised, ground)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_LEAF_UNFURL, size="1–2 m; red-white flowers",
+            glowLocation="Warm amber glow on rhizome cross-section underground",
+            teamlabMood="Underground rhizome", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8003, name="Kaffir Lime / Limau Purut", scientific="Citrus hystrix",
+            category=FloraCategory.TREE, subCategory="Culinary Tree",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Southeast Asia-wide", habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=14.0, longitude=102.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Host plant for Lime Butterfly (Papilio demoleus) larvae; citrus flowers attract bees",
+            significance="Iconic double-leaf citrus — unique hourglass double-lobed leaf shape; " +
+                         "leaves used in Thai, Malay and Indonesian cooking; zest in curry paste; " +
+                         "fruit rind for hair and medicinal infusions",
+            edible="Yes — leaves (cooking), zest (curry paste); juice used medicinally",
+            assetAnimation=FloraAssetAnimation.STATIC, size="Small tree 3–6 m",
+            glowLocation="Bright green paired-leaf vein glow; leaf junction point shimmer",
+            teamlabMood="Leaf veins", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8004, name="Turmeric", scientific="Curcuma longa",
+            category=FloraCategory.PLANT, subCategory="Medicinal/Culinary",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Southeast Asia-wide", habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=10.0, longitude=100.0, spawnRadiusKm=2500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Rhizome ground cover; pale yellow flowers attract pollinators; enriches garden soil",
+            significance="Golden spice of SEA — nasi kuning (yellow rice), kunyit-tamarind paste, jamu tonic; " +
+                         "curcumin anti-inflammatory widely studied; natural yellow dye for textiles",
+            edible="Yes — rhizome (ground, fresh); leaves for wrapping",
+            assetAnimation=FloraAssetAnimation.STATIC, size="0.5–1 m; decorative lily-like foliage",
+            glowLocation="Deep saffron-orange rhizome glow underground; golden shimmer through soil",
+            teamlabMood="Underground rhizome", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8005, name="Ginger", scientific="Zingiber officinale",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Southeast Asia-wide (cultivated pan-tropical)",
+            habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=5.0, longitude=115.0, spawnRadiusKm=2500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Rhizome plant; bee-pollinated; rotting rhizome enriches tropical soil",
+            significance="Universal spice of SEA — ginger tea, jahe, bao ginger drink; " +
+                         "anti-nausea and anti-emetic properties; Silk Road's original 'hot spice'; " +
+                         "candied ginger, ginger beer, gingerbread all trace to this single rhizome",
+            edible="Yes — rhizome (fresh, dried, powdered, candied)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="0.5–1 m; tropical foliage",
+            glowLocation="Warm ginger-amber rhizome glow; heat-shimmer emanating from root",
+            teamlabMood="Rhizome", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8006, name="Pandan / Screwpine", scientific="Pandanus amaryllifolius",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Southeast Asia-wide", habitat=FloraHabitat.SANDY_COASTAL,
+            latitude=3.0, longitude=101.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Coastal and riparian ground stabiliser; leaves used as natural food wrapping",
+            significance="Vanilla of Southeast Asia — 2-acetyl-1-pyrroline aroma (same compound as basmati rice); " +
+                         "pandan layer cake, onde-onde, kuih, rice dishes; natural green dye; leaf basket weaving",
+            edible="Yes — leaves (cooking, aroma, wrapping, colouring)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="1–2 m; long arching spiralled leaves",
+            glowLocation="Vivid jade-green parallel vein lines running full leaf length",
+            teamlabMood="Leaf vein lines", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8007, name="Betel Leaf / Sirih", scientific="Piper betle",
+            category=FloraCategory.VINE, subCategory="Medicinal Vine",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Southeast Asia-wide (India to Pacific)",
+            habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=12.0, longitude=100.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Climbing vine on trees or support; moist tropical understorey; insect habitat",
+            significance="Central to Malay adat ceremony — sirih junjung wedding offering; " +
+                         "betel quid (sirih + gambir + pinang + lime) chewed across Asia for 3,000 years; " +
+                         "mouth antiseptic properties; deeply embedded in cultural ceremony",
+            edible="Medicinal/ceremonial — chewed with betel nut; leaves have mild stimulant properties",
+            assetAnimation=FloraAssetAnimation.ANIMATED_VINE_CLIMB, size="Climbing vine 1–10 m",
+            glowLocation="Deep forest-green heart-shaped leaf pulse; ceremonial silver-green shimmer",
+            teamlabMood="Leaf surface", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=8008, name="Thai Basil / Selasih", scientific="Ocimum basilicum",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Thailand, Malaysia, Indonesia, Vietnam",
+            habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=15.0, longitude=101.0, spawnRadiusKm=1800f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Insect-pollinated; companion planting pest deterrent; attracts beneficial insects",
+            significance="Essential aromatic in pho bo, Thai green curry, Vietnamese fresh spring rolls; " +
+                         "anise-clove flavour profile distinct from Italian basil; " +
+                         "purple-stemmed varieties used in Malaysian bunga raya ceremonies",
+            edible="Yes — leaves (fresh, cooked); seeds (biji selasih in drinks)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–60 cm; purple-green aromatic",
+            glowLocation="Soft purple-green shimmer on leaves; purple stem glow beneath",
+            teamlabMood="Leaf surface", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8009, name="Moringa / Kelor", scientific="Moringa oleifera",
+            category=FloraCategory.TREE, subCategory="Superfood Tree",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Southeast Asia-wide (pan-tropical; originated India)",
+            habitat=FloraHabitat.DRY_TROPICAL,
+            latitude=10.0, longitude=78.0, spawnRadiusKm=3000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Fast-growing pioneer; nitrogen-fixer; seeds purify water via coagulation",
+            significance="Miracle tree — every part edible or useful; leaves (gram-for-gram) higher protein than " +
+                         "eggs, Vitamin C than oranges, calcium than milk; drumstick pods (sai khua); " +
+                         "daun kelor (moringa leaves) in Javanese ritual cleansing of the deceased",
+            edible="Yes — leaves, pods (drumsticks), flowers, seeds, oil (ben oil)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_CANOPY_RUSTLE, size="5–12 m; feathery compound leaves",
+            glowLocation="Pale gold shimmer on long hanging seed pods; delicate feather-leaf glow",
+            teamlabMood="Seed pods", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8010, name="Ulam Raja / King Salad", scientific="Cosmos caudatus",
+            category=FloraCategory.PLANT, subCategory="Wild Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Malaysia, Indonesia", habitat=FloraHabitat.SECONDARY_GROWTH,
+            latitude=3.0, longitude=110.0, spawnRadiusKm=800f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Pioneer plant on disturbed ground; insect-pollinated pink daisy flowers attract butterflies",
+            significance="Traditional Malaysian wild salad herb — eaten raw with sambal; " +
+                         "high quercetin antioxidant; mild tangy flavour; endemic Malay-Indonesian culinary tradition; " +
+                         "'king salad' for its position of honour at traditional Malay feast tables",
+            edible="Yes — leaves (raw salad, ulam), young shoots",
+            assetAnimation=FloraAssetAnimation.STATIC, size="0.5–1.5 m; pink cosmos-like flowers",
+            glowLocation="Soft pink flower glow + bright green young leaf shimmer",
+            teamlabMood="Flower petals", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8011, name="Pegaga / Gotu Kola", scientific="Centella asiatica",
+            category=FloraCategory.PLANT, subCategory="Medicinal Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Southeast Asia-wide (pan-tropical)",
+            habitat=FloraHabitat.RIPARIAN,
+            latitude=5.0, longitude=103.0, spawnRadiusKm=2500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Ground cover on moist banks and roadsides; colonises disturbed wet areas",
+            significance="Traditional memory and brain tonic herb — penghijau otak (greening the brain); " +
+                         "Ayurvedic and TCM memory herb; asiaticoside compounds studied for wound healing; " +
+                         "pegaga juice popular street drink in Malaysia; served fresh in salad",
+            edible="Yes — leaves (raw salad, juice drink)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="5–15 cm creeping mat",
+            glowLocation="Pale jade circular coin-shaped leaf glow; low ground shimmer",
+            teamlabMood="Leaf surface", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8012, name="Curry Leaf (SEA)", scientific="Murraya koenigii",
+            category=FloraCategory.TREE, subCategory="Culinary Tree",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Malaysia, Indonesia, Thailand (South Indian diaspora cultivation)",
+            habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=6.0, longitude=100.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Host plant for Lime Butterfly; small white flowers attract bees; berries eaten by birds",
+            significance="Fragrant leaf releasing aroma only when bruised — essential in mamak curry, " +
+                         "dhal tadka, Malaysian fish curry; brought across Indian Ocean by South Indian diaspora; " +
+                         "leaves cannot be dried without losing flavour — must be used fresh",
+            edible="Yes — leaves (fresh, tempered in hot oil)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="4–6 m aromatic tree",
+            glowLocation="Deep forest-green aromatic leaf shimmer; bruise-release glow",
+            teamlabMood="Leaf surface", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8013, name="Oc Chau Ancient Tea", scientific="Camellia sinensis var.",
+            category=FloraCategory.TREE, subCategory="Tea Plant",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SEA,
+            countries="Vietnam (Ha Giang, Oc Chau highlands)",
+            habitat=FloraHabitat.HIGHLAND_GARDEN,
+            latitude=22.5, longitude=104.0, spawnRadiusKm=200f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Highland forest understory; ancient cultivars support diverse insect communities",
+            significance="Ancient Vietnamese tea trees over 1,000 years old — wild-harvested in Ha Giang highlands; " +
+                         "shan tuyet (snow mountain) teas from centuries-old trees; each tree an heirloom; " +
+                         "Vietnamese tea tradition predating recorded history",
+            edible="Yes — leaves (green tea, compressed cake tea)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="2–5 m ancient cultivar (can reach 15 m wild)",
+            glowLocation="Pale jade young tea bud and first-leaf shimmer; morning dew on fresh flush",
+            teamlabMood="Young leaves", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        // ── BATCH 04: HERBS — EAST ASIA (IDs 8101–8108) ────────────
+
+        new FloraEntry { id=8101, name="Wasabi", scientific="Eutrema japonicum",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.EAST_ASIA,
+            countries="Japan (mountain streams of Honshu, Shikoku, Kyushu)",
+            habitat=FloraHabitat.ALPINE_STREAM,
+            latitude=35.5, longitude=136.0, spawnRadiusKm=300f,
+            conservation=ConservationStatus.NEAR_THREATENED,
+            ecologicalRole="Aquatic rhizome plant of pure cold mountain streams; indicator of pristine water quality",
+            significance="Most demanding crop in Japanese cuisine — requires 18°C pure running water year-round; " +
+                         "isothiocyanate compounds give unique nasal heat; 99% of 'wasabi' worldwide is horseradish dye; " +
+                         "real wasabi loses flavour within 15 minutes of grating",
+            edible="Yes — rhizome (freshly grated only)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="30–60 cm aquatic rhizome plant",
+            glowLocation="Bright jade-green rhizome in crystal-clear cold stream; green-white glow",
+            teamlabMood="Rhizome", interactionMode=FloraInteractionMode.LIVING_WATER },
+
+        new FloraEntry { id=8102, name="Chinese Chive / Garlic Chive", scientific="Allium tuberosum",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.EAST_ASIA,
+            countries="China, Japan, Korea", habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=35.0, longitude=114.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Insect-pollinated; white star-flower umbels attract bees and hoverflies",
+            significance="Jiucai — essential Chinese dumpling (jiaozi) filling with egg and pork; " +
+                         "Korean buchu jeon (chive pancake); Japanese nira gyoza; " +
+                         "flat-leafed garlic-scented allium; blanched yellow variety (huangjiucai) for soup",
+            edible="Yes — leaves, flowers, young buds",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–50 cm; white umbel flowers",
+            glowLocation="Pale white flower + vivid green flat leaf shimmer",
+            teamlabMood="Leaf + flower", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8103, name="Spring Onion / Scallion", scientific="Allium fistulosum",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.EAST_ASIA,
+            countries="China, Japan, Korea (pan-East Asian)", habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=37.0, longitude=120.0, spawnRadiusKm=2500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Fast-growing allium; insect-pollinated; self-seeding garden plant",
+            significance="Universal East Asian garnish and flavouring — ramen negi, pho hanh, " +
+                         "bibimbap, mapo tofu; hollow tubular leaf is botanically distinct from onion; " +
+                         "originated northeastern Asia; Chinese name 'cong' ancient since Han dynasty",
+            edible="Yes — entire plant (leaf, white base, roots)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–60 cm",
+            glowLocation="Bright hollow-green stalk shimmer; white base glow",
+            teamlabMood="Stalk", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8104, name="Perilla / Shiso", scientific="Perilla frutescens",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.EAST_ASIA,
+            countries="Japan, Korea, China", habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=35.0, longitude=137.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Insect-pollinated; companion planting benefits; self-seeds prolifically",
+            significance="Japanese sushi and sashimi herb — green (aoshiso) and purple (akashiso); " +
+                         "Korean ssam (wrap leaf) culture; perilla oil from seeds used in Korean cuisine; " +
+                         "two-tone purple-green underside unique to this genus; used in umeboshi pickling",
+            edible="Yes — leaf (raw, tempura, wrap); seed (oil, spice)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–80 cm",
+            glowLocation="Deep purple-green two-tone leaf shimmer; purple underside glow",
+            teamlabMood="Leaf surface (2 colour)", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8105, name="Mitsuba / Japanese Parsley", scientific="Cryptotaenia japonica",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.EAST_ASIA,
+            countries="Japan, Korea, China", habitat=FloraHabitat.SECONDARY_GROWTH,
+            latitude=36.0, longitude=138.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Shade-tolerant understorey herb; moist forest floor coloniser",
+            significance="Mitsuba — 'three leaves'; quintessential Japanese soup and chawanmushi herb; " +
+                         "delicate parsley-like flavour with mild anise note; spring seasonal ingredient; " +
+                         "appears in traditional New Year zoni soup",
+            edible="Yes — leaves, stems",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–60 cm",
+            glowLocation="Pale green triple-leaf shimmer; delicate translucent leaf glow",
+            teamlabMood="Leaf surface", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8106, name="Mugwort / Artemisia", scientific="Artemisia argyi",
+            category=FloraCategory.PLANT, subCategory="Medicinal Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.EAST_ASIA,
+            countries="China, Japan, Korea", habitat=FloraHabitat.MOUNTAIN_FIELD,
+            latitude=36.0, longitude=128.0, spawnRadiusKm=2500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Hardy pioneer on disturbed mountain slopes; aromatic foliage deters insects",
+            significance="Moxa herb — dried mugwort burned in moxibustion acupuncture for 3,000 years; " +
+                         "Korean tteok (rice cake) and Japanese mochi use young leaves for green colour and flavour; " +
+                         "silver-grey leaf undersurface distinctive; associated with Dragon Boat Festival",
+            edible="Yes — young leaves (rice cake, soup); dried for moxa therapy",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="0.5–1.5 m; silver-grey aromatic",
+            glowLocation="Silver-grey aromatic leaf shimmer; silvery underside in moonlight",
+            teamlabMood="Leaf surface", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8107, name="Sichuan Pepper", scientific="Zanthoxylum simulans",
+            category=FloraCategory.TREE, subCategory="Spice Tree",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.EAST_ASIA,
+            countries="China (Sichuan, Yunnan)", habitat=FloraHabitat.BOREAL_MOUNTAIN_FOREST,
+            latitude=30.0, longitude=104.0, spawnRadiusKm=500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Insect-pollinated; fruit eaten by birds; prickly stems provide bird nesting cover",
+            significance="Hua jiao — not a true pepper; produces unique numbing sensation (mala) from hydroxy-alpha-sanshool; " +
+                         "Silk Road luxury spice; key to mapo tofu and dan dan noodles; " +
+                         "aroma of citrus + pine + pepper combined",
+            edible="Yes — dried pericarp (husk only, not seed)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="2–7 m thorny shrub or small tree",
+            glowLocation="Vivid red-pink pepper hull shimmer; numbing-sensation node visualised as sparking glow",
+            teamlabMood="Hull", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8108, name="Star Anise", scientific="Illicium verum",
+            category=FloraCategory.TREE, subCategory="Spice Tree",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.EAST_ASIA,
+            countries="China (Guangxi, Yunnan), Vietnam", habitat=FloraHabitat.SUBTROPICAL_FOREST,
+            latitude=22.0, longitude=107.0, spawnRadiusKm=500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Subtropical forest understory; insect-pollinated cream flowers; fruit eaten by birds",
+            significance="Chinese five-spice star — geometric 8-pointed star fruit iconic; " +
+                         "primary source of shikimic acid used to synthesise Tamiflu antiviral; " +
+                         "pho broth, char siu marinade, mulled wine — anethole aroma spans Asian and European cuisine",
+            edible="Yes — dried star fruit/spice; oil for medicine and flavouring",
+            assetAnimation=FloraAssetAnimation.STATIC, size="6–15 m; waxy leaves",
+            glowLocation="Deep red-brown star-shaped fruit with eight-point light rays; geometric glow",
+            teamlabMood="Star fruit", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        // ── BATCH 04: HERBS — SOUTH ASIA (IDs 8201–8215) ───────────
+
+        new FloraEntry { id=8201, name="Cardamom", scientific="Elettaria cardamomum",
+            category=FloraCategory.PLANT, subCategory="Spice Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Kerala, Western Ghats), Sri Lanka",
+            habitat=FloraHabitat.SECONDARY_GROWTH,
+            latitude=10.5, longitude=77.0, spawnRadiusKm=400f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Forest floor shade crop; tubular flowers pollinated by specialist bees; " +
+                           "pods attract birds and small mammals",
+            significance="Queen of spices — Kerala's most valuable crop; " +
+                         "chai masala, biryani, halva, Nordic cardamom buns; " +
+                         "GI-protected Idukki (Kerala) cardamom; " +
+                         "third most expensive spice after saffron and vanilla",
+            edible="Yes — seeds and pod (ground, whole in cooking)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="2–4 m; tropical ginger family",
+            glowLocation="Warm green seed pod cluster glow near base of stem",
+            teamlabMood="Pods", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8202, name="Coriander", scientific="Coriandrum sativum",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India, Pakistan, Bangladesh, Sri Lanka",
+            habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=22.0, longitude=78.0, spawnRadiusKm=2500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Insect-pollinated; companion plant deterring aphids; lacy white flowers attract hoverflies",
+            significance="Dhaniya — both leaf and seed used in Indian cooking unlike most herbs; " +
+                         "seed = aromatic earthy flavour (cumin's partner); leaf = fresh green brightness; " +
+                         "found in Egyptian tombs — 3,500 years of continuous cultivation",
+            edible="Yes — leaves (fresh), seeds (whole, ground), roots",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–60 cm; white lacy umbels",
+            glowLocation="Bright green leaf glow + white umbel flower shimmer",
+            teamlabMood="Leaf + flower", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8203, name="Cumin", scientific="Cuminum cyminum",
+            category=FloraCategory.PLANT, subCategory="Spice Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Rajasthan, Gujarat), Pakistan, Iran",
+            habitat=FloraHabitat.DRY_TROPICAL,
+            latitude=24.0, longitude=72.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Insect-pollinated; companion plant; drought-adapted short-season crop",
+            significance="Jeera — most used spice in Indian cooking after chilli; " +
+                         "biryani, dal, sabzi — cumin tempering (tadka) releases aldehyde aromatics into oil; " +
+                         "digestive properties in Ayurveda; India produces 70% of world's cumin",
+            edible="Yes — seeds (whole tempered in oil, ground)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="20–50 cm; delicate umbellifer",
+            glowLocation="Warm amber-gold seed cluster glow; elongated seed shimmer",
+            teamlabMood="Seed heads", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8204, name="Fenugreek", scientific="Trigonella foenum-graecum",
+            category=FloraCategory.PLANT, subCategory="Culinary/Medicinal",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Rajasthan, Punjab), Pakistan",
+            habitat=FloraHabitat.DRY_TROPICAL,
+            latitude=25.0, longitude=73.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Nitrogen-fixing legume; companion planting benefit; bee-pollinated",
+            significance="Methi — unique bitter-sweet maple-like flavour; methi roti, methi saag, " +
+                         "panch phoron blend; Ayurvedic blood-sugar regulation; " +
+                         "seeds sprout into methi microgreens eaten fresh; " +
+                         "kasuri methi (dried leaf) concentrated flavour for butter chicken sauce",
+            edible="Yes — seeds (spice, sprout), leaves (vegetable, dried)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="30–60 cm",
+            glowLocation="Pale yellow leaf + golden rhomboid seed glow",
+            teamlabMood="Leaf + seeds", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8205, name="Holy Basil / Tulsi", scientific="Ocimum tenuiflorum",
+            category=FloraCategory.PLANT, subCategory="Sacred Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (pan-subcontinental), Nepal, Sri Lanka",
+            habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=20.0, longitude=78.0, spawnRadiusKm=2500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Insect-pollinated; aromatic leaves deter mosquitoes; companion plant",
+            significance="Most sacred plant of Hinduism — tulsi vivah (marriage ceremony with Vishnu); " +
+                         "tulsi pot in every Hindu household courtyard; " +
+                         "Ayurvedic adaptogen; eugenol-rich leaves; " +
+                         "krishna tulsi (dark purple) and rama tulsi (green) are distinct types",
+            edible="Medicinal — leaves chewed raw, made into kadha (decoction), tulsi tea",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–60 cm",
+            glowLocation="Deep purple-green sacred shimmer; divine aura glow in Veiled World",
+            teamlabMood="Leaf surface", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8206, name="Curry Leaf (South Asia)", scientific="Murraya koenigii",
+            category=FloraCategory.TREE, subCategory="Culinary Tree",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Tamil Nadu, Kerala, Karnataka), Sri Lanka",
+            habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=11.0, longitude=78.0, spawnRadiusKm=1000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Lime Butterfly (Papilio demoleus) host plant; small white flowers attract bees; berries feed birds",
+            significance="Kadi patta — impossible to recreate South Indian curry without it; " +
+                         "tadka in coconut oil with mustard seeds; chettinad cuisine, Kerala fish curry, Sri Lankan kiri hodi; " +
+                         "tree must be planted in South Indian homes for culinary self-sufficiency",
+            edible="Yes — leaves (tempered fresh); not dried",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="4–6 m",
+            glowLocation="Deep forest-green aromatic pinnate leaf shimmer",
+            teamlabMood="Leaf", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8207, name="Ginger (South Asia)", scientific="Zingiber officinale",
+            category=FloraCategory.PLANT, subCategory="Culinary/Medicinal",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Kerala, Meghalaya), Bangladesh, Sri Lanka",
+            habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=10.0, longitude=77.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Rhizome ground cover; tropical forest floor coloniser",
+            significance="Adrak (fresh) and sonth (dried) — adrak chai is national drink of India; " +
+                         "ginger paste is one of the two bases of North Indian cooking (ginger-garlic paste); " +
+                         "Kerala's Wayanad and Meghalaya produce premium rhizome exports; anti-nausea proven in clinical studies",
+            edible="Yes — fresh rhizome (grated, juiced, sliced); dried powder",
+            assetAnimation=FloraAssetAnimation.STATIC, size="0.5–1 m",
+            glowLocation="Warm amber-gold rhizome shimmer; spicy heat aura glow",
+            teamlabMood="Rhizome", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8208, name="Turmeric (South Asia)", scientific="Curcuma longa",
+            category=FloraCategory.PLANT, subCategory="Sacred/Culinary/Medicinal",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Odisha, Bengal, Tamil Nadu), Bangladesh, Sri Lanka",
+            habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=21.0, longitude=86.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Rhizome crop; bee-pollinated tubular flowers; natural soil conditioner",
+            significance="Haldi — used in Hindu wedding haldi ceremony applied to bride and groom; " +
+                         "curcumin compound most studied natural anti-inflammatory; " +
+                         "Odisha's Lakadong turmeric has highest curcumin content (7–12% vs 2–3% typical); " +
+                         "used as thread-yellowing dye, face mask, and antibacterial",
+            edible="Yes — fresh rhizome, dried powder; leaves for wrapping and flavouring",
+            assetAnimation=FloraAssetAnimation.STATIC, size="0.5–1 m",
+            glowLocation="Deep saffron-gold rhizome glow; warm ceremonial gold shimmer",
+            teamlabMood="Rhizome", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8209, name="Black Pepper", scientific="Piper nigrum",
+            category=FloraCategory.VINE, subCategory="Spice Vine",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Kerala — Malabar origin), Sri Lanka",
+            habitat=FloraHabitat.TROPICAL_GARDEN,
+            latitude=10.0, longitude=76.0, spawnRadiusKm=500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Climbing vine on support trees; insect-pollinated; berries eaten by birds",
+            significance="Black gold — drove the entire Age of Exploration; Vasco da Gama reached Calicut (1498) for pepper; " +
+                         "Malabar pepper the original Silk Road luxury; same berry = green, black, white or red pepper " +
+                         "depending on harvest stage; piperine compound responsible for heat",
+            edible="Yes — berry at all stages (green, black, white, red)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_VINE_CLIMB, size="Climbing 4–8 m vine",
+            glowLocation="Black-red berry cluster shimmer; ancient spice trade aura glow",
+            teamlabMood="Berry cluster", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8210, name="Kashmiri Saffron", scientific="Crocus sativus",
+            category=FloraCategory.FLOWER, subCategory="Spice",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Kashmir Valley — Pampore crocus fields)",
+            habitat=FloraHabitat.ALPINE_MEADOW,
+            latitude=34.0, longitude=74.5, spawnRadiusKm=100f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Insect-pollinated autumn crocus; carpets Kashmir meadows in October-November bloom",
+            significance="World's most expensive spice by weight (€10,000/kg); " +
+                         "Kashmir saffron GI-protected; three red stigmas hand-picked at dawn from each flower; " +
+                         "75,000 flowers = 1 pound of dried saffron; used in noon chai, Kashmiri wazwan, Persian rice",
+            edible="Yes — dried stigmas (colour, aroma, flavour in rice, dessert, tea)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_BLOOM, size="10–30 cm; autumn-blooming purple crocus",
+            glowLocation="Deep violet petal glow with gold-red stamen radiance; Kashmir meadow autumn shimmer",
+            teamlabMood="Stamen + petals", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8211, name="Cinnamon (Ceylon)", scientific="Cinnamomum verum",
+            category=FloraCategory.TREE, subCategory="Spice Tree",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="Sri Lanka (origin), southern India",
+            habitat=FloraHabitat.SUBTROPICAL_FOREST,
+            latitude=7.5, longitude=80.7, spawnRadiusKm=300f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Insect-pollinated; berries eaten by birds; shade tree in agroforestry",
+            significance="True cinnamon — Ceylon cinnamon vs cassia (Chinese) has thinner, more delicate bark; " +
+                         "Silk Road prize; Portuguese fought for Sri Lanka control (1505) specifically for cinnamon; " +
+                         "inner bark peeled and sun-dried into quills; low coumarin levels (safer for daily use)",
+            edible="Yes — inner bark (quills, ground); leaf oil; unripe berry flavouring",
+            assetAnimation=FloraAssetAnimation.ANIMATED_BARK_PEEL, size="8–15 m; aromatic bark",
+            glowLocation="Warm cinnamon-brown bark curl shimmer; inner pale-gold bark layer glow",
+            teamlabMood="Bark peeling", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8212, name="Ashwagandha", scientific="Withania somnifera",
+            category=FloraCategory.PLANT, subCategory="Ayurvedic Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Rajasthan, Madhya Pradesh), Pakistan, Sri Lanka",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=20.0, longitude=76.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Dry scrub pioneer; small orange-red berry attracts birds; deep root in rocky soil",
+            significance="Ashwagandha = 'smell of horse' (promises strength of stallion); " +
+                         "Ayurvedic rasayana (rejuvenating tonic) for 3,000 years; " +
+                         "withanolide compounds studied for cortisol reduction (adaptogen); " +
+                         "now the world's fastest-growing herbal supplement",
+            edible="Medicinal — root powder in warm milk (ashwagandha golden milk)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="30–150 cm; dry scrub shrub",
+            glowLocation="Pale green-gold root aura + small orange-red berry shimmer in dry scrub",
+            teamlabMood="Root + berry", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8213, name="Neem", scientific="Azadirachta indica",
+            category=FloraCategory.TREE, subCategory="Medicinal Tree",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (pan-subcontinent), Sri Lanka, Pakistan",
+            habitat=FloraHabitat.DRY_TROPICAL,
+            latitude=23.0, longitude=79.0, spawnRadiusKm=2500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Air purifier; shade tree; natural pesticide (azadirachtin repels 200+ insect species); " +
+                           "nitrogen-fixing leaf litter enriches soil",
+            significance="Village pharmacy tree — neem twig toothbrush (datun); neem oil pesticide; " +
+                         "neem leaf medicinal; antifungal bark; air purification under neem canopy; " +
+                         "Indian patent battles over traditional knowledge (neem patent controversy 1994)",
+            edible="Medicinal — leaves (bitter tonic), oil (topical), bark (infusion); not culinary",
+            assetAnimation=FloraAssetAnimation.STATIC, size="15–20 m",
+            glowLocation="Silver-green aromatic leaf medicinal shimmer; anti-pest aura field",
+            teamlabMood="Leaf surface", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=8214, name="Indian Mustard (field)", scientific="Brassica juncea",
+            category=FloraCategory.PLANT, subCategory="Oil Crop / Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Punjab, Haryana, UP), Bangladesh, Pakistan",
+            habitat=FloraHabitat.TEMPERATE_FIELD,
+            latitude=28.0, longitude=76.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Winter season oil crop; yellow flowers blanket fields attracting bees; " +
+                           "nectar source in cool months",
+            significance="Sarson — yellow mustard fields of Haryana and Punjab; Lohri winter festival; " +
+                         "sarson da saag (mustard greens) with makki di roti = Punjab's most iconic dish; " +
+                         "mustard oil (kachi ghani) essential cooking fat of eastern India and Bangladesh",
+            edible="Yes — oil, leaves (saag), seeds",
+            assetAnimation=FloraAssetAnimation.ANIMATED_FIELD_SWAY, size="0.5–1.5 m",
+            glowLocation="Brilliant chrome-yellow flower field shimmer; sun-saturated gold wave",
+            teamlabMood="Flower heads", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8215, name="Kashmir Lavender", scientific="Lavandula angustifolia",
+            category=FloraCategory.FLOWER, subCategory="Aromatic Flower",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.SOUTH_ASIA,
+            countries="India (Kashmir Valley — introduced cultivation)",
+            habitat=FloraHabitat.MOUNTAIN_VALLEY,
+            latitude=34.0, longitude=74.5, spawnRadiusKm=200f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Bee forage in high-altitude meadows; aromatic field reduces insect pests",
+            significance="Kashmir lavender cultivation growing since 1980s — now competes with French Provence; " +
+                         "purple-blue fragrant fields photographed heavily by tourists; " +
+                         "essential oil export; integrated with saffron tourism economy of Pampore region",
+            edible="Yes — essential oil (culinary), tea; dried buds as garnish",
+            assetAnimation=FloraAssetAnimation.ANIMATED_FIELD_SWAY, size="30–80 cm",
+            glowLocation="Vivid purple-blue fragrant field shimmer; lavender haze aura",
+            teamlabMood="Flower spike field", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        // ── BATCH 04: HERBS — CENTRAL ASIA (IDs 8301–8310) ─────────
+
+        new FloraEntry { id=8301, name="Wormwood", scientific="Artemisia absinthium",
+            category=FloraCategory.PLANT, subCategory="Steppe Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Kyrgyzstan, Mongolia, Russia",
+            habitat=FloraHabitat.STEPPE_DRY,
+            latitude=47.0, longitude=72.0, spawnRadiusKm=2500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Steppe ground cover; aromatic foliage deters grazing; drought-resistant pioneer",
+            significance="Absinthe plant — 19th century absinthe liqueur (Van Gogh, Hemingway); " +
+                         "nomadic Central Asian medicine; thujone compound gives intoxicating effect; " +
+                         "bitter digestive tonic; scent permeates the Kazakh steppe in summer",
+            edible="Medicinal — bitter tonic, digestive; absinthe liqueur base",
+            assetAnimation=FloraAssetAnimation.STATIC, size="50–120 cm; silver-grey aromatic shrub",
+            glowLocation="Silver-grey aromatic leaf shimmer; bitter ghost-like pale luminescence",
+            teamlabMood="Leaf surface", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=8302, name="Wild Garlic (origin)", scientific="Allium sativum",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Uzbekistan (origin of all cultivated garlic)",
+            habitat=FloraHabitat.MOUNTAIN_VALLEY,
+            latitude=43.0, longitude=70.0, spawnRadiusKm=800f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Mountain valley ground cover; natural pest deterrent; bee-pollinated globe flowers",
+            significance="Origin of all cultivated garlic — wild Allium sativum ancestor in Tian Shan/Fergana mountains; " +
+                         "4,500 years cultivated; Egyptian pyramid builders fed garlic; " +
+                         "vampires, evil spirits, physicians — garlic appears in every civilization's medicine",
+            edible="Yes — bulb, greens, flowers",
+            assetAnimation=FloraAssetAnimation.STATIC, size="30–60 cm; small purple globe flower",
+            glowLocation="White-gold layered bulb glow underground; origin-point luminescence",
+            teamlabMood="Bulb layers", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8303, name="Wild Leek", scientific="Allium ampeloprasum",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Kyrgyzstan (mountain meadows)",
+            habitat=FloraHabitat.ALPINE_MEADOW,
+            latitude=42.0, longitude=73.0, spawnRadiusKm=600f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Insect-pollinated; mountain meadow grassland ecology",
+            significance="Wild ancestor of cultivated leek; Silk Road mountain staple; " +
+                         "used by nomadic Kyrgyz peoples in stews; mild onion-garlic flavour; " +
+                         "National emblem of Wales (Cymru) traces to this Caucasus-origin wild plant",
+            edible="Yes — stem, leaf, bulb (mild)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–90 cm; round globe flower",
+            glowLocation="Pale green-white stalk shimmer; round purple-white flower head glow",
+            teamlabMood="Stalk", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8304, name="Cumin (Wild)", scientific="Cuminum cyminum",
+            category=FloraCategory.PLANT, subCategory="Spice Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Uzbekistan, Tajikistan, Iran (cultivation origin)",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=40.0, longitude=67.0, spawnRadiusKm=1000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Insect-pollinated; drought-adapted; enriches arid soil structure",
+            significance="Zira — the essential spice of Central Asian plov (pilaf); " +
+                         "Uzbek plov without zira is unthinkable; Silk Road trade item from Fergana Valley; " +
+                         "toasted zira is first step in every plov recipe",
+            edible="Yes — seeds (whole, toasted, ground)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="20–50 cm; delicate umbellifer",
+            glowLocation="Warm amber seed head glow; dry steppe golden shimmer",
+            teamlabMood="Seed heads", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8305, name="Wild Coriander", scientific="Coriandrum sativum",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Iran (wild form, Silk Road spread)",
+            habitat=FloraHabitat.STEPPE_DRY,
+            latitude=43.0, longitude=75.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Insect-pollinated; self-seeding on disturbed steppe; attracts parasitic wasps",
+            significance="Oldest herb in recorded history — found in Tutankhamun's tomb (1325 BCE); " +
+                         "Sanskrit name dhanyaka; spread along all Silk Road routes; " +
+                         "seed and leaf have different chemical profiles",
+            edible="Yes — leaves (fresh), seeds (aromatic spice)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–60 cm",
+            glowLocation="White flower + bright green lacy leaf shimmer",
+            teamlabMood="Flower + leaf", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8306, name="Dill", scientific="Anethum graveolens",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Russia, Iran (origin region)",
+            habitat=FloraHabitat.STEPPE_DRY,
+            latitude=50.0, longitude=68.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Insect-pollinated; excellent companion plant for tomatoes and cucumbers; attracts beneficial wasps",
+            significance="Feathery aromatic herb of Kazakh, Uzbek and Russian cuisine; " +
+                         "pickling agent for cucumbers (dill pickles); Scandinavian gravlax; " +
+                         "Persian sabzi herbs mix; anethole and carvone aromatic compounds",
+            edible="Yes — feathery leaves (fresh), seeds (spice), flower heads (pickling)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–150 cm; feathery blue-green fronds",
+            glowLocation="Pale yellow-green feathery leaf shimmer; delicate frond luminescence",
+            teamlabMood="Feathery leaves", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8307, name="Wild Fenugreek", scientific="Trigonella foenum-graecum",
+            category=FloraCategory.PLANT, subCategory="Spice Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Uzbekistan (wild-type origin)",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=41.0, longitude=64.0, spawnRadiusKm=1000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Nitrogen-fixer; drought-adapted legume of dry Central Asian habitats",
+            significance="Silk Road spice origin — wild form ancestor of all cultivated fenugreek; " +
+                         "Uzbek and Tajik bread flavouring (shambalid); ancient Roman cuisine used it; " +
+                         "maple-syrup aroma from sotolon compound",
+            edible="Yes — seeds (bitter-sweet spice), leaves (fresh herb)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="30–60 cm",
+            glowLocation="Warm gold seed pod glow; clover-like leaf shimmer",
+            teamlabMood="Pods", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8308, name="Wild Mint", scientific="Mentha longifolia",
+            category=FloraCategory.PLANT, subCategory="Aromatic Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Central Asia-wide (Kazakhstan, Uzbekistan, Kyrgyzstan)",
+            habitat=FloraHabitat.RIPARIAN,
+            latitude=46.0, longitude=70.0, spawnRadiusKm=2500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bee forage; insect repellent; colonises moist riverbanks and meadows",
+            significance="Wild long-leaf mint of the steppe; Silk Road tea herb; " +
+                         "ancestor of spearmint cultivation; cool menthol in hot dry climate was prized luxury; " +
+                         "Central Asian green tea with mint still served at hospitality ceremonies",
+            edible="Yes — leaves (fresh tea, salad)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–80 cm",
+            glowLocation="Cool green-white mint leaf shimmer; refreshing cold-light glow",
+            teamlabMood="Leaf surface", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8309, name="Sorrel", scientific="Rumex acetosa",
+            category=FloraCategory.PLANT, subCategory="Edible Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Central Asia-wide (Kazakhstan, Kyrgyzstan, Russia)",
+            habitat=FloraHabitat.ALPINE_MEADOW,
+            latitude=49.0, longitude=70.0, spawnRadiusKm=3000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Meadow ground cover; oxalic acid deters grazing; seed head feeds birds through winter",
+            significance="Sour dock — sharp oxalic acid taste; Kazakh sorpa (soup) uses fresh leaves; " +
+                         "Russian shchi (sorrel soup) national dish; " +
+                         "emerald-green spring carpet across steppe meadows; high Vitamin C source for nomads",
+            edible="Yes — young leaves (raw, soup, salad); sour taste",
+            assetAnimation=FloraAssetAnimation.STATIC, size="20–60 cm",
+            glowLocation="Bright acid-green leaf glow; spring-shoot vivid emerald shimmer",
+            teamlabMood="Leaf", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8310, name="Hemp", scientific="Cannabis sativa",
+            category=FloraCategory.PLANT, subCategory="Fibre Crop",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.CENTRAL_ASIA,
+            countries="Kazakhstan, Central Asia (domestication origin)",
+            habitat=FloraHabitat.STEPPE_DRY,
+            latitude=48.0, longitude=73.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Soil improver; deep root aerates compacted steppe soil; seed heads feed birds in winter",
+            significance="Industrial hemp — first domesticated 8,000 BCE in Central Asian steppe; " +
+                         "oldest known woven fabric (hemp cloth, 8,000 BCE); Silk Road paper and rope; " +
+                         "hemp seed oil nutritious; THC-low industrial varieties legally cultivated today",
+            edible="Yes — seeds (oil, protein); industrial (fibre, paper); legal varieties only",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="1–3 m; distinctive palm-leaf form",
+            glowLocation="Pale green crystalline trichome leaf shimmer; palmate leaf glow",
+            teamlabMood="Leaf surface + seed", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        // ── BATCH 04: HERBS — WESTERN ASIA (IDs 8401–8416) ─────────
+
+        new FloraEntry { id=8401, name="Za'atar Thyme", scientific="Thymus spp.",
+            category=FloraCategory.PLANT, subCategory="Aromatic Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Lebanon, Israel, Jordan, Syria", habitat=FloraHabitat.DRY_SCRUB,
+            latitude=33.0, longitude=35.5, spawnRadiusKm=500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bee forage; aromatic ground cover on limestone hillsides; drought-resistant",
+            significance="Za'atar spice blend ingredient — dried thyme, sumac, sesame, salt; " +
+                         "Levantine breakfast dip with olive oil; sacred in Islamic tradition; " +
+                         "hillside thyme carpets visible from Jerusalem to Beirut in spring bloom",
+            edible="Yes — leaves (dried spice blend, fresh tea)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="20–40 cm",
+            glowLocation="Pale purple flower shimmer + silver-green aromatic leaf glow",
+            teamlabMood="Flower tips + leaves", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8402, name="Giant Fennel", scientific="Ferula communis",
+            category=FloraCategory.FLOWER, subCategory="Umbellifer",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Turkey, Lebanon, Israel, Jordan", habitat=FloraHabitat.DRY_SCRUB,
+            latitude=36.0, longitude=35.0, spawnRadiusKm=800f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Insect-pollinated giant umbel; hollow stem provides nesting habitat for solitary bees",
+            significance="Prometheus myth — fire stolen from the gods carried in the hollow stem of giant fennel; " +
+                         "ancient Greek thyrsos (staff) made from it; raw root toxic (furanocoumarins); " +
+                         "dried stem used as tinder; dramatic landscape element of Mediterranean hillsides",
+            edible="TOXIC raw — root toxic; Medicinal uses only (cooked young shoot in some traditions)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="1–3 m; towering yellow umbel",
+            glowLocation="Pale gold flower umbrella shimmer; mythic fire-carrier amber glow",
+            teamlabMood="Flower head", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=8403, name="Za'atar Levantine", scientific="Origanum syriacum",
+            category=FloraCategory.PLANT, subCategory="Sacred Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Lebanon, Israel, Jordan, Syria (Levant endemic)",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=33.5, longitude=36.0, spawnRadiusKm=500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bee forage; aromatic ground cover on rocky limestone slopes",
+            significance="The true za'atar plant — Origanum syriacum, not thyme; " +
+                         "national herb of Lebanon; za'atar blend uses this; " +
+                         "mentioned in Mishnah and possibly the 'hyssop' of Old Testament; " +
+                         "harvesting wild za'atar now protected in Israel — over-harvesting threat",
+            edible="Yes — leaves (za'atar blend, dried, fresh tea)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–60 cm",
+            glowLocation="Pale purple-white aromatic leaf shimmer; Levantine hillside glow",
+            teamlabMood="Leaf + flower", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8404, name="Sumac", scientific="Rhus coriaria",
+            category=FloraCategory.PLANT, subCategory="Spice Shrub",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Turkey, Lebanon, Syria, Iran, Jordan",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=36.0, longitude=37.0, spawnRadiusKm=1000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bird-dispersed berries; insect-pollinated; drought-tolerant rocky slope coloniser",
+            significance="Levantine sour spice — replaced lemon before citrus arrived in the region; " +
+                         "fattoush, shawarma, kebab sprinkle; deep crimson berry powder; " +
+                         "tanning agent from bark and leaf (sumac = 'red' in Aramaic)",
+            edible="Yes — dried berry powder (tart, fruity sour spice)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="1–3 m; dense red berry clusters",
+            glowLocation="Deep crimson berry cluster glow; sour-light ruby shimmer",
+            teamlabMood="Berry clusters", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8405, name="Anise", scientific="Pimpinella anisum",
+            category=FloraCategory.PLANT, subCategory="Spice Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Turkey, Egypt, Iran (cultivation origin)",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=36.0, longitude=32.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Insect-pollinated delicate umbellifer; companion planting benefit",
+            significance="Anise — arak (Lebanon), ouzo (Greece), sambuca (Italy), pastis (France) all based on this plant; " +
+                         "ancient Roman digestive spice; anethole compound identical to star anise; " +
+                         "Egyptian and Turkish medicine for 4,000 years",
+            edible="Yes — seeds (liqueur flavouring, bread, digestive)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–60 cm; feathery umbelliferous",
+            glowLocation="White flower + pale gold seed shimmer; anise-sweet glow",
+            teamlabMood="Seeds", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8406, name="Cumin (Western Asia)", scientific="Cuminum cyminum",
+            category=FloraCategory.PLANT, subCategory="Spice Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Iran, Turkey, Iraq (core cultivation zone)",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=36.0, longitude=45.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Insect-pollinated; drought-adapted annual",
+            significance="Kemoun — Middle Eastern cooking foundation; baharat spice blend; " +
+                         "hummus, falafel, shawarma all rely on cumin; Persian cuisine (khoresh, polo); " +
+                         "Ayurvedic and Islamic medicine for digestion",
+            edible="Yes — seeds (whole, ground, toasted)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="20–50 cm",
+            glowLocation="Warm amber seed cluster shimmer; spice-market golden glow",
+            teamlabMood="Seed head", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8407, name="Coriander (Western Asia)", scientific="Coriandrum sativum",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Iran, Turkey, Lebanon (ancient use)",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=35.0, longitude=51.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Insect-pollinated; self-seeding annual; companion planting",
+            significance="Gishnak (Persian) — Persian cuisine cornerstone; ghormeh sabzi herb mix; " +
+                         "ancient Egyptian tomb herb; Levantine tabouleh fresh coriander; " +
+                         "seed found in 3,000-year-old Hittite archaeological sites in Anatolia",
+            edible="Yes — leaves (cilantro), seeds (coriander spice), roots",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–60 cm",
+            glowLocation="White flower + leaf green shimmer; ancient-herb glow",
+            teamlabMood="Flower + leaf", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8408, name="Fenugreek (Western Asia)", scientific="Trigonella foenum-graecum",
+            category=FloraCategory.PLANT, subCategory="Spice Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Turkey, Iran, Iraq, Egypt (ancient cultivation)",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=37.0, longitude=39.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Nitrogen-fixing legume; drought-adapted",
+            significance="Hilba — Middle Eastern bread spice (Turkish çemen paste on pastirma); " +
+                         "ancient Egyptian medicinal; Arabic qalb helba (heart of fenugreek) tea; " +
+                         "Yemenite hilba sauce with zhug for bread dipping",
+            edible="Yes — seeds (spice, paste), leaves (herb)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="30–60 cm",
+            glowLocation="Warm gold seed pod shimmer; maple-aroma spice glow",
+            teamlabMood="Pods", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8409, name="Black Cumin / Nigella", scientific="Nigella sativa",
+            category=FloraCategory.FLOWER, subCategory="Spice Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Turkey, Iran, Egypt, Saudi Arabia, Syria",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=37.0, longitude=37.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.CULTIVATED,
+            ecologicalRole="Insect-pollinated; ornamental blue flowers attract native bees",
+            significance="Habbatus sauda — 'the blessed seed' in authentic Hadith; " +
+                         "described as 'cure for everything except death' in Islamic medicine; " +
+                         "thymoquinone compound studied for anti-inflammatory properties; " +
+                         "sprinkled on naan, Turkish bread, manakish; onion-pepper flavour",
+            edible="Yes — tiny black seeds (bread topping, spice blend)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="20–60 cm; delicate blue flower",
+            glowLocation="Black seed shimmer nestled in pale blue-white flower; sacred seed glow",
+            teamlabMood="Flower + seed", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8410, name="Persian Rose", scientific="Rosa persica",
+            category=FloraCategory.FLOWER, subCategory="Wild Rose",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Iran, Afghanistan, Central Asia (endemic)",
+            habitat=FloraHabitat.STEPPE_DRY,
+            latitude=32.0, longitude=52.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Insect-pollinated; desert and steppe pioneer; thorny stems provide bird habitat",
+            significance="Only rose with a yellow centre spot on yellow-white petals — bicolor; " +
+                         "parent of Rosa x persica hybrids in modern rose breeding; " +
+                         "Persian rose water (golab) different variety — Rosa damascena used for distillation; " +
+                         "wild ancestor of garden roses found in arid Iran",
+            edible="Decorative; hips nutritious (rose hip tea)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_BLOOM, size="0.5–1 m; low spreading",
+            glowLocation="Yellow-red bicolour petal shimmer; bright centre-spot radiance",
+            teamlabMood="Petals", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8411, name="Garden Sage", scientific="Salvia officinalis",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Turkey, Lebanon, Levant (cultivated pan-Mediterranean)",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=38.0, longitude=32.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bee forage; aromatic grey-green leaves deter herbivores",
+            significance="Wisdom herb (salvare = to save in Latin); medieval European and Ottoman medicine; " +
+                         "sage honey from Turkish mountain beekeepers; " +
+                         "burnt sage (smudging) for purification in multiple traditions; " +
+                         "Silk Road medicinal export",
+            edible="Yes — leaves (culinary, tea, infusion)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–80 cm; grey-green velvet leaf",
+            glowLocation="Silver-green aromatic leaf + purple flower spike shimmer",
+            teamlabMood="Leaf + flower", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8412, name="Spearmint / Nana Mint", scientific="Mentha spicata",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Turkey, Lebanon, Iran, Morocco (pan-Mediterranean/Middle East)",
+            habitat=FloraHabitat.RIPARIAN,
+            latitude=37.0, longitude=36.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bee forage; ground cover on moist stream banks",
+            significance="Nana (Arab world) — Moroccan atay bi nana (mint tea) hospitality ritual; " +
+                         "Lebanese fattoush and tabouleh use fresh spearmint; " +
+                         "Iranian salad herbs (sabzi khordan); gentler than peppermint — suitable for children's tea",
+            edible="Yes — leaves (fresh tea, salad, cooking)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="30–80 cm",
+            glowLocation="Cool green-white mint leaf shimmer; refreshing blue-green aura",
+            teamlabMood="Leaf surface", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8413, name="Salvia fruticosa (Greek Sage)", scientific="Salvia fruticosa",
+            category=FloraCategory.PLANT, subCategory="Aromatic Shrub",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Turkey, Lebanon, Israel, Cyprus, Greece",
+            habitat=FloraHabitat.DRY_SCRUB,
+            latitude=36.5, longitude=34.0, spawnRadiusKm=800f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bee forage; aromatic maquis shrub; drought-adapted Mediterranean landscape",
+            significance="Greek mountain tea (faskomilo) — most consumed herbal tea in Greece and Turkey; " +
+                         "harvested by hand from wild shrubs on Aegean hillsides; " +
+                         "three-lobed leaf distinctive; silver-grey leaf carpet on rocky slopes",
+            edible="Yes — leaves (tea, infusion)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="0.5–1.5 m",
+            glowLocation="Silver-grey leaf + pale lavender flower shimmer; aromatic hillside shimmer",
+            teamlabMood="Leaf + flower", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8414, name="Phrygian Sage", scientific="Salvia phlomoides",
+            category=FloraCategory.PLANT, subCategory="Aromatic Shrub",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Turkey, Iran (Anatolian highlands)", habitat=FloraHabitat.DRY_SCRUB,
+            latitude=38.0, longitude=36.0, spawnRadiusKm=600f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bee forage; pink-purple whorled flowers tower above dry rocky slopes",
+            significance="Towering whorled sage of Turkish Phrygian highlands; " +
+                         "ancient Phrygian medicinal herb used since Bronze Age Anatolia; " +
+                         "dramatic pink-purple flower whorls rising 1 m on grey-green stems; " +
+                         "little known outside Turkey but ecologically important",
+            edible="Medicinal tea",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="50–120 cm; whorled pink-purple spikes",
+            glowLocation="Pink-purple whorl shimmer; grey-green velvet leaf aura",
+            teamlabMood="Flower whorls", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8415, name="Phoenician Thyme", scientific="Thymus phoeniceus",
+            category=FloraCategory.PLANT, subCategory="Aromatic Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Lebanon, Israel, Syria (coastal Levant endemic)",
+            habitat=FloraHabitat.ROCKY_COASTAL,
+            latitude=33.0, longitude=35.5, spawnRadiusKm=300f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bee forage; coastal rocky cliff endemic; critical nectar source for coastal bees",
+            significance="Phoenician coastal thyme — carpets limestone sea-cliffs of Lebanon and Israel; " +
+                         "ancient Phoenician sailors used it in navigation ceremonies; " +
+                         "rare endemic of the Eastern Mediterranean coast; purple carpet blooms in April",
+            edible="Yes — leaves (tea, culinary herb)",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="5–20 cm; low coastal carpet",
+            glowLocation="Purple flower carpet + grey-green leaf shimmer over coastal cliff",
+            teamlabMood="Carpet", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8416, name="Alkanet", scientific="Alkanna tinctoria",
+            category=FloraCategory.FLOWER, subCategory="Dye Plant",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.WESTERN_ASIA,
+            countries="Turkey, Greece, Iran, Syria", habitat=FloraHabitat.DRY_SCRUB,
+            latitude=38.0, longitude=31.0, spawnRadiusKm=1500f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Bee forage; deep blue flowers attract specialist bees",
+            significance="Ancient Silk Road dye plant — root contains alkannin giving deep red-purple dye; " +
+                         "used to colour textiles, cosmetics, wine (Cleopatra's lip colour tradition); " +
+                         "vivid deep-blue flowers contrast with red root; Roman and Greek dye trade",
+            edible="Medicinal (root dye); not culinary",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="20–60 cm",
+            glowLocation="Deep indigo-blue flower shimmer; crimson-red root glow underground",
+            teamlabMood="Flower + root", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        // ── BATCH 04: HERBS — NORTH ASIA (IDs 8501–8505) ───────────
+
+        new FloraEntry { id=8501, name="Siberian Ginseng", scientific="Eleutherococcus senticosus",
+            category=FloraCategory.PLANT, subCategory="Medicinal Shrub",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.NORTH_ASIA,
+            countries="Russia (Amur, Primorsky), China, Korea, Japan",
+            habitat=FloraHabitat.BOREAL_MOUNTAIN_FOREST,
+            latitude=50.0, longitude=137.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Forest floor shrub; thorny stems provide cover for birds; berries eaten by bears",
+            significance="Eleuthero — used by Soviet athletes and cosmonauts as performance adaptogen; " +
+                         "different species from true Panax ginseng but similar eleutherosides; " +
+                         "Nanai and Udege peoples of Russian Far East traditional medicine; " +
+                         "stress resistance tonic studied in Soviet space programme",
+            edible="Medicinal — root tincture, tea",
+            assetAnimation=FloraAssetAnimation.STATIC, size="1–3 m prickly shrub",
+            glowLocation="Soft gold root structure glow beneath forest floor; taiga understory shimmer",
+            teamlabMood="Root system", interactionMode=FloraInteractionMode.QUIET_FOREST },
+
+        new FloraEntry { id=8502, name="Wild Garlic / Ramsons", scientific="Allium ursinum",
+            category=FloraCategory.PLANT, subCategory="Wild Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.NORTH_ASIA,
+            countries="Russia (European Russia to Siberia)",
+            habitat=FloraHabitat.FOREST_FLOOR,
+            latitude=55.0, longitude=45.0, spawnRadiusKm=3000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Spring ephemeral carpet — emerges before canopy closes; provides early nectar for bees",
+            significance="Bear's garlic (Bärlauch) — bears eat it after hibernation (hence 'ursinum'); " +
+                         "Russian spring forage — cheremsha (wild garlic) pickled and eaten across Russia; " +
+                         "white star flower carpets flood across deciduous forest floors in May; " +
+                         "pungent smell fills entire forest — scent navigation marker",
+            edible="Yes — leaves (salad, soup, pickle), bulb, flowers",
+            assetAnimation=FloraAssetAnimation.ANIMATED_SWAY, size="15–40 cm; white star flower mass",
+            glowLocation="White star flower + vivid green leaf carpet shimmer; spring forest floor",
+            teamlabMood="Flower + leaf", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8503, name="Horseradish", scientific="Armoracia rusticana",
+            category=FloraCategory.PLANT, subCategory="Culinary Herb",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.NORTH_ASIA,
+            countries="Russia (pan-Russian; Caucasus origin)",
+            habitat=FloraHabitat.RIPARIAN,
+            latitude=52.0, longitude=40.0, spawnRadiusKm=3000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Insect-pollinated; deep taproot stabilises riverbanks; spreads aggressively once established",
+            significance="Khren — Russian condiment for pelmeni, holodets, roast beef; " +
+                         "isothiocyanate compounds (like wasabi) give nasal heat; " +
+                         "Passover seder maror (bitter herb) in Ashkenazi Jewish tradition; " +
+                         "impossible to eradicate once planted — every fragment regrows",
+            edible="Yes — freshly grated root (condiment, sauce)",
+            assetAnimation=FloraAssetAnimation.STATIC, size="0.5–1.5 m; large crinkled leaves",
+            glowLocation="White pungent root glow underground; heat-shimmer from grated root",
+            teamlabMood="Root", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8504, name="Ural Licorice", scientific="Glycyrrhiza uralensis",
+            category=FloraCategory.PLANT, subCategory="Medicinal Shrub",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.NORTH_ASIA,
+            countries="Russia (Ural, Kazakhstan, Western Siberia)",
+            habitat=FloraHabitat.RIPARIAN,
+            latitude=51.0, longitude=60.0, spawnRadiusKm=2000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Nitrogen-fixer on steppe riverbanks; deep root prevents bank erosion",
+            significance="Wild licorice root — 50× sweeter than sugar (glycyrrhizin); " +
+                         "TCM and Russian traditional medicine; root chewed by steppe nomads; " +
+                         "basis of licorice candy flavouring; anti-inflammatory cortisol precursor compound studied",
+            edible="Medicinal/edible — root chewed, tea, extract",
+            assetAnimation=FloraAssetAnimation.STATIC, size="0.5–1.5 m; purple spike flowers",
+            glowLocation="Purple flower spike + warm gold root glow; sweet-amber underground shimmer",
+            teamlabMood="Flower + root", interactionMode=FloraInteractionMode.FULL_IMMERSION },
+
+        new FloraEntry { id=8505, name="Roseroot / Golden Root", scientific="Rhodiola rosea",
+            category=FloraCategory.PLANT, subCategory="Alpine Succulent",
+            gameCategory=FloraGameCategory.HERBS, region=FloraRegion.NORTH_ASIA,
+            countries="Russia (Arctic, Ural, Altai, Siberia)",
+            habitat=FloraHabitat.ALPINE_MEADOW,
+            latitude=68.0, longitude=55.0, spawnRadiusKm=3000f,
+            conservation=ConservationStatus.LEAST_CONCERN,
+            ecologicalRole="Alpine pollinator; rocky ground coloniser; succulent rosette survives freeze-thaw",
+            significance="Zolotoy koren (golden root) — Viking and Siberian adaptogen; " +
+                         "rosavins and salidroside studied for fatigue resistance and altitude adaptation; " +
+                         "traded along ancient Arctic Silk Route; scent of fresh rose from roots when cut; " +
+                         "used by Soviet cosmonauts and military for cognitive resilience",
+            edible="Medicinal — root tincture, tea",
+            assetAnimation=FloraAssetAnimation.STATIC, size="5–35 cm; gold-pink succulent rosette",
+            glowLocation="Gold-rose succulent rosette shimmer; rocky Arctic anchor glow",
+            teamlabMood="Rosette + root", interactionMode=FloraInteractionMode.QUIET_FOREST },
 
         // ── MORE BATCHES APPENDED HERE AS DATA ARRIVES ───────────
     };
