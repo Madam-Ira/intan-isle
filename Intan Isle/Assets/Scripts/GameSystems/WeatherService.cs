@@ -3,83 +3,119 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-// ── Weather condition enum ─────────────────────────────────────────────────
+// ── Weather condition enum — full OWM range ────────────────────────────────
 
 public enum WeatherCondition
 {
-    CLEAR,          // 800
-    MOSTLY_CLEAR,   // 801
-    PARTLY_CLOUDY,  // 802
-    OVERCAST,       // 803-804
-    MIST,           // 701
-    SMOKE,          // 711
-    HAZE,           // 721  (transboundary peat/plantation haze)
-    DUST,           // 731, 761
-    FOG,            // 741
-    DRIZZLE,        // 3xx
-    RAIN,           // 500-501
-    HEAVY_RAIN,     // 502-504
-    SHOWER,         // 520-531
-    THUNDERSTORM,   // 2xx
-    SNOW,           // 6xx
-    VOLCANIC_ASH,   // 762
-    SQUALL,         // 771
-    UNKNOWN,
+    // ── Clear / Cloud ──────────────────────────────────────────────
+    CLEAR            = 0,   // 800   — full sunshine
+    MOSTLY_CLEAR     = 1,   // 801   — few clouds (11-25 %)
+    PARTLY_CLOUDY    = 2,   // 802   — scattered (25-50 %)
+    BROKEN_CLOUDS    = 3,   // 803   — broken (51-84 %)
+    OVERCAST         = 4,   // 804   — full overcast (85-100 %)
+
+    // ── Drizzle ────────────────────────────────────────────────────
+    LIGHT_DRIZZLE    = 10,  // 300-301
+    DRIZZLE          = 11,  // 302-311
+    HEAVY_DRIZZLE    = 12,  // 312-321
+
+    // ── Rain ───────────────────────────────────────────────────────
+    LIGHT_RAIN       = 20,  // 500
+    RAIN             = 21,  // 501
+    HEAVY_RAIN       = 22,  // 502-503
+    EXTREME_RAIN     = 23,  // 504
+    FREEZING_RAIN    = 24,  // 511
+    LIGHT_SHOWER     = 25,  // 520
+    SHOWER           = 26,  // 521-522
+    RAGGED_SHOWER    = 27,  // 531
+
+    // ── Thunderstorm ───────────────────────────────────────────────
+    THUNDER_LIGHT    = 30,  // 200-201   — thunderstorm + light rain
+    THUNDERSTORM     = 31,  // 202, 210-211
+    HEAVY_THUNDER    = 32,  // 212
+    THUNDER_DRIZZLE  = 33,  // 230-232   — thunderstorm + drizzle
+    THUNDER_HAIL     = 34,  // 221       — thunderstorm + hail
+
+    // ── Snow ───────────────────────────────────────────────────────
+    LIGHT_SNOW       = 40,  // 600, 620
+    SNOW             = 41,  // 601, 621
+    HEAVY_SNOW       = 42,  // 602, 622
+    SLEET            = 43,  // 611-613
+    RAIN_SNOW        = 44,  // 615-616
+    BLIZZARD         = 45,  // heavy snow + wind ≥ 10 m/s
+
+    // ── Atmosphere ─────────────────────────────────────────────────
+    MIST             = 50,  // 701   — visibility 1-2 km
+    SMOKE            = 51,  // 711
+    HAZE             = 52,  // 721   — transboundary peat / plantation haze
+    SAND_WHIRLS      = 53,  // 731
+    FOG              = 54,  // 741   — visibility 0.5-1 km
+    DENSE_FOG        = 55,  //       — visibility < 200 m (inferred from vis field)
+    SAND             = 56,  // 751
+    DUST             = 57,  // 761
+    VOLCANIC_ASH     = 58,  // 762
+    SQUALL           = 59,  // 771
+    TORNADO          = 60,  // 781
+
+    UNKNOWN          = 99,
 }
 
-// ── Parsed weather snapshot ────────────────────────────────────────────────
+// ── Weather snapshot ────────────────────────────────────────────────────────
 
 [Serializable]
 public class WeatherSnapshot
 {
-    public WeatherCondition condition = WeatherCondition.UNKNOWN;
-    public float  tempCelsius;
-    public float  humidity;        // 0-100 %
-    public float  windSpeedMs;     // m/s
-    public float  windDeg;         // degrees
-    public float  visibilityM;     // metres (default 10 000)
-    public float  cloudCoverage;   // 0-100 %
+    public WeatherCondition condition;
+    public float tempCelsius;
+    public float humidity;        // %
+    public float windSpeedMs;     // m/s
+    public float windGustMs;      // m/s
+    public float windDeg;         // degrees from N
+    public float visibilityM;     // metres
+    public float cloudCoverage;   // 0-100 %
+    public float rainMmPerHour;   // mm/h (if present)
+    public float snowMmPerHour;   // mm/h (if present)
     public string description;
-    public bool   isDay;           // true = daytime icon
+    public bool isDay;
 
     public override string ToString() =>
-        $"{condition} | {tempCelsius:F1}°C | {humidity}% RH | wind {windSpeedMs:F1}m/s | vis {visibilityM:F0}m";
+        $"{condition} | {tempCelsius:F1}°C | RH {humidity}% | " +
+        $"wind {windSpeedMs:F1}m/s {windDeg:F0}° | vis {visibilityM:F0}m | {description}";
 }
 
-// ── OpenWeatherMap JSON shims (JsonUtility) ────────────────────────────────
+// ── OWM JSON shims ──────────────────────────────────────────────────────────
 
-[Serializable] class OWM_Root       { public OWM_Weather[] weather; public OWM_Main main; public OWM_Wind wind; public OWM_Clouds clouds; public float visibility; public int dt; public OWM_Sys sys; }
-[Serializable] class OWM_Weather    { public int id; public string main; public string description; public string icon; }
-[Serializable] class OWM_Main       { public float temp; public float humidity; public float pressure; }
-[Serializable] class OWM_Wind       { public float speed; public float deg; }
-[Serializable] class OWM_Clouds     { public float all; }
-[Serializable] class OWM_Sys        { public long sunrise; public long sunset; }
+[Serializable] class OWM_Root    { public OWM_Weather[] weather; public OWM_Main main; public OWM_Wind wind; public OWM_Clouds clouds; public float visibility; public OWM_Rain rain; public OWM_Snow snow; public OWM_Sys sys; }
+[Serializable] class OWM_Weather { public int id; public string main; public string description; public string icon; }
+[Serializable] class OWM_Main    { public float temp; public float humidity; }
+[Serializable] class OWM_Wind    { public float speed; public float deg; public float gust; }
+[Serializable] class OWM_Clouds  { public float all; }
+[Serializable] class OWM_Rain    { public float _1h; public float _3h; }
+[Serializable] class OWM_Snow    { public float _1h; public float _3h; }
+[Serializable] class OWM_Sys     { public long sunrise; public long sunset; }
 
 /// <summary>
 /// Fetches real-world weather from OpenWeatherMap for the player's GPS location.
 ///
 /// Setup:
 ///   1. Get a free API key from openweathermap.org
-///   2. Paste it into the "Api Key" field in the Inspector
-///   3. Attach this MonoBehaviour to the GameSystems object
+///   2. Paste it into the "Api Key" field on this component in the Inspector
 ///
-/// Refresh rate: every refreshMinutes (default 10) minutes.
-/// On API failure: retains last known condition; falls back to CLEAR on first call.
-///
-/// Events:
-///   OnWeatherChanged(WeatherSnapshot)  — fired when condition changes
-///   OnWeatherRefreshed(WeatherSnapshot) — fired on every successful fetch
+/// Exposes 37 weather conditions with full visual + Barakah treatment.
+/// Events: OnWeatherChanged(snap)  — condition changed
+///         OnWeatherRefreshed(snap) — every successful fetch (for wind updates)
+/// Public: ForceCondition(cond) — test without API
 /// </summary>
 public class WeatherService : MonoBehaviour
 {
     [Header("API")]
-    [Tooltip("OpenWeatherMap API key (free tier works — openweathermap.org)")]
+    [Tooltip("OpenWeatherMap API key — openweathermap.org (free tier)")]
     [SerializeField] private string apiKey = "";
-    [Tooltip("How often to fetch weather data (minutes)")]
+    [Tooltip("Fetch interval in minutes")]
     [SerializeField] private float refreshMinutes = 10f;
 
-    [Header("Fallback GPS (used if no PlayerRig/CesiumGlobeAnchor)")]
-    [SerializeField] private float fallbackLat =  1.3521f;  // Singapore
+    [Header("Fallback GPS")]
+    [SerializeField] private float fallbackLat =  1.3521f;
     [SerializeField] private float fallbackLon = 103.8198f;
 
     // ── Singleton ──────────────────────────────────────────────────
@@ -89,19 +125,15 @@ public class WeatherService : MonoBehaviour
     public static event Action<WeatherSnapshot> OnWeatherChanged;
     public static event Action<WeatherSnapshot> OnWeatherRefreshed;
 
-    // ── Public state ──────────────────────────────────────────────
+    // ── State ──────────────────────────────────────────────────────
     public WeatherSnapshot Current { get; private set; } = new WeatherSnapshot
     {
-        condition   = WeatherCondition.CLEAR,
-        tempCelsius = 28f,
-        humidity    = 75f,
-        isDay       = true,
-        visibilityM = 10000f,
+        condition = WeatherCondition.CLEAR, tempCelsius = 28f,
+        humidity = 75f, isDay = true, visibilityM = 10000f,
+        description = "clear sky",
     };
-
     public bool HasData { get; private set; }
 
-    // ── Internal ──────────────────────────────────────────────────
     private CesiumForUnity.CesiumGlobeAnchor _playerAnchor;
     private double _lat, _lon;
 
@@ -115,26 +147,21 @@ public class WeatherService : MonoBehaviour
 
     IEnumerator Start()
     {
-        yield return null;  // wait for Cesium init
+        yield return null;
         var rig = GameObject.Find("PlayerRig");
-        if (rig != null)
-            _playerAnchor = rig.GetComponent<CesiumForUnity.CesiumGlobeAnchor>();
-
+        if (rig != null) _playerAnchor = rig.GetComponent<CesiumForUnity.CesiumGlobeAnchor>();
         StartCoroutine(RefreshLoop());
     }
-
-    // ── Refresh loop ──────────────────────────────────────────────
 
     private IEnumerator RefreshLoop()
     {
         while (true)
         {
             ReadGPS();
-            if (!string.IsNullOrEmpty(apiKey))
+            if (!string.IsNullOrWhiteSpace(apiKey))
                 yield return FetchWeather();
             else
-                Debug.LogWarning("[WeatherService] No API key set — using fallback weather.");
-
+                Debug.LogWarning("[WeatherService] No API key — using fallback clear weather.");
             yield return new WaitForSeconds(refreshMinutes * 60f);
         }
     }
@@ -146,14 +173,10 @@ public class WeatherService : MonoBehaviour
             _lon = _playerAnchor.longitudeLatitudeHeight.x;
             _lat = _playerAnchor.longitudeLatitudeHeight.y;
         }
-        else
-        {
-            _lat = fallbackLat;
-            _lon = fallbackLon;
-        }
+        else { _lat = fallbackLat; _lon = fallbackLon; }
     }
 
-    // ── API fetch ─────────────────────────────────────────────────
+    // ── API ────────────────────────────────────────────────────────
 
     private IEnumerator FetchWeather()
     {
@@ -170,109 +193,158 @@ public class WeatherService : MonoBehaviour
             yield break;
         }
 
-        var snapshot = ParseResponse(req.downloadHandler.text);
-        if (snapshot == null) yield break;
+        var snap = Parse(req.downloadHandler.text);
+        if (snap == null) yield break;
 
-        bool condChanged = snapshot.condition != Current.condition;
-        Current  = snapshot;
-        HasData  = true;
+        bool changed = snap.condition != Current.condition;
+        Current = snap;
+        HasData = true;
 
-        OnWeatherRefreshed?.Invoke(snapshot);
-        if (condChanged) OnWeatherChanged?.Invoke(snapshot);
+        OnWeatherRefreshed?.Invoke(snap);
+        if (changed) OnWeatherChanged?.Invoke(snap);
 
-        Debug.Log($"[WeatherService] {snapshot}");
+        Debug.Log($"[WeatherService] {snap}");
     }
 
-    // ── JSON parsing ──────────────────────────────────────────────
+    // ── JSON parse ─────────────────────────────────────────────────
 
-    private WeatherSnapshot ParseResponse(string json)
+    private WeatherSnapshot Parse(string json)
     {
-        OWM_Root root;
-        try   { root = JsonUtility.FromJson<OWM_Root>(json); }
+        OWM_Root r;
+        try   { r = JsonUtility.FromJson<OWM_Root>(json); }
         catch { Debug.LogWarning("[WeatherService] JSON parse error"); return null; }
-        if (root?.weather == null || root.weather.Length == 0) return null;
+        if (r?.weather == null || r.weather.Length == 0) return null;
 
-        long now     = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        bool isDay   = now >= root.sys.sunrise && now <= root.sys.sunset;
+        long now   = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        bool isDay = r.sys != null && now >= r.sys.sunrise && now <= r.sys.sunset;
+
+        float vis  = r.visibility > 0 ? r.visibility : 10000f;
+        float rain = r.rain != null ? (r.rain._1h > 0 ? r.rain._1h : r.rain._3h / 3f) : 0f;
+        float snow = r.snow != null ? (r.snow._1h > 0 ? r.snow._1h : r.snow._3h / 3f) : 0f;
+
+        var cond = MapCondition(r.weather[0].id, vis, r.wind.speed);
 
         return new WeatherSnapshot
         {
-            condition   = MapCondition(root.weather[0].id),
-            tempCelsius = root.main.temp,
-            humidity    = root.main.humidity,
-            windSpeedMs = root.wind.speed,
-            windDeg     = root.wind.deg,
-            visibilityM = root.visibility > 0 ? root.visibility : 10000f,
-            cloudCoverage = root.clouds.all,
-            description = root.weather[0].description,
-            isDay       = isDay,
+            condition      = cond,
+            tempCelsius    = r.main.temp,
+            humidity       = r.main.humidity,
+            windSpeedMs    = r.wind.speed,
+            windGustMs     = r.wind.gust,
+            windDeg        = r.wind.deg,
+            visibilityM    = vis,
+            cloudCoverage  = r.clouds.all,
+            rainMmPerHour  = rain,
+            snowMmPerHour  = snow,
+            description    = r.weather[0].description,
+            isDay          = isDay,
         };
     }
 
-    private static WeatherCondition MapCondition(int id)
+    private static WeatherCondition MapCondition(int id, float visM, float windMs)
     {
         return id switch
         {
-            >= 200 and <= 232 => WeatherCondition.THUNDERSTORM,
-            >= 300 and <= 321 => WeatherCondition.DRIZZLE,
-            500               => WeatherCondition.RAIN,
-            501               => WeatherCondition.RAIN,
-            >= 502 and <= 504 => WeatherCondition.HEAVY_RAIN,
-            >= 520 and <= 531 => WeatherCondition.SHOWER,
-            >= 600 and <= 622 => WeatherCondition.SNOW,
-            701               => WeatherCondition.MIST,
-            711               => WeatherCondition.SMOKE,
-            721               => WeatherCondition.HAZE,
-            731               => WeatherCondition.DUST,
-            741               => WeatherCondition.FOG,
-            751               => WeatherCondition.DUST,
-            761               => WeatherCondition.DUST,
-            762               => WeatherCondition.VOLCANIC_ASH,
-            771               => WeatherCondition.SQUALL,
-            781               => WeatherCondition.SQUALL,
-            800               => WeatherCondition.CLEAR,
-            801               => WeatherCondition.MOSTLY_CLEAR,
-            802               => WeatherCondition.PARTLY_CLOUDY,
-            >= 803            => WeatherCondition.OVERCAST,
-            _                 => WeatherCondition.UNKNOWN,
+            // Thunderstorm
+            200 or 201             => WeatherCondition.THUNDER_LIGHT,
+            202                    => WeatherCondition.THUNDERSTORM,
+            210 or 211             => WeatherCondition.THUNDERSTORM,
+            212                    => WeatherCondition.HEAVY_THUNDER,
+            221                    => WeatherCondition.THUNDER_HAIL,
+            230 or 231 or 232      => WeatherCondition.THUNDER_DRIZZLE,
+            >= 200 and <= 232      => WeatherCondition.THUNDERSTORM,
+
+            // Drizzle
+            300 or 301             => WeatherCondition.LIGHT_DRIZZLE,
+            302                    => WeatherCondition.HEAVY_DRIZZLE,
+            >= 310 and <= 311      => WeatherCondition.DRIZZLE,
+            312                    => WeatherCondition.HEAVY_DRIZZLE,
+            >= 313 and <= 321      => WeatherCondition.HEAVY_DRIZZLE,
+            >= 300 and <= 321      => WeatherCondition.DRIZZLE,
+
+            // Rain
+            500                    => WeatherCondition.LIGHT_RAIN,
+            501                    => WeatherCondition.RAIN,
+            502 or 503             => WeatherCondition.HEAVY_RAIN,
+            504                    => WeatherCondition.EXTREME_RAIN,
+            511                    => WeatherCondition.FREEZING_RAIN,
+            520                    => WeatherCondition.LIGHT_SHOWER,
+            521 or 522             => WeatherCondition.SHOWER,
+            531                    => WeatherCondition.RAGGED_SHOWER,
+            >= 500 and <= 531      => WeatherCondition.RAIN,
+
+            // Snow — blizzard if wind high
+            600 or 620             => WeatherCondition.LIGHT_SNOW,
+            601 or 621             => windMs >= 10f ? WeatherCondition.BLIZZARD : WeatherCondition.SNOW,
+            602 or 622             => windMs >= 10f ? WeatherCondition.BLIZZARD : WeatherCondition.HEAVY_SNOW,
+            611 or 612 or 613      => WeatherCondition.SLEET,
+            615 or 616             => WeatherCondition.RAIN_SNOW,
+            >= 600 and <= 622      => WeatherCondition.SNOW,
+
+            // Atmosphere
+            701                    => WeatherCondition.MIST,
+            711                    => WeatherCondition.SMOKE,
+            721                    => WeatherCondition.HAZE,
+            731                    => WeatherCondition.SAND_WHIRLS,
+            741                    => visM < 200f ? WeatherCondition.DENSE_FOG : WeatherCondition.FOG,
+            751                    => WeatherCondition.SAND,
+            761                    => WeatherCondition.DUST,
+            762                    => WeatherCondition.VOLCANIC_ASH,
+            771                    => WeatherCondition.SQUALL,
+            781                    => WeatherCondition.TORNADO,
+
+            // Cloud / Clear
+            800                    => WeatherCondition.CLEAR,
+            801                    => WeatherCondition.MOSTLY_CLEAR,
+            802                    => WeatherCondition.PARTLY_CLOUDY,
+            803                    => WeatherCondition.BROKEN_CLOUDS,
+            >= 804                 => WeatherCondition.OVERCAST,
+
+            _                      => WeatherCondition.UNKNOWN,
         };
     }
 
-    // ── Public helpers ────────────────────────────────────────────
+    // ── Public helpers ─────────────────────────────────────────────
 
-    public bool IsRaining    => Current.condition is WeatherCondition.DRIZZLE
-                                                   or WeatherCondition.RAIN
-                                                   or WeatherCondition.HEAVY_RAIN
-                                                   or WeatherCondition.SHOWER
-                                                   or WeatherCondition.THUNDERSTORM;
+    public bool IsRaining    => Current.condition is
+        WeatherCondition.LIGHT_DRIZZLE or WeatherCondition.DRIZZLE or WeatherCondition.HEAVY_DRIZZLE or
+        WeatherCondition.LIGHT_RAIN or WeatherCondition.RAIN or WeatherCondition.HEAVY_RAIN or
+        WeatherCondition.EXTREME_RAIN or WeatherCondition.FREEZING_RAIN or
+        WeatherCondition.LIGHT_SHOWER or WeatherCondition.SHOWER or WeatherCondition.RAGGED_SHOWER or
+        WeatherCondition.THUNDER_LIGHT or WeatherCondition.THUNDERSTORM or WeatherCondition.HEAVY_THUNDER or
+        WeatherCondition.THUNDER_DRIZZLE or WeatherCondition.THUNDER_HAIL or WeatherCondition.SQUALL;
 
-    public bool IsHazardous  => Current.condition is WeatherCondition.HAZE
-                                                   or WeatherCondition.SMOKE
-                                                   or WeatherCondition.DUST
-                                                   or WeatherCondition.VOLCANIC_ASH
-                                                   or WeatherCondition.SQUALL;
+    public bool IsSnowing    => Current.condition is
+        WeatherCondition.LIGHT_SNOW or WeatherCondition.SNOW or WeatherCondition.HEAVY_SNOW or
+        WeatherCondition.BLIZZARD or WeatherCondition.SLEET or WeatherCondition.RAIN_SNOW;
 
-    public bool IsReducedVis => Current.condition is WeatherCondition.FOG
-                                                   or WeatherCondition.MIST
-                                                   or WeatherCondition.HAZE
-                                                   or WeatherCondition.SMOKE
-                                                   or WeatherCondition.DUST
-                                                   or WeatherCondition.VOLCANIC_ASH;
+    public bool IsHazardous  => Current.condition is
+        WeatherCondition.HAZE or WeatherCondition.SMOKE or WeatherCondition.DUST or
+        WeatherCondition.SAND or WeatherCondition.SAND_WHIRLS or WeatherCondition.VOLCANIC_ASH or
+        WeatherCondition.SQUALL or WeatherCondition.TORNADO;
 
-    /// <summary>Manually force a specific condition (useful for testing in editor).</summary>
+    public bool IsReducedVis => Current.condition is
+        WeatherCondition.MIST or WeatherCondition.FOG or WeatherCondition.DENSE_FOG or
+        WeatherCondition.HAZE or WeatherCondition.SMOKE or WeatherCondition.DUST or
+        WeatherCondition.SAND or WeatherCondition.VOLCANIC_ASH;
+
+    /// <summary>Force a condition for testing — bypasses API.</summary>
     public void ForceCondition(WeatherCondition cond)
     {
-        Current = new WeatherSnapshot
+        var snap = new WeatherSnapshot
         {
             condition   = cond,
             tempCelsius = Current.tempCelsius,
             humidity    = Current.humidity,
             windSpeedMs = Current.windSpeedMs,
+            windGustMs  = Current.windGustMs,
+            windDeg     = Current.windDeg,
             visibilityM = Current.visibilityM,
             isDay       = Current.isDay,
             description = cond.ToString().ToLower().Replace('_', ' '),
         };
-        OnWeatherChanged?.Invoke(Current);
-        OnWeatherRefreshed?.Invoke(Current);
+        Current = snap;
+        OnWeatherChanged?.Invoke(snap);
+        OnWeatherRefreshed?.Invoke(snap);
     }
 }
