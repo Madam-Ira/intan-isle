@@ -155,6 +155,7 @@ namespace IntanIsle.Core
 
             // Phase 4: Gameplay systems
             EnsureManager<RabbitCareManager>();
+            EnsureManager<WaterManager>();
             EnsureManager<CropSystem>();
             EnsureManager<HarvestChainManager>();
 
