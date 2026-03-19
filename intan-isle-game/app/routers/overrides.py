@@ -100,7 +100,10 @@ async def approve_override(
     await db.commit()
 
     result = await db.execute(select(OverrideLog).where(OverrideLog.id == override_id))
-    entry = result.scalar_one()
+    entry = result.scalar_one_or_none()
+
+    if entry is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Override lost during approval")
 
     return _to_out(entry)
 

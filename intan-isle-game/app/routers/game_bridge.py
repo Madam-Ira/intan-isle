@@ -17,7 +17,7 @@ import logging
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException, status
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.core.config import settings
 
@@ -31,9 +31,9 @@ router = APIRouter(prefix="/game", tags=["game-bridge"])
 # ── Schemas ────────────────────────────────────────────────────────────
 
 class BlessingUpdateRequest(BaseModel):
-    player_id: str
+    player_id: str = Field(min_length=1, max_length=200)
     delta: float
-    reason: str
+    reason: str = Field(min_length=1, max_length=500)
 
 
 class BlessingUpdateResponse(BaseModel):
@@ -44,10 +44,10 @@ class BlessingUpdateResponse(BaseModel):
 
 
 class CurriculumSyncRequest(BaseModel):
-    player_id: str
-    pillar_id: str
+    player_id: str = Field(min_length=1, max_length=200)
+    pillar_id: str = Field(min_length=1, max_length=100)
     competency_delta: float
-    context: Optional[str] = None
+    context: Optional[str] = Field(None, max_length=1000)
 
 
 class CurriculumSyncResponse(BaseModel):
@@ -58,10 +58,10 @@ class CurriculumSyncResponse(BaseModel):
 
 
 class DistressSignalRequest(BaseModel):
-    player_id: str
-    signal_tier: str
-    signal_type: str
-    session_context: Optional[str] = None
+    player_id: str = Field(min_length=1, max_length=200)
+    signal_tier: str = Field(min_length=1, max_length=50)
+    signal_type: str = Field(min_length=1, max_length=100)
+    session_context: Optional[str] = Field(None, max_length=1000)
 
 
 class DistressSignalResponse(BaseModel):

@@ -9,6 +9,9 @@ from pydantic import BaseModel
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
+import redis.asyncio as aioredis
+from aiokafka import AIOKafkaProducer
+
 from app.core.auth import UserRole, require_role
 from app.core.database import Alert, Device, SensorReading, Zone, get_db
 from app.core.kafka_producer import get_producer
@@ -64,8 +67,8 @@ _ALERT_THRESHOLDS = {
 async def ingest_telemetry(
     body: TelemetryPayload,
     db: AsyncSession = Depends(get_db),
-    redis=Depends(get_redis),
-    producer=Depends(get_producer),
+    redis: Optional[aioredis.Redis] = Depends(get_redis),
+    producer: Optional[AIOKafkaProducer] = Depends(get_producer),
 ):
     # Resolve device
     result = await db.execute(select(Device).where(Device.device_id == body.device_id, Device.is_active.is_(True)))
