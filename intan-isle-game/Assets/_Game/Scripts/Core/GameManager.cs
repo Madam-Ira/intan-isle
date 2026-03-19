@@ -161,7 +161,15 @@ namespace IntanIsle.Core
             EnsureManager<CropSystem>();
             EnsureManager<HarvestChainManager>();
 
-            // Phase 5: Scene-based world managers (must already exist)
+            // Phase 5: Healing + Narrative
+            EnsureManager<PollutionZoneManager>();
+            EnsureManager<HealingActionManager>();
+            EnsureManager<DefaultZoneBootstrap>();
+            EnsureManager<ElderDialogueManager>();
+            EnsureManager<CaptainessEventManager>();
+            EnsureManager<TemptationManager>();
+
+            // Phase 6: Scene-based world managers (must already exist)
             EnsureSceneManager<VeiledWorldManager>();
             EnsureSceneManager<ZoneShaderLinker>();
             EnsureSceneManager<EmotionalDayNightCycle>();
