@@ -148,10 +148,12 @@ namespace IntanIsle.Core
             EnsureManager<AdaptiveParameterController>();
             EnsureManager<OnboardingQuizManager>();
 
-            // Phase 3: Curriculum, blessing, milestones
+            // Phase 3: Curriculum, blessing, milestones, dashboard
             EnsureManager<CurriculumEngine>();
+            EnsureManager<CurriculumEventMapper>();
             EnsureManager<BlessingMeterController>();
             EnsureManager<MilestoneManager>();
+            EnsureManager<DashboardDataBridge>();
 
             // Phase 4: Gameplay systems
             EnsureManager<RabbitCareManager>();
